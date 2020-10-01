@@ -1,0 +1,118 @@
+:root {
+  --grey: #272527;
+  --light-grey: #7E7E7F;
+  --white: #e7e7f0;
+  --purple: #7272D6;
+  --green: #82E22E;
+  --blue: #66D9CF;
+  --red: #FC7575;
+  --yellow: #E6DB6F;
+  --red: #FC7575;
+  --orange: #E96926;
+}
+
+
+
+@font-face {
+    font-family: 'fira-sans-bold';
+    src: url('fonts/firasans-bold-webfont.woff2') format('woff2'),
+         url('fonts/firasans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'fira-sans-regular';
+    src: url('fonts/firasans-regular-webfont.woff2') format('woff2'),
+         url('fonts/firasans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* { box-sizing: border-box; }
+
+*::-moz-selection {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+*::selection {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+body {
+  padding: 0; margin: 0;
+  background-color: var(--grey);
+  color: var(--white);
+  font-family: 'fira-sans-regular', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  cursor: url(../images/cursor.png), auto !important;
+  font-size: 1.6vw;
+}
+
+a {
+  color: var(--purple);
+}
+
+a:hover {
+  cursor: url(../images/cursor-hov.png), pointer !important;
+}
+
+section {
+  padding: 5vw 3vw;
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+section > * { display: flex; }
+
+section > header{
+  justify-content: center;
+  padding-bottom: 2vw;
+}
+
+#info {
+  /* opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s; */
+}
+
+p {
+  font-family: 'fira-sans-bold', sans-serif;
+  font-size: 3.2vw;
+  line-height: 3.8vw;
+}
+
+footer {
+  /* opacity: 0;
+  visibility: hidden; */
+  display: flex;
+  justify-content: space-around;
+  border: 0.3vw solid var(--white);
+  padding: 1.2vw 0.9vw;
+  margin-top: 1.6vw;
+  transition: opacity 1s;
+}
+
+footer a {
+  color: var(--white);
+  text-decoration: none;
+  display: block;
+}
+
+.contact-title {
+  color: var(--purple);
+  text-decoration: none;
+  font-family: 'fira-sans-bold', sans-serif;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  section { max-width: 90vw; }
+  p { font-size: 4.3vw; line-height: 5.6vw; }
+  footer { font-size: 5.4vw; display: block; }
+  footer > * { padding: 3vw 2.3vw; }
+}

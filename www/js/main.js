@@ -27,7 +27,7 @@ window.addEventListener('load', (e) => {
       foot.style.opacity = 1
       foot.style.transform = `translateY(${y})`
     }, (infos.length + 1) * 250)
-  }, 1800)
+  }, 1900)
 })
 
 window.addEventListener('resize', (e) => {

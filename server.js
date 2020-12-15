@@ -33,4 +33,5 @@ if (process.env.PROD) {
   proxy.register('dream.netizen.org', 'http://localhost:8001/dream', config)
   proxy.register('www.dataruleseverythingaroundme.net', 'http://localhost:8001/dream', config)
   proxy.register('dataruleseverythingaroundme.net', 'http://localhost:8001/dream', config)
+  proxy.register('browserfest.netizen.org', 'http://localhost:8001/browserfest')
 }

@@ -27,7 +27,7 @@ if (process.env.PROD) {
   const config = {
     ssl: { letsencrypt: { email: 'hi@netizen.org', production: true } }
   }
-  proxy.register('68.183.26.61', 'http://localhost:8001', config)
+  proxy.register('161.35.57.186', 'http://localhost:8001')
   proxy.register('netizen.org', 'http://localhost:8001', config)
   proxy.register('www.netizen.org', 'http://localhost:8001', config)
   proxy.register('dream.netizen.org', 'http://localhost:8001/dream', config)

@@ -50,7 +50,7 @@ body {
   font-family: 'fira-sans-regular', sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  cursor: url(../images/cursor.png), auto !important;
+  cursor: url(../images/cursor-hov.png), auto !important;
   font-size: 1.6vw;
   height: 100vh;
 }
@@ -60,7 +60,7 @@ a {
 }
 
 a:hover {
-  cursor: url(../images/cursor-hov.png), pointer !important;
+  cursor: url(../images/cursor.png), pointer !important;
 }
 
 .blurb {

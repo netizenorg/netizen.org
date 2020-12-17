@@ -1,0 +1,91 @@
+:root {
+  --grey: #272527;
+  --light-grey: #7E7E7F;
+  --white: #e7e7f0;
+  --purple: #7272D6;
+  --green: #82E22E;
+  --blue: #66D9CF;
+  --red: #FC7575;
+  --yellow: #E6DB6F;
+  --red: #FC7575;
+  --orange: #E96926;
+
+  --start-size: 0vh;
+  --end-size: 300vh;
+}
+
+@font-face {
+    font-family: 'fira-sans-bold';
+    src: url('fonts/firasans-bold-webfont.woff2') format('woff2'),
+         url('fonts/firasans-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'fira-sans-regular';
+    src: url('fonts/firasans-regular-webfont.woff2') format('woff2'),
+         url('fonts/firasans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* { box-sizing: border-box; }
+
+*::-moz-selection {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+*::selection {
+  background-color: var(--purple);
+  color: var(--white);
+}
+
+body {
+  padding: 0; margin: 0;
+  background-color: var(--grey);
+  color: var(--white);
+  font-family: 'fira-sans-regular', sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  cursor: url(../images/cursor.png), auto !important;
+  font-size: 1.6vw;
+  height: 100vh;
+}
+
+a {
+  color: var(--purple);
+}
+
+a:hover {
+  cursor: url(../images/cursor-hov.png), pointer !important;
+}
+
+.blurb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 10px;
+}
+
+img {
+  width: 100%;
+}
+
+a.n-logo {
+  width: 25vw;
+  align-self: flex-start;
+}
+
+a.bf-logo {
+  width: 100%;
+  align-self: center;
+}
+
+a.uc-logo {
+  width: 25vw;
+  align-self: flex-end;
+}

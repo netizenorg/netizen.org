@@ -60,7 +60,7 @@ a {
 }
 
 a:hover {
-  cursor: url(../images/cursor.png), pointer !important;
+  cursor: pointer;
 }
 
 .blurb {

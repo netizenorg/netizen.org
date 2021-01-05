@@ -51,7 +51,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   cursor: url(../images/cursor-hov.png), auto !important;
-  font-size: 1.6vw;
   height: 100vh;
 }
 
@@ -75,17 +74,11 @@ img {
   width: 100%;
 }
 
-a.n-logo {
-  width: 25vw;
-  align-self: flex-start;
+pre {
+  position: fixed;
+  z-index: 2;
 }
 
-a.bf-logo {
-  width: 100%;
-  align-self: center;
-}
-
-a.uc-logo {
-  width: 25vw;
-  align-self: flex-end;
+@media (max-width: 577px) {
+  pre { font-size: 2vw; }
 }

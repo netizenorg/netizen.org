@@ -52,6 +52,9 @@ body {
   -webkit-font-smoothing: antialiased;
   cursor: url(../images/cursor-hov.png), auto !important;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 a {
@@ -74,11 +77,19 @@ img {
   width: 100%;
 }
 
-pre {
-  position: fixed;
+div.asciihack {
   z-index: 2;
+  font-family: monospace;
+  padding:32em 2em 2em 2em;
+  justify-content: center;
+  text-shadow: 1px 1px var(--grey);
+}
+
+canvas {
+  z-index: -1;
+  position: fixed;
 }
 
 @media (max-width: 577px) {
-  pre { font-size: 2vw; }
+  div.pre { font-size: 2vw; }
 }

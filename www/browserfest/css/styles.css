@@ -80,7 +80,7 @@ img {
 div.asciihack {
   z-index: 2;
   font-family: monospace;
-  padding:32em 2em 2em 2em;
+  padding:24em 2em 2em 2em;
   justify-content: center;
   text-shadow: 1px 1px var(--grey);
 }
@@ -89,6 +89,13 @@ canvas {
   z-index: -1;
   position: fixed;
 }
+
+#mc_embed_signup div{
+  padding:.25em;
+  display: flex;
+  flex-direction: column;
+}
+
 
 @media (max-width: 577px) {
   div.pre { font-size: 2vw; }

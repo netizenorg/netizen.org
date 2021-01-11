@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>netizen.org</title>
+      <meta name="author" content="netizen.org">
+      <meta name="description" content="netizen.org is a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through community and digital programming. Geolocated in Chicago, Illinois—at the intersection of digital literacy and Internet art—netizen.org transforms users into netizens, who are critically engaged citizens of the Net.">
+
+      <!-- social media stuff -->
+      <meta property="og:title" content="Netizen">
+      <meta property="og:url" content="http://netizen.org">
+      <meta property="og:image" content="http://netizen.org/images/logo-bg.png">
+      <meta property="og:description" content="netizen.org is a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through community and digital programming. Geolocated in Chicago, Illinois—at the intersection of digital literacy and Internet art—netizen.org transforms users into netizens, who are critically engaged citizens of the Net.">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta property="og:site_name" content="netizen.org">
+      <meta name="twitter:site" content="@netizenorg">
+
+      <link rel="icon" type="image/png" href="../images/n.png">
+      <link rel="stylesheet" href="../css/styles.css">
+      <style>
+        section {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+
+        button {
+          border: 1px solid var(--purple);
+          padding: 20px 40px;
+          font-size: 24px;
+          color: var(--purple);
+          background: none;
+          font-family: 'fira-sans-regular', sans-serif;
+        }
+
+        button:hover {
+          border-color: var(--green);
+          color: var(--green);
+          cursor: url(../images/cursor-hov.png), pointer !important;
+        }
+
+        video {
+          display: none;
+          max-height: 100vh;
+          max-width: 100vw;
+          border: 3px solid var(--red);
+        }
+      </style>
+
+    </head>
+    <body>
+
+      <section>
+        <button>enter</button>
+        <video src="" controls="false"></video>
+      </section>
+
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+
+        const videos = [
+          'whitney.mp4',
+          'rozendaal.mp4',
+          'diana-smith-css-art.mp4'
+        ]
+
+        const socket = io()
+        const v = document.querySelector('video')
+        const b = document.querySelector('button')
+
+        v.addEventListener('canplaythrough', () => {
+          v.style.border = '3px solid var(--green)'
+        })
+
+        b.addEventListener('click', () => {
+          v.controls = false
+          b.style.display = 'none'
+          v.style.display = 'block'
+        })
+
+        socket.on('play-video', () => v.play())
+        socket.on('pause-video', () => v.pause())
+        socket.on('change-time', (t) => { v.currentTime = t })
+        socket.on('load-video', (n) => {
+          v.style.border = '3px solid var(--red)'
+          if (typeof n === 'number') v.src = `videos/${videos[n]}`
+          else if (typeof n === 'string') v.src = `videos/${n}`
+        })
+
+        const play = () => { socket.emit('play') }
+        const pause = () => { socket.emit('pause') }
+        const time = (n) => { socket.emit('time', n) }
+        const load = (v) => { socket.emit('load', v) }
+
+      </script>
+    </body>
+</html>

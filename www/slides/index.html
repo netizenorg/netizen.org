@@ -42,11 +42,31 @@
           cursor: url(../images/cursor-hov.png), pointer !important;
         }
 
-        video {
+        .slide, video {
           display: none;
           max-height: 100vh;
           max-width: 100vw;
+        }
+
+        video {
           border: 3px solid var(--red);
+        }
+
+        .slide img {
+          max-width: 100%;
+          max-height: 90vh;
+        }
+
+        .slide li {
+          margin-bottom: 10px;
+        }
+
+        .slide h1 {
+          text-align: center;
+        }
+
+        .slide p {
+          font-size: 18px;
         }
       </style>
 
@@ -56,20 +76,37 @@
       <section>
         <button>enter</button>
         <video src="" controls="false"></video>
+        <div class="slide"></div>
       </section>
 
       <script src="/socket.io/socket.io.js"></script>
+      <script src="slides.js"></script>
       <script>
-
-        const videos = [
-          'whitney.mp4',
-          'rozendaal.mp4',
-          'diana-smith-css-art.mp4'
-        ]
 
         const socket = io()
         const v = document.querySelector('video')
         const b = document.querySelector('button')
+        const s = document.querySelector('.slide')
+
+        const play = () => { socket.emit('play') }
+        const pause = () => { socket.emit('pause') }
+        const time = (n) => { socket.emit('time', n) }
+        const load = (v) => { socket.emit('load', v) }
+
+        socket.on('play-video', () => v.play())
+        socket.on('pause-video', () => v.pause())
+        socket.on('change-time', (t) => { v.currentTime = t })
+        socket.on('load-video', (n) => {
+          if (slides[n].video) {
+            s.style.display = 'none'
+            v.style.border = '3px solid var(--red)'
+            v.src = `videos/${slides[n].video}`
+          } else if (slides[n].html) {
+            v.style.display = 'none'
+            s.style.display = 'block'
+            s.innerHTML = slides[n].html
+          }
+        })
 
         v.addEventListener('canplaythrough', () => {
           v.style.border = '3px solid var(--green)'
@@ -81,20 +118,18 @@
           v.style.display = 'block'
         })
 
-        socket.on('play-video', () => v.play())
-        socket.on('pause-video', () => v.pause())
-        socket.on('change-time', (t) => { v.currentTime = t })
-        socket.on('load-video', (n) => {
-          v.style.border = '3px solid var(--red)'
-          if (typeof n === 'number') v.src = `videos/${videos[n]}`
-          else if (typeof n === 'string') v.src = `videos/${n}`
+        document.addEventListener('keydown', (e) => {
+          // console.log(e)
+          if (e.keyCode === 39) { // right arrow
+            v.currentTime += e.altKey ? 1 / 30 : e.shiftKey ? 5 : 1
+            time(v.currentTime)
+          } else if (e.keyCode === 37) { // left arrow
+            v.currentTime -= e.altKey ? 1 / 30 : e.shiftKey ? 5 : 1
+            time(v.currentTime)
+          } else if (e.keyCode === 38) {
+            console.log(v.currentTime)
+          }
         })
-
-        const play = () => { socket.emit('play') }
-        const pause = () => { socket.emit('pause') }
-        const time = (n) => { socket.emit('time', n) }
-        const load = (v) => { socket.emit('load', v) }
-
       </script>
     </body>
 </html>

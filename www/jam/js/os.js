@@ -61,7 +61,7 @@ document.querySelector('.menu > div[name="notes"]')
 
 document.querySelector('.menu > div[name="chat"]')
   .addEventListener('click', (e) => {
-    const url = 'https://chill.netizen.org/test'
+    const url = 'https://chill.netizen.org/jam'
     const ele = document.querySelector('#chat')
     const ifr = document.querySelector('#chat > iframe')
     if (ele.style.display === 'none') {

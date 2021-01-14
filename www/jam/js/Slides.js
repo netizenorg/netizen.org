@@ -68,7 +68,7 @@ class Slides {
       this.updateMenu()
     }
 
-    if (this.data[n].source) this.updateCred(this.data[n].source)
+    this.updateCred(this.data[n].source)
 
     if (this.data[n].width) this.parent.width = parseInt(this.data[n].width)
     if (this.data[n].height) this.parent.height = parseInt(this.data[n].height)
@@ -83,6 +83,8 @@ class Slides {
   }
 
   updateCred (obj) {
+    this.cred.innerHTML = ''
+    if (!obj) return
     this.cred.style.fontSize = '16px'
     if (typeof obj === 'string') this.cred.innerHTML = obj
     else {

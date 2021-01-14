@@ -8,11 +8,12 @@ const slides = new Slides({
   socket: socket
 })
 
-const menuItems = ['notes', 'syllabus', 'slides']
+const menuItems = ['notes', 'syllabus', 'slides', 'homework']
 const itemInPos = {
   notes: { left: random(20, 60), bottom: random(20, 60) },
   syllabus: { left: random(20, 60), top: random(20, 60) },
   slides: { right: random(20, 60), top: random(20, 60) },
+  homework: { right: random(20, 60), bottom: random(20, 60) },
   chat: { right: random(20, 60), bottom: random(20, 60) }
 }
 
@@ -57,6 +58,11 @@ document.querySelector('.menu > div[name="notes"]')
     const ele = document.querySelector('#notes')
     if (ele.height < 400) ele.height = 400
     document.querySelector('textarea').focus()
+  })
+document.querySelector('.menu > div[name="homework"]')
+  .addEventListener('click', (e) => {
+    const ele = document.querySelector('#homework')
+    if (ele.width < 590) ele.width = 590
   })
 
 document.querySelector('.menu > div[name="chat"]')

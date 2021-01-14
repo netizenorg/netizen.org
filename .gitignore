@@ -6,3 +6,4 @@ package-lock.json
 data/analytics.json
 www/slides/videos/*
 www/slides/images/*
+www/jam/data/*

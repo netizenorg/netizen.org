@@ -1,19 +1,27 @@
 /* global io, Slides */
 let sel = null // selected window
-let admin = false
+// let admin = false
 const users = {}
 const socket = io()
 const slides = new Slides({
   parent: document.querySelector('#slides'),
   socket: socket
 })
+slides.setup(0)
 
-const menuItems = ['notes', 'syllabus', 'slides', 'homework']
+const menuItems = ['notes', 'syllabus', 'slides', 'warez', 'homework']
+const itemSizes = {
+  notes: { width: 542, height: 400 },
+  homework: { width: 590 },
+  slides: { width: 600 },
+  warez: { width: 392 }
+}
 const itemInPos = {
   notes: { left: random(20, 60), bottom: random(20, 60) },
   syllabus: { left: random(20, 60), top: random(20, 60) },
   slides: { right: random(20, 60), top: random(20, 60) },
   homework: { right: random(20, 60), bottom: random(20, 60) },
+  warez: { left: random(20, 60), top: random(20, 60) },
   chat: { right: random(20, 60), bottom: random(20, 60) }
 }
 
@@ -46,24 +54,18 @@ menuItems.forEach(item => {
       const ele = document.querySelector(`#${item}`)
       if (ele.style.display === 'none') ele.style.display = 'block'
       else ele.style.display = 'none'
+      const sz = itemSizes[item]
+      if (sz) {
+        if (sz.width && ele.width < sz.width) ele.width = sz.width
+        if (sz.height && ele.height < sz.height) ele.height = sz.height
+      }
+      if (item === 'notes') document.querySelector('textarea').focus()
       ele.bring2front()
       ele.recenter()
       ele.update(itemInPos[item], 500)
       setTimeout(() => ele.keepInFrame(), 600)
     })
 })
-
-document.querySelector('.menu > div[name="notes"]')
-  .addEventListener('click', (e) => {
-    const ele = document.querySelector('#notes')
-    if (ele.height < 400) ele.height = 400
-    document.querySelector('textarea').focus()
-  })
-document.querySelector('.menu > div[name="homework"]')
-  .addEventListener('click', (e) => {
-    const ele = document.querySelector('#homework')
-    if (ele.width < 590) ele.width = 590
-  })
 
 document.querySelector('.menu > div[name="chat"]')
   .addEventListener('click', (e) => {
@@ -92,14 +94,6 @@ window.addEventListener('load', (event) => {
     document.querySelector('#syllabus').width = 720
   }, 100)
 })
-
-// const ifr = document.querySelector('#chat > iframe')
-// bubbleUpiFrameEvents(ifr)
-
-// ------------------------------------------------------ SLIDES --------------
-// -----------------------------------------------------------------------------
-
-slides.loadData('data/slides.json')
 
 // ------------------------------------------------------ NOTEPAD --------------
 // -----------------------------------------------------------------------------

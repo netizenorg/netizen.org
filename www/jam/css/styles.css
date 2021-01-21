@@ -52,12 +52,12 @@ article p {
   padding: 0 20px;
 }
 
-article ul {
+article ul.box {
   border: 1px solid var(--fg-color);
   padding: 10px;
 }
 
-article ul li {
+article ul.box li {
   display: flex;
   justify-content: space-between;
 }
@@ -114,3 +114,9 @@ pre {
 .menu > div {
   cursor: pointer;
 }
+
+.slide {
+  max-width: 720px;
+}
+
+.slide video { width: 100%; }

@@ -4,7 +4,8 @@ package-lock.json
 .env
 
 data/analytics.json
+data/notepad.json
 www/slides/videos/*
 www/slides/images/*
-www/jam/data/*
 www/jam/culture-jamming-syllabus.pdf
+www/jam/data

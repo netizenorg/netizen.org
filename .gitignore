@@ -7,5 +7,7 @@ data/analytics.json
 data/notepad.json
 www/slides/videos/*
 www/slides/images/*
+www/slides/week*.html
+
 www/jam/culture-jamming-syllabus.pdf
 www/jam/data

@@ -1,11 +1,12 @@
 :root {
-  --paper: rgba(250,250,250,.95);
+  --paper: rgba(0,0,0,.65);
   --paper-light: #fcffd9;
-  --txt: #060d1d;
+  --txt: #fafafa;
+  --dark: #060d1d;
   --grey: #272527;
   --light-grey: #7E7E7F;
   --white: #e7e7f0;
-  --purple: #7272D6;
+  --purple: #ce317e;
   --green: #82E22E;
   --blue: #66D9CF;
   --red: #FC7575;
@@ -61,18 +62,23 @@ body {
   background-size: contain;
   background-attachment: fixed;
   color: var(--txt);
-  font-family: 'fira-sans-regular', monospace;
+  font-family: 'fira-sans-regular', sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 /*  cursor: url(../img/cursor-hov.png), auto !important;*/
 }
 
 a {
-  color: var(--purple);
+  color: var(--txt);
+  border-bottom:4px solid var(--purple);
+  text-decoration: none;
+  padding:0 0.25em;
 }
 
 a:hover {
   cursor: pointer;
+  color: var(--purple);
+  background-color: var(--txt);
 }
 
 /*pre {
@@ -96,15 +102,15 @@ section {
 
 .heading {
   width: 100%;
-  padding: 10px;
+  padding: 2em;
   margin: 0 auto;
-  position: fixed;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   top:0;
-  z-index: 10;
+  z-index: 100;
 }
 
 .heading img {
@@ -113,6 +119,7 @@ section {
 .heading .h1title{
   font-size:2em;
   background-color: #FFF;
+  color:var(--dark);
   padding: .25em .5em;
   margin:.25em;
   border-radius: 1em;
@@ -136,7 +143,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #FFFF;
+  background-color: #060d1d;
   border-radius: 1em;
   padding:2em 0 0 0 ;
 }
@@ -209,15 +216,23 @@ input[type="submit"] {
   width:75px;
 }
 
-.act{
+a.act{
   border:1px solid var(--txt);
   background-color:var(--purple);
   text-decoration: none;
-  color:var(--paper);
+  color:var(--txt);
   padding:.5em 1em;
   margin:1em;
   border-radius: .5em;
   margin-bottom:2em;
+  transition: all 1s;
+}
+
+a.act:hover{
+  border:1px solid var(--purple);
+  background-color:var(--paper);
+  color:var(--txt);
+  transition: all .25s;
 }
 
 hr{
@@ -235,13 +250,14 @@ hr{
   text-align: center;
   line-height: 1.5em;
   padding:.5em 2em;
-  background-color:#fff;
+  background-color:var(--dark);
   border-radius: .5em;
 }
 
 .speaker{
   border-radius: 100%;
   width:200px;
+  border:4px solid var(--txt);
 }
 
 footer{

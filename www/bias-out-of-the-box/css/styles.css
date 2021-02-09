@@ -248,7 +248,7 @@ a.act{
   padding:.5em 1em;
   margin:1em;
   border-radius: .5em;
-  margin-bottom:2em;
+  margin:2em 0;
   transition: all 1s;
 }
 
@@ -369,12 +369,29 @@ footer img{
   margin:2em 0 0 0;
 }
 
+.speakerlogo{
+  display:flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: center;
+}
+
+.speakerlogo img{
+  width:40% ;
+}
+
 .footlogos{
   display:flex;
   flex-direction:column;
   justify-content: center;
   align-content: center;
   text-align: center;
+}
+
+.footlogos a, .footlogos a:hover{
+  text-decoration: none;
+  background-color: transparent;
+  border:0;
 }
 
 .footlogos img{
@@ -406,6 +423,12 @@ footer img{
     z-index:20;
     padding:2em 1em;
   }
+
+.speakerlogo{
+  display:flex;
+  flex-direction: column;
+
+}
 
   .codedlogo{
     width:100%; 

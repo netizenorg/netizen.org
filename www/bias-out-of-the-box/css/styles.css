@@ -7,6 +7,8 @@
   --light-grey: #7E7E7F;
   --white: #e7e7f0;
   --purple: #ce317e;
+  --purple2: #ce84a8;
+
   --green: #82E22E;
   --blue: #66D9CF;
   --red: #FC7575;
@@ -58,7 +60,7 @@
 
 body {
   padding: 0; margin: 0;
-  background-color: var(--txt);
+  background-color: var(--dark);
   background-size: contain;
   background-attachment: fixed;
   color: var(--txt);
@@ -79,6 +81,14 @@ a:hover {
   cursor: pointer;
   color: var(--purple);
   background-color: var(--txt);
+}
+
+h2, h3, h4, h5 {
+  color: var(--yellow);
+}
+
+.yeltxt {
+  color:var(--yellow);
 }
 
 /*pre {
@@ -126,6 +136,10 @@ section {
   box-shadow: 0px 10px 5px rgba(0,0,0,.5)
 }
 
+.heading .h2title{
+color:#fff; padding-top: 1em; font-size:1.5em; text-shadow: 0px 2px 5px rgba(0,0,0,.5)
+}
+
 .date{
   display: block;
   padding-top:.75em;
@@ -136,16 +150,26 @@ section {
   line-height: 1.15em;
   font-weight: 2;
   text-align:center;
+  display:relative;
+  z-index:20;
+  padding:0 6em 2em 6em ;
+  text-shadow: 0px 2px 5px rgba(0,0,0,.5)
+}
+
+blockquote{
+  margin:0 auto;
+  padding:0 auto;
 }
 
 .deets{
+  background: radial-gradient(circle, rgba(206,49,126,0.3127450809425333) 0%, rgba(6,13,29,1) 100%); 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #060d1d;
   border-radius: 1em;
-  padding:2em 0 0 0 ;
+  padding:2em ;
 }
 
 .main-content{
@@ -212,7 +236,7 @@ input[type="submit"] {
   align-items: center;
 }
 
-.viewing img{
+.viewplay{
   width:75px;
 }
 
@@ -340,6 +364,23 @@ footer img{
   text-align: left;
 }
 
+.codedlogo{
+  width:300px; 
+  margin:2em 0 0 0;
+}
+
+.footlogos{
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+
+.footlogos img{
+  align-self: center;
+}
+
 @media (max-width: 800px) {
   .info { flex-direction: column; }
 
@@ -347,6 +388,45 @@ footer img{
     flex-direction: column;
     margin-bottom: 20px;
   }
+
+  .heading .h1title{
+    font-size: 1.5em;
+  }
+  .heading .h2title{
+  font-size:.75em;
+  text-align: center
+  }
+
+  .bigq{
+    font-size: 2em; 
+    line-height: 1.15em;
+    font-weight: 2;
+    text-align:center;
+    display:relative;
+    z-index:20;
+    padding:2em 1em;
+  }
+
+  .codedlogo{
+    width:100%; 
+    margin:2em 0 0 0;
+  }
+
+
+  section{
+    padding: 2em 1em;
+    margin: 1em;
+  }
+
+  .main-content{
+    border-width:2px;
+  }
+
+.footlogos{
+  display:flex;
+  flex-direction:column;
+
+}
 
   footer{
     display: flex;

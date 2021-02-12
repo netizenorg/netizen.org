@@ -109,6 +109,7 @@ footer {
   border: 0.3vw solid var(--white);
   padding: 1.2vw 0.9vw;
   margin-top: 1.6vw;
+  margin-bottom: 200px;
   opacity: 0;
   transform: translateY(225px);
   transition: var(--anim);

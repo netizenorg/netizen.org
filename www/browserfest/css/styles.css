@@ -145,6 +145,21 @@ footer img{
 
 }
 
+.highlight {
+  padding:.05em;
+  line-height: .18em;
+  animation-name: hil;
+  animation-duration: 4s;
+  background-origin: .2em;
+  animation-iteration-count:infinite;
+}
+
+@keyframes hil {
+  0% {background-color: #94ffce33;color: #94ffce;}
+  50% {background-color: #94ffce;color: #060d1d;}
+  100% {background-color: #94ffce33;color: #94ffce;}
+}
+
 
 .schedule {
   max-width: 800px;

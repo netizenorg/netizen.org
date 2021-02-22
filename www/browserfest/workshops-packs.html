@@ -75,12 +75,12 @@
     </pre>
     <section class="pagetxt">
       <h1>Starter Packs</h1>
-      
+
       <h2 class="whatsbf">byte-sized code nugs</h2>
       <p>These spicy snippets have been culled and curated to help give you a head start. Use them as launching pads to hack, remix, and mash-up on your way to submitting your demos. <strong>We'll be adding packs throughout the fest.</strong></p>
     </section>
     <section class="starter-packs">
-      <div class="s-pack">
+      <!-- <div class="s-pack">
         <h3>html media elements</h3>
         <div class="text-bubble-options bub-stack" style="width:100%;text-align: center;">
           <button onclick="window.open('http://68.183.115.149:1337/?layout=dock-left#code/eJxNjk0OgjAQhfec4oUlCRa3CG68gFcopbSjpRhaDI3x7hbKwt3M935mGueDkdcM6KY+4BMHYOSzIlujuuyrlqS0r3GuqrdOiBVYHFmFwcg1Rlf4CUJaL2fQyJVEwXZjT+5leKh3Y8o+FudpCKWYot3G3pRLIjekbEleju5f+GYNOz7NGhoV3CzafL/kmKLBsZ5bER8qFc3mFEkeq3ybHxgbRhdw04t44j6FrTm//gCsNVDV')">img element</button>
@@ -164,7 +164,7 @@
           <button onclick="window.open('http://68.183.115.149:1337/?layout=dock-left#code/eJxVUl1v2zAMfO+v4AKkT4kTpx3WFkmHfmwY9roCe2Yk2iYiiYYk10t//Si7KzDAH7J1PN4dtWffQormsOhy7tPdZkN/MsWAbm0kZAq5soM5lbuVyojf8LD5Ohwm9PLqYbn7rhfX1diXXV23RCfxlOP5/cfY/6PSj6F3gjbparetr/W1/aKPo3Boj+hc1XKzvPoeKfEbLa+er29vl7vPu6fdTX3ZHOrLIM3xUC8AXT4sEI4yGNZSKLXAHluCJoqHB08twg9OWSJTWtxf7D+t1++IyH1PdgLeQTGirsdxrNBzi91UU7RXw2mj1S2HBOv1/cXFvr9/EbDkJaQcMRPkjrSVViXoMNoRI4HBHo/sOGvf1YRQlcEUlY/yobWwwKh1Y+Ss2YArfBIIArddBsxT6W/W4CI8ffsFqZMROMBPDAPGM9S3N9cVPMy4zJ6A88SIAdDjW2mFpmN6Ja/ZK0w50xB7TEndFxFmiLFspXPK5BNI80G2gkToHaXkzuotWFf4IqGDvjsnNqq8Y5cy+MFlzphOBaD6JseoxyWqbVvtN/17dPp/jlM5ptAgawvoIzWkOuxU+V9EiduwArTS58lNmiCDHoKGDSuNTkGDxHiq4FneKEwWZorHQuGkFRVKOhavSGgkzjOrt9utRq5z6VZKmNnBk3gvVhRqybAtegSGNA/ZdGROOoi514seEuBZzYelMlHdEmg4WJBBkylkr5w4lxD+AuNDMN0=')">media attribution <br> in alt</button>
 
         </div>
-      </div>
+      </div> -->
     </section>
     <footer>
       <img src="images/UChicagoMAAD.svg" alt="University of Chicago | Media Arts and Design Logo"> <img src="images/Netizen_FFF.svg" alt="Netizen Logo">
@@ -173,6 +173,47 @@
     <br>
     <br>
     <br>
+
     <script src="js/GradientBG.js"></script>
+    <script>
+      // window.fetch('https://netnet.studio/api/examples')
+      window.fetch('http://68.183.115.149:1337/api/examples')
+        .then(res => res.json())
+        .then(json => {
+          if (json.success) {
+            const ele = document.querySelector('section.starter-packs')
+            const sections = {}
+            for (const key in json.data) {
+              const obj = json.data[key]
+              obj.key = key
+              if (!sections[obj.type]) { sections[obj.type] = [] }
+              sections[obj.type].push(obj)
+            }
+            for (const sec in sections) {
+              const div = document.createElement('div')
+              div.className = 's-pack'
+              const h3 = document.createElement('h3')
+              h3.textContent = sec
+              div.appendChild(h3)
+              const list = document.createElement('div')
+              list.className = 'text-bubble-options bub-stack'
+              list.style.width = '100%'
+              list.style.textAlign = 'center'
+              sections[sec].forEach(o => {
+                const button = document.createElement('button')
+                button.textContent = o.name
+                button.addEventListener('click', () => {
+                  window.open(`https://netnet.studio/?ex=${o.key}`, '_blank')
+                })
+                list.appendChild(button)
+              })
+              div.appendChild(list)
+              ele.appendChild(div)
+            }
+          } else {
+            console.error('netnet API REQ ISSUE:', json)
+          }
+        })
+    </script>
   </body>
 </html>

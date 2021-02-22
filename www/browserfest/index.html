@@ -24,7 +24,35 @@
   </head>
   <body>
 
-    <canvas></canvas>
+    <div class="outer-menu">
+      <input class="checkbox-toggle" type="checkbox" />
+      <div class="hamburger">
+        <div></div>
+      </div>
+      <div class="menu">
+
+
+        <!-- menu remixed from https://codepen.io/brenden/pen/VLjKMQ/ -->
+        <div>
+          <div style="flex-direction: column">
+            <div>
+
+          </div>
+             <ul>
+              <li><a href="about.html">about</a></li>
+              <li><a href="participate.html">participate</a></li>
+              <li><a href="index.html#schedule">schedule</a></li>
+              <li><a href="workshops.html">wwworkshops</a></li>
+              <!--<li><a href="gallery.html">demo gallery </a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <canvas style="z-index:-9999999;width:98vw !important;"></canvas>
+    <marquee width="100%" direction="left" scrollamount="3" class="announce">🚀 BrowserFest launches on Feb 22 at 5PM. Sign-up below to recieve the 'nfo session. 🚀</marquee>
+
 
 <pre>                           .✶                   .
 シ   ...  ☻    .,           ☻      . .                 ..
@@ -97,7 +125,8 @@
       </p>
     </section>
 
-    <section>
+    <section id="schedule">
+
       <div class="schedule">
         <h2 class="center">SCHEDULE</h2>
         <p class="center">
@@ -131,6 +160,6 @@
     <br>
 
     <script src="js/bg.js"></script>
-
+    <script src="js/GradientBG.js"></script>
   </body>
 </html>

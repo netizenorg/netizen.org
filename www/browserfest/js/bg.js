@@ -60,7 +60,7 @@ function setup () {
   // full width/height of the page
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
-  ctx.fillStyle = '#060d1d'
+  ctx.fillStyle = '#1c1c36'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   // calculate optimal font-size
   const scale = window.innerWidth < 800 ? 1 : 0.6
@@ -88,7 +88,7 @@ function setup () {
 function draw () {
   window.requestAnimationFrame(draw)
   // setTimeout(() => draw(), 1000)
-  ctx.fillStyle = '#060d1d11'
+  ctx.fillStyle = '#1c1c3611'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   pxl.forEach(p => p.update())
 }

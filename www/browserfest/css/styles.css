@@ -154,8 +154,8 @@ pre {
 
 .header  {
   display: flex;
-  flex-direction: row; 
-  justify-content: center; 
+  flex-direction: row;
+  justify-content: center;
   padding:4em 1em 4em 1em;
   font-size: .5em;
   margin: 0 auto;
@@ -274,12 +274,22 @@ blockquote{
 }
 
 .homelinks{
-  padding:.5em 2em; font-family:'pixel-comp'; font-size:1.5em
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  font-family:'pixel-comp';
+  font-size: calc(1200px * 0.039);
+  margin: 0 auto;
 }
 
-.homelinks > li{
-  padding:.5em 2em; font-family:'pixel-comp'; font-size:1.5em
+@media (max-width: 1200px) {
+  .homelinks { font-size: 3.4vw; }
 }
+
+@media (max-width: 800px) {
+  .homelinks { display: none; }
+}
+
 
 .info {
   display: flex;
@@ -324,7 +334,7 @@ margin:1.5em 1em 1em 1.25em;
   border-left: 3px double var(--fg-color);
   padding-left:1em;
   margin-right:4em;
-  min-width: 35ch;  
+  min-width: 35ch;
 }
 .pagetxt h1 {
   color:var(--fg-color);
@@ -343,7 +353,7 @@ margin:1.5em 1em 1em 1.25em;
   border-right: solid 3px rgba(255,255,255,.75);
   text-shadow: var(--bg) 3px 3px;
   white-space: nowrap;
-  overflow: hidden;    
+  overflow: hidden;
   font-size: 28px;
 }
 
@@ -379,7 +389,10 @@ margin:1.5em 1em 1em 1.25em;
 
 /*there's def a more elegant way to do this... I'm estimating the lenght of the h3 in the animator and delaying it based on it's flow in the page*/
 /* text animation remixed from https://frontendscript.com/pure-css-typing-text-animation-with-blinking-cursor/*/
-
+.demogallery {
+  animation: anim-txt-demogallery 4s steps(31,end) .5s 1 normal both,
+  animated-cursor 600ms steps(31,end) infinite;
+}
 .whatsbf {
   animation: anim-txt-whatsbf 4s steps(29,end) .5s 1 normal both,
   animated-cursor 600ms steps(29,end) infinite;
@@ -409,6 +422,10 @@ margin:1.5em 1em 1em 1.25em;
   animated-cursor 600ms steps(29,end) infinite;
 }
 
+@keyframes anim-txt-demogallery{
+  from{width: 0;}
+  to{width: 400px;}
+}
 @keyframes anim-txt-whatsbf{
   from{width: 0;}
   to{width: 365px;}
@@ -536,22 +553,23 @@ footer img{
   margin: 0 auto;
 }
 
-.s-row {
+.sync { color: var(--netizen-string) }
+.async { color: var(--netizen-attribute) }
+.packs { color: var(--netizen-number) }
+
+.schedule-day li {
   display: flex;
-  justify-content: space-between;
+  line-height: 23px;
+  margin: 5px 0 15px 48px;
 }
 
-.s-row div:nth-child(2) {
-  text-align: left;
+.schedule-day li::before {
+  content: "❯❯❯";
+  padding-right: 10px;
 }
 
 @media (max-width: 800px) {
   .info { flex-direction: column; }
-
-  .s-row {
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
 
   .outer-menu {
     top: 30px !important;
@@ -560,6 +578,7 @@ footer img{
   footer{
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content:space-between;
     max-width: 800px;
     outline-offset: 2px;

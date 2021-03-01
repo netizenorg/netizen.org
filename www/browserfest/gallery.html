@@ -88,17 +88,37 @@
         width: 100vw;
         height: 100vh;
         background-color: #1c1c36dd;
+        display: none;
+        justify-content: center;
+        align-items: center;
       }
 
       .modal-nfo {
         width: 80%;
         max-width: 640px;
-        margin: 50px auto;
+        max-height: 90vh;
         background-color: var(--netizen-tag);
         padding: 20px;
         border-radius: 20px;
         color: var(--netizen-hint-color);
+        overflow-y: scroll;
       }
+
+      @media (max-width: 640px) {
+        .modal-nfo { max-width: 95vw; font-size: 16px; }
+      }
+
+      .close-modal {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .close-modal-x {
+        cursor: pointer;
+        font-size: 24px;
+        transform: translate(0, -10px);
+      }
+
     </style>
 
   </head>
@@ -175,13 +195,30 @@
 
     <div class="modal">
       <div class="modal-nfo">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <div class="close-modal">
+          <span style="font-size: 7px">
+            █▀█ █▀▀ ▄▀█ █▀▄ █▀▄▀█ █▀▀ ░ █▄░█ █▀▀ █▀█<br>
+            █▀▄ ██▄ █▀█ █▄▀ █░▀░█ ██▄ ▄ █░▀█ █▀░ █▄█
+          </span>
+          <span class="close-modal-x">✖</span>
+        </div>
+        <p style="margin:0"><!-- description goes here --></p>
       </div>
     </div>
 
     <script src="js/GradientBG.js"></script>
     <script>
-      window.fetch('http://68.183.115.149:1337/api/browserfest/submissions')
+
+      function displayNfo (nfo) {
+        const modal = document.querySelector('.modal')
+        modal.querySelector('.close-modal-x').onclick = () => {
+          modal.style.display = 'none'
+        }
+        modal.querySelector('p').textContent = nfo
+        modal.style.display = 'flex'
+      }
+
+      window.fetch('https://netnet.studio/api/browserfest/submissions')
         .then(res => res.json())
         .then(json => {
           if (json.success) {
@@ -196,7 +233,7 @@
                 sub.dataset.url = url
                 sub.innerHTML = `
                   <a href="${url}" target="_blank">
-                    <div class="thumb" style="background-image: url(${s.thumb})"></div>
+                    <div class="thumb" style="background-image: url(${s.thumbnail})"></div>
                   </a>
                   <div>
                     <div name="title">
@@ -215,7 +252,7 @@
             })
             document.querySelectorAll('.nfo-button').forEach(b => {
               b.addEventListener('click', () => {
-                alert(b.dataset.nfo)
+                displayNfo(b.dataset.nfo)
               })
             })
           } else {

@@ -422,6 +422,12 @@ margin:1.5em 1em 1em 1.25em;
   animated-cursor 600ms steps(29,end) infinite;
 }
 
+.nofrli{
+  animation: anim-txt-nofrli 4s steps(29,end) 1s 1 normal both,
+  animated-cursor 600ms steps(29,end) infinite;
+}
+
+
 @keyframes anim-txt-demogallery{
   from{width: 0;}
   to{width: 400px;}
@@ -453,6 +459,10 @@ margin:1.5em 1em 1em 1.25em;
 @keyframes anim-txt-wwwork{
   from{width: 0;}
   to{width: 195px;}
+}
+@keyframes anim-txt-nofrli{
+  from{width: 0;}
+  to{width: 420px;}
 }
 
 

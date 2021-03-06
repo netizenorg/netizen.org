@@ -20,8 +20,23 @@
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+      .discord-btn {
+        margin: 20px auto;
+        width: 172px;
+        display: block;
+      }
 
+      .yt-iframe {
+        max-width: 100%;
+      }
 
+      @media (max-width: 640px) {
+        .yt-iframe {
+          height: calc(100vw * 0.51);
+        }
+      }
+    </style>
   </head>
   <body>
     <div class="outer-menu">
@@ -99,13 +114,13 @@
         <br><br>
 
           <div class="text-bubble-options">
-            <button onclick="document.location='https://discord.gg/heXQA5W9pr'">join us on discord</button>
+            <button class="discord-btn" onclick="document.location='https://discord.gg/heXQA5W9pr'">join us on discord</button>
           </div>
 
         </div>
 
         <!-- <img src="images/hack-hands.gif" alt=""> -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/iBMxhFX_LeU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="yt-iframe" width="560" height="315" src="https://www.youtube.com/embed/iBMxhFX_LeU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
      </article>
 
@@ -161,19 +176,19 @@
       </article>
 <br><br>
       <article>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/-9BsyXc76OM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="l-pad" style="min-width:560px"></iframe>
+        <iframe class="yt-iframe" width="560" height="315" src="https://www.youtube.com/embed/-9BsyXc76OM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="l-pad"></iframe>
         <!-- <img src="images/fast-type.gif" alt="" class="l-pad"> -->
         <div>
           <h2 class="creativeplay">how to submit</h2>
           <p>
-            All demos will be submitted through netnet. 
+            All demos will be submitted through netnet.
           </p>
           <p>
-            To submit your demo, click netnet's face and say "hi!" and netnet will guide you through logging into GitHub and submitting to the demo gallery. 
+            To submit your demo, click netnet's face and say "hi!" and netnet will guide you through logging into GitHub and submitting to the demo gallery.
           </p>
           <div class="text-bubble-options">
             <button onclick="document.location='https://netnet.studio/'">dive into netnet</button>
-            <button onclick="document.location='https://youtu.be/FfxYGLaI86w'">more info</button> 
+            <button onclick="document.location='https://youtu.be/FfxYGLaI86w'">more info</button>
           </div>
 
         </div>
@@ -197,10 +212,10 @@
 
                         <img src="images/fast-type.gif" alt="">
 
-      
+
 </article>
 
-      
+
           <blockquote>Browserfest Demos are single HTML pages (with <a href="https://en.wikipedia.org/wiki/Vanilla_software" target="_blank">vanilla</a> CSS and JavaScript), submitted through netnet.studio.</blockquote>
 
           <blockquote>instructions + attributions/shoutouts should be commented in the code.</blockquote>

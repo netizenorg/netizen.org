@@ -278,7 +278,7 @@
         </div>
       </div>
       <p class="center small">
-        (page last updated 2021.03.04 ++ Stay tuned for more 'nfo!)
+        (page last updated <span id="last-mod"></span> ++ Stay tuned for more 'nfo!)
       </p>
     </section>
 <!--     <a href="https://netnet.studio/"><img src="images/netnet.gif" ></a>
@@ -298,5 +298,8 @@
 
     <script src="js/bg.js"></script>
     <script src="js/GradientBG.js"></script>
+    <script>
+      document.querySelector('#last-mod').textContent = document.lastModified
+    </script>
   </body>
 </html>

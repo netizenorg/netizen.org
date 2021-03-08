@@ -221,6 +221,7 @@
         .then(json => {
           if (json.success) {
             const ele = document.querySelector('section.demo-gallery')
+            json.data = json.data.reverse()
             json.data.forEach(s => {
               const list = [...document.querySelector('.demo-gallery').children]
                 .map(c => c.dataset.url)

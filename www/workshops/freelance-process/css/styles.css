@@ -1,0 +1,529 @@
+/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,progress,video{display:inline-block;vertical-align:baseline}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+a{background:transparent}
+a:active,a:hover{outline:0}
+abbr[title]{border-bottom:1px dotted}
+dfn{font-style:italic}
+h1{font-size:2em;margin:.67em 0}
+mark{background:#ff0;color:#000}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:1em 40px}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}
+button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}
+button{overflow:visible}
+button,select{text-transform:none}
+button,html input[type=button],/* 1 */
+input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input{line-height:normal}
+input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}
+input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+table{border-collapse:collapse;border-spacing:0}
+td,th{padding:0}
+b,strong,optgroup{font-weight:700}
+pre,textarea{overflow:auto}
+button::-moz-focus-inner,input::-moz-focus-inner,legend{border:0;padding:0}
+
+
+/* 				- 				- 				- 				- 				- 				 */
+/*      styles below inspired by >>> http://jackschaedler.github.io/circles-sines-signals/ 		 */
+/* 				- 				- 				- 				- 				- 				 */
+
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._. GENERAL ~'~._.~'~._.~'~._.~'~._. */
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+
+*, *:before, *:after { -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box; }
+
+html {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body { background-color:#fff; color:#555; }
+
+a { color:#D71855; text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+::-moz-selection { background:#D71855; color:#fff; text-shadow:none; }
+::selection { background:#D71855; color:#fff; text-shadow:none; }
+
+header { background-color: #272822; padding: 20px }
+header h1 { color:#fff; }
+
+section { text-align:center; padding:32px 0; }
+@media (min-width:640px) { section { padding:64px 0; } }
+
+.button {
+	background: #D71855;
+	border: 0;
+	padding: 15px;
+	color: #fff;
+	border-radius: 10px;
+	margin:0 5px;
+	font-family: sans-serif;
+}
+
+  .video-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+  }
+
+	.section-header{
+		margin:0 auto 50px auto;
+		max-width:960px;
+		width:90%;
+	}
+
+	.wrap {
+		margin: 0 auto;
+		max-width:960px;
+		width:90%;
+	}
+	.container {
+		margin: 0 auto;
+		max-width:960px;
+		width:90%;
+		display: flex;
+	}
+		article {
+			flex-grow:2;
+		}
+		aside {
+			flex: 0 0 25%;
+			font-size: 14px;
+			text-align: left;
+			padding-left: 20px;
+		}
+		aside div { margin-bottom:20px;}
+
+
+.eframe {
+  border: 1px solid #000;
+  width: 100%;
+  border-radius: 15px;
+  min-height: 300px;
+}
+
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._. TYPOGRAPHY ~'~._.~'~._.~'~._.~'~ */
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+
+@font-face {
+    font-family: 'BebasRegular';
+    src: url('font/BEBAS___-webfont.eot');
+    src: url('font/BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/BEBAS___-webfont.woff') format('woff'),
+         url('font/BEBAS___-webfont.ttf') format('truetype'),
+         url('font/BEBAS___-webfont.svg#BebasRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'), url(http://fonts.gstatic.com/s/lato/v11/H2DMvhDLycM56KNuAtbJYA.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Vollkorn Regular'), local('Vollkorn-Regular'), url(http://fonts.gstatic.com/s/vollkorn/v6/idGKtgpe38okB6bfeHMsLPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Vollkorn';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Vollkorn Italic'), local('Vollkorn-Italic'), url(http://fonts.gstatic.com/s/vollkorn/v6/Oiz0tNwvC-Nd29SBQWfWTPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+}
+
+@font-face {
+	font-family: 'inconsolata';
+	src: url('font/inconsolata.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+hr {
+	border: 1px solid #c1c1c0;
+	margin: 30px auto;
+}
+h1, h2, h3, h4, h5 {
+	font-family: "Lato",sans-serif;
+	font-weight:300; word-spacing:3px; color:#5e594d; line-height:1;
+	margin:0; margin-bottom:23px; text-transform:uppercase;
+	text-align: left;
+}
+
+h1 {
+	font-family: "inconsolata";
+	/*font-family: BebasRegular, "Trebuchet MS", Arial, sans-serif;*/
+	font-size:58px; line-height:1.3em;
+	/*letter-spacing:-3px; word-spacing:11px;*/
+	color:#000; margin-bottom:0px; font-weight:600;
+	text-align: center;
+}
+@media (min-width:640px) { h1 { font-size:78px; } }
+
+h2 { font-size: 38px; color: #272822; margin: 0px 0px 5px; }
+h3 { font-size: 18px; color:#777; }
+
+p {
+	color:#444;
+	/*margin: 0 auto; */
+	max-width:800px;
+	text-align:left;
+	font-size: 20px;
+	font-family: "Vollkorn",serif;
+	color: #222;
+}
+
+blockquote {
+	border-left: 10px solid #d71855;
+	padding-left: 30px;
+	max-width:800px;
+	margin: 30px auto;
+}
+blockquote p { color: #d71855; font-style: italic; }
+cite { color: #555; float:right;}
+cite:before { content:"— "; color:#d71855;}
+
+ol, ul.syllabus {
+  text-align: left;
+  font-size: 24px;
+  margin-left: 30px;
+}
+
+ul.syllabus-sub {
+  text-align: left;
+  font-size: 16px;
+  margin-left: -20px;
+}
+
+a.inactive { color:#888; }
+
+
+/* ~ ~ ~ ~ inline code samples ~ ~ ~ ~  */
+.k {
+	color:#de4173; background-color: #F8F8F8;
+	border-radius: 3px;
+	border: 1px solid #AAA;
+	font-family: Consolas,"Liberation Mono",Courier,monospace;
+	font-size: 0.8rem;
+	padding: 0.1rem 0.3rem;
+	position: relative;
+	top: -1px;
+	white-space: nowrap;
+}
+
+pre { color: #444; width:100%; text-align: left; border-radius: 15px; }
+/*highlight overrides*/
+.hljs-keyword { color: #66D9EF; }
+.hljs-tag .hljs-value,{ color: #E6DB74; }
+
+
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._. __utils__  ~'~._.~'~._.~'~._.~'~ */
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+.red { color:#D71855; }
+.blue { color:#00BEE3; }
+.grey { color:#888; }
+.grey > a { color:#888; text-decoration:underline; }
+
+.rwd { display:block; width: 100% }
+.rwd2 { max-width: 100% }
+
+.line { width:100%; height:1px; margin: 15px auto; background:#00BEE3; }
+
+.left { text-align: left; }
+.center { text-align: center; }
+
+.pad { padding: 0 10px; }
+.marg-right { margin-right: 50px; }
+.pad-right { padding-right: 20px; }
+.pad-left { padding-left: 20px; }
+
+
+/* flexbox start */
+.flex { display: flex; }
+.space { justify-content: space-around; }
+.center-items { align-items: center; }
+.start-items { align-items: flex-start;}
+
+.full { flex: 0 100%; }
+.half { flex: 0 50%; }
+.half2 { flex: 0 45%; }
+.third { flex: 0 33%; }
+.two-thirds {flex: 0 66%; }
+.one { flex: 1;}
+
+/* flexbox end */
+
+
+
+/* ~'~._.~'~._.~'~._.~'~._.~'~. mini-browser frame ~'~._.~'~._.~'~._.~'~ */
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+
+.browser {
+	border: 1px solid #ccc;
+	border-top: none;
+	border-radius: 0px 0px 5px 5px;
+}
+/*browserbar via :: http://codepen.io/luclemo/pen/vEVmKj */
+.browserbar {
+	width: 100%;
+	height: 20px;
+	background: #ccc;
+	border-radius: 5px 5px 0 0;
+	position: relative;
+}
+.browserbar:after,
+.browserbar:before {
+	content: '';
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #fff;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	display: block;
+}
+.browserbar:before {
+	left: 15px;
+	box-shadow: 15px 0 0 0 #fff;
+}
+.browserbar:after {
+	left: 45px;
+}
+
+/* ------------- Clearfix by Nicolas Gallagher ------------- */
+.clearfix:before,
+.clearfix:after { content: " "; display: table;}
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1; }
+
+
+
+
+
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+/* ~'~._.~'~._.~'~._.~'~._.~'~. for specific pages ~'~._.~'~._.~'~._.~'~ */
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+/* ~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~._.~'~.*/
+
+
+
+
+/*~ ~ ~ ~ ~ ~ ~ ~ these are classes for the "CSS transition" demos ~ ~ */
+.hello1 {
+  color: #000;
+  font: bold 48px sans-serif;
+  transition-property: color;
+  transition-duration: 1s;
+}
+.hello1:hover{
+	color:#ff55ff;
+}
+.hello2 {
+  color: #000;
+  font: bold 48px sans-serif;
+  transition-property: font-size;
+  transition-duration: 0.5s;
+  transition-delay: 1s;
+}
+.hello2:hover{
+  font-size: 20px;
+}
+.blue1 {
+  background-color: #00BEE3;
+  padding-bottom:25px;
+  transition-property: padding-bottom;
+  transition-duration: 2s;
+  transition-timing-function: ease-in;
+}
+.blue1:hover {
+  padding-bottom:180px;
+}
+.blue2 {
+  background-color: #00BEE3;
+  padding-bottom:25px;
+  transition: padding-bottom 2s ease-in;
+}
+.blue2:hover {
+  padding-bottom:180px;
+}
+.blue3 {
+  background-color: #00BEE3;
+  padding-bottom:25px;
+  transition: padding 2s ease-in,
+    background-color 2s linear;
+}
+.blue3:hover {
+  padding-bottom:180px;
+  background-color: #D71855;
+}
+
+.ball1 {
+  width:100px; height:100px;
+  border-radius: 100px;
+  animation: drop 1s infinite;
+}
+
+.ball2 {
+  width:100px; height:100px;
+  border-radius: 100px;
+  background-color:#D71855;
+  animation: bounce linear 0.8s infinite;
+}
+
+@keyframes drop{
+  0% {
+    margin-top:0px;
+    background-color: #00BEE3;
+  }
+  100% {
+    margin-top:100px;
+  	background-color: #D71855;
+  }
+}
+
+@keyframes bounce{
+  0% {
+    margin-top:0px;
+    background-color: #D71855;
+  }
+  15% {
+    margin-top:-100px;
+    background-color: #900E37;
+  }
+  30% {
+    margin-top:0px;
+    background-color: #D71855;
+  }
+  45% {
+    margin-top:-60px;
+    background-color: #B01244
+  }
+  60% {
+    margin-top:0px;
+    background-color: #D71855;
+  }
+  75% {
+    margin-top:-20px;
+    background-color: #C5164E;
+  }
+  100% {
+    margin-top:0px;
+    background-color: #D71855;
+  }
+}
+
+
+/*~ ~ ~ ~ ~ ~ ~ ~ these are classes for the web design overview ~ ~ */
+
+.circle1 {
+  width:100px; height:100px;
+  background-color: #ff5555;
+  border-radius:100px;
+  border: 1px solid #555;
+  animation: borderPulse 5s infinite;
+  margin-left:10px;
+}
+
+@keyframes borderPulse {
+  0% { border-width: 1px; }
+  35% { border-width: 1px; }
+  50% { border-width: 10px; }
+  65% { border-width: 1px; }
+  100% { border-width: 1px; }
+}
+.circle2 {
+  float:left;
+  width: 70px; height:70px;
+  background-color: #ccccff;
+  border-radius: 70px;
+  border: 1px solid #555;
+  margin-top:15px;
+}
+.circle3 {
+  width: 30px; height:30px;
+  background-color: #ccccff;
+  border-radius: 30px;
+  /*border: 1px solid #555;*/
+  margin: 10px 90px;
+}
+
+
+/*~ ~ ~ ~ ~ ~ ~ ~ these are classes for the Process documents ~ ~ */
+
+
+.container .file {
+  border-radius:6px;
+  padding: 30px;
+  background-color: #00BEE3;
+  border: 1px solid #888;
+  max-width: 550px;
+  width: 50%;
+  margin-right: 50px;
+  text-align: left;
+  position: relative;
+}
+.container .file:before {
+  content:'';
+  float:right;
+  width:40px;
+  height:40px;
+  background-image:-webkit-linear-gradient(top right, rgba(255,255,255,1) 50%, rgba(255,255,255,0.5) 50%);
+  background-image:linear-gradient(to bottom left, rgba(255,255,255,1) 50%, rgba(255,255,255,0.5) 50%);
+  border-radius:0 0 0 6px;
+  margin-top: -31px;
+  margin-right: -31px;
+}
+.container .file:after {
+  content:'';
+  float:right;
+  width:40px;
+  height:40px;
+  background-image:-webkit-linear-gradient(top right, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50%);
+  background-image:linear-gradient(to bottom left, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 50%);
+  position: absolute;
+  top: 39px;
+  right: 0px;
+}
+.container .file > .flex > .box {
+  border-radius: 3px;
+  border:1px solid #057F98;
+  background-color: #49C7E0;
+  padding:3px;
+  font-family: monospace;
+  min-width: 70px;
+  text-align: center;
+}

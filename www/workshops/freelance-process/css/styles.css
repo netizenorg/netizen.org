@@ -140,25 +140,25 @@ section { text-align:center; padding:32px 0; }
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2');
+  src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/1YwB1sO8YE1Lyjf12WNiUA.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
-  src: local('Lato Bold'), local('Lato-Bold'), url(http://fonts.gstatic.com/s/lato/v11/H2DMvhDLycM56KNuAtbJYA.woff2) format('woff2');
+  src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/H2DMvhDLycM56KNuAtbJYA.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: normal;
   font-weight: 400;
-  src: local('Vollkorn Regular'), local('Vollkorn-Regular'), url(http://fonts.gstatic.com/s/vollkorn/v6/idGKtgpe38okB6bfeHMsLPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+  src: local('Vollkorn Regular'), local('Vollkorn-Regular'), url(https://fonts.gstatic.com/s/vollkorn/v6/idGKtgpe38okB6bfeHMsLPesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
 }
 @font-face {
   font-family: 'Vollkorn';
   font-style: italic;
   font-weight: 400;
-  src: local('Vollkorn Italic'), local('Vollkorn-Italic'), url(http://fonts.gstatic.com/s/vollkorn/v6/Oiz0tNwvC-Nd29SBQWfWTPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+  src: local('Vollkorn Italic'), local('Vollkorn-Italic'), url(https://fonts.gstatic.com/s/vollkorn/v6/Oiz0tNwvC-Nd29SBQWfWTPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
 }
 
 @font-face {

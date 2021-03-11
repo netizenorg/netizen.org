@@ -32,6 +32,16 @@ module.exports = (socket, io) => {
   socket.on('disconnect', () => { someoneLoggedOff(socket, io) })
   socket.on('new-message', (m) => { clientSentMessage(socket, io, m) })
 
+  // for test page
+  if (socket.request.headers.referer.includes('room')) {
+    socket.join('poop-room')
+    socket.emit('new-id', socket.id)
+    socket.on('drawing', (data) => socket.to('poop-room').emit('new-draw', data))
+    socket.on('moving', (data) => socket.to('poop-room').emit('new-move', data))
+    socket.on('clearing', (data) => socket.to('poop-room').emit('new-clear', data))
+    socket.on('disconnect', () => socket.to('poop-room').emit('bye', socket.id))
+  }
+
   // for class page
   // TODO: add logic for diff "room"
   io.emit('user-entered', socket.id)

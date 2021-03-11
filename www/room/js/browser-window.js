@@ -3,7 +3,7 @@ class BrowserWindow extends HTMLElement {
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })
-    this.title = 'WINDOW'
+    this.title = 'OH HI'
     this.mousedown = false
     this.winOff = null
   }
@@ -50,8 +50,10 @@ class BrowserWindow extends HTMLElement {
       <style>
         :host {
           position: absolute;
-          --bg-color: #000;
-          --fg-color: #0f0;
+          --bg-color: #becece;
+          --fg-color: #416f89;
+          --border: 28px;
+          --title-size: 30px;
         }
 
         @font-face {
@@ -83,7 +85,7 @@ class BrowserWindow extends HTMLElement {
           position: absolute;
           min-width: 320px;
           min-height: 240px;
-          border: 12px inset var(--fg-color);
+          border: var(--border) inset var(--fg-color);
           background: var(--bg-color);
           color: var(--fg-color);
           font-family: 'Roboto Mono', monospace;
@@ -104,7 +106,7 @@ class BrowserWindow extends HTMLElement {
         }
 
         .title {
-          font-size: 10px;
+          font-size: var(--title-size);
         }
 
         .close {

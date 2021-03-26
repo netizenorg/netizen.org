@@ -9,7 +9,7 @@
 .details {
   where: https://netizen.org/classes/netart2;
   when: Mondays, 10:20AM - 01:30PM (synchronous video chats);
-  professor: Nick Briz (nbriz@uchicago.edu);
+  who: Nick Briz (nbriz@uchicago.edu);
 }
 ```
 
@@ -38,11 +38,11 @@ You will be expected to complete a minimum of 4 (out of 5) assignments this quar
 - 25%: Algorithmic Music Assignment (~2021.05.24)
 - 25%: Open Project (~2021.06.07)
 
-In order to receive full credit for these assignments, your piece should not only directly engage with each prompt but must also:
+In order to receive full credit for these assignments, your work should not only directly engage with each prompt but must also:
 - be uploaded to your GitHub account as it's own repository.
 - be hosted online (either via your repository using GitHub pages, or your preferred hosting provider), which means a viewer should be able to experience/interact with your piece by visiting a URL in a web browser (with the exception of the first 2 assignments)
 
-## Office Hours
+## Virtual Class Discussions
 
 We'll be holding "virtual office hours" via our zoom URL (sent to everyone via email) every Monday this quarter during the time we would otherwise have been meeting in person: 10:20am – 1:30pm CDT (Chicago Time).
 

@@ -5,9 +5,10 @@ package-lock.json
 
 data/analytics.json
 data/notepad.json
-www/slides/videos/*
-www/slides/images/*
-www/slides/week*.html
 
-www/jam/culture-jamming-syllabus.pdf
-www/jam/data
+www/classes/jam/culture-jamming-syllabus.pdf
+www/classes/jam/data
+www/classes/netart2/notes/web-audio/ex/sound-fonts/*/*
+!www/classes/netart2/notes/web-audio/ex/sound-fonts/Baritone_Sax-Reed/0670_Aspirin_sf2_file.js
+!www/classes/netart2/notes/web-audio/ex/sound-fonts/Music_Box-Chromatic_Percussion/0100_SBLive_sf2.js
+!www/classes/netart2/notes/web-audio/ex/sound-fonts/Choir_Aahs-Ensemble/0520_Soul_Ahhs_sf2_file.js

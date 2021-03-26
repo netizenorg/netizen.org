@@ -1,7 +1,7 @@
 # Internet Art II
 ### MAAD 23632 (Spring 2021)
 
-[view as .pdf](syllabus.pdf)
+[view as .pdf](https://github.com/netizenorg/netizen.org/blob/master/www/classes/netart2/Internet%20Art%20II%20Spring%202021.pdf)
 
 [view as plain text](https://raw.githubusercontent.com/netizenorg/netizen.org/master/www/classes/netart2/syllabus.md)
 

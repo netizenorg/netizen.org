@@ -33,13 +33,18 @@ module.exports = (socket, io) => {
   socket.on('new-message', (m) => { clientSentMessage(socket, io, m) })
 
   // for test page
-  if (socket.request.headers.referer.includes('room')) {
-    socket.join('poop-room')
+  if (socket.request.headers.referer.includes('artware')) {
+    socket.join('artware-room')
     socket.emit('new-id', socket.id)
-    socket.on('drawing', (data) => socket.to('poop-room').emit('new-draw', data))
-    socket.on('moving', (data) => socket.to('poop-room').emit('new-move', data))
-    socket.on('clearing', (data) => socket.to('poop-room').emit('new-clear', data))
-    socket.on('disconnect', () => socket.to('poop-room').emit('bye', socket.id))
+    socket.on('drawing', (d) => socket.to('artware-room').emit('new-draw', d))
+    socket.on('moving', (d) => socket.to('artware-room').emit('new-move', d))
+    socket.on('cleared', (d) => socket.to('artware-room').emit('new-clear', d))
+    socket.on('switched-mode', (d) => socket.to('artware-room').emit('new-mode', d))
+    socket.on('video-resized', (d) => socket.to('artware-room').emit('resized-video', d))
+    socket.on('vol-changed', (d) => socket.to('artware-room').emit('change-vol', d))
+    socket.on('play-audio', (d) => socket.to('artware-room').emit('audio-play', d))
+    socket.on('pause-audio', (d) => socket.to('artware-room').emit('audio-pause', d))
+    socket.on('disconnect', () => socket.to('artware-room').emit('bye', socket.id))
   }
 
   // for class page

@@ -201,7 +201,7 @@ class Note {
         let freqs = this._getFreqArray()
         let i = rootIdx + num
         if(i < 0 ){
-            console.warn(`Note.step(${num}) takes you bellow range by ${i}`+
+            console.warn(`Note.step(${num}) takes you below range by ${i}`+
             `rounding up to A0`)
             i = 0
         } else if(i > freqs.length-1){
@@ -226,7 +226,7 @@ class Note {
     set freq(v){
         let freqs = this._getFreqArray()
         if(v > freqs[freqs.length-1]) throw new Error('Note: freq out of range')
-        else if(v < freqs[0]) throw new Error('Note: freq bellow range')
+        else if(v < freqs[0]) throw new Error('Note: freq below range')
         else this._setFreq(v)
     }
 
@@ -235,7 +235,7 @@ class Note {
 
     get octave() { return this._root.octave }
     set octave(v){
-        if(v < 0 ) throw new Error('Note: octave bellow range')
+        if(v < 0 ) throw new Error('Note: octave below range')
         else if(v > 9) throw new Error('Note: octave out of range')
         else this._setOctave(v)
     }

@@ -212,6 +212,17 @@ function loadStream () {
   return t
 }
 
+function loadArchivedStream () {
+  const div = document.createElement('div')
+  div.style.width = '620px'
+  div.style.height = '378px'
+  div.style.backgroundColor = '#000'
+  div.innerHTML = '<iframe width="620" height="378" src="https://www.youtube.com/embed/BpzJViYa6OU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+
+  const object = new THREE.CSS3DObject(div)
+  return object
+}
+
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
@@ -250,7 +261,8 @@ function init () {
   renderer.setSize(window.innerWidth, window.innerHeight)
   container.appendChild(renderer.domElement)
 
-  stream = new StreamEmbed()
+  // stream = StreamEmbed()
+  stream = loadArchivedStream()
   stream.position.y = 25
   scene.add(stream)
   loadStream()

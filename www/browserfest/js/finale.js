@@ -204,12 +204,12 @@ function StreamEmbed () {
 function loadStream () {
   const ele = document.querySelector('#twitch-embed')
   if (!ele) return setTimeout(loadStream, 100)
-  // const t = new Twitch.Player('twitch-embed', {
-  //   channel: 'jonsatrom',
-  //   width: 620,
-  //   height: 378
-  // })
-  // return t
+  const t = new Twitch.Player('twitch-embed', {
+    channel: 'jonsatrom',
+    width: 620,
+    height: 378
+  })
+  return t
 }
 
 // -----------------------------------------------------------------------

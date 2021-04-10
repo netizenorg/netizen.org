@@ -20,98 +20,203 @@
 
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/styles.css">
+    <style media="screen">
+      #blocker {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+      .thumb::before {
+        content: "◕ ◞ ◕";
+        display: flex;
+        justify-content: flex-end;
+        padding: 5px;
+        text-decoration: none;
+        background-color: var(--netizen-tag);
+        color: var(--netizen-hint-color);
+      }
+
+      .thumb {
+        width: 480px;
+        height: calc(((1200px - 60px) / 3) * 0.75);
+        background-size: cover;
+        background-position: center;
+        border: 8px solid var(--netizen-tag);
+        border-top: 0;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      @keyframes layer1 {
+        0% {
+          background-color: var(--blue);
+          color: var(--grey);
+        }
+        50% {
+          background-color: var(--grey);
+          color: var(--blue);
+        }
+        100% {
+          background-color: var(--blue);
+          color: var(--grey);
+        }
+      }
+
+      .layer-1 {
+        background-color: var(--blue);
+        color: var(--grey);
+        animation: layer1 5s infinite;
+      }
+
+      @keyframes layer2 {
+        0% {
+          background-color: var(--green);
+          color: var(--grey);
+        }
+        50% {
+          background-color: var(--grey);
+          color: var(--green);
+        }
+        100% {
+          background-color: var(--green);
+          color: var(--grey);
+        }
+      }
+
+      .layer-2 {
+        background-color: var(--green);
+        color: var(--grey);
+        animation: layer2 6s infinite;
+      }
+
+      @keyframes layer3 {
+        0% {
+          background-color: var(--yellow);
+          color: var(--grey);
+        }
+        50% {
+          background-color: var(--grey);
+          color: var(--yellow);
+        }
+        100% {
+          background-color: var(--yellow);
+          color: var(--grey);
+        }
+      }
+
+      .layer-3 {
+        background-color: var(--yellow);
+        color: var(--grey);
+        animation: layer3 7s infinite;
+      }
+
+      .award {
+        text-shadow: none;
+        cursor: pointer;
+        text-decoration: underline;
+        padding: 8px;
+        display: inline-block;
+      }
+
+      #finale-marquee {
+        position: fixed;
+        bottom: 0px;
+        z-index: 9999;
+        padding: 0;
+        width: 100vw;
+      }
+
+      marquee {
+        background-color: var(--fg-color);
+        color: var(--xtra-white);
+        padding: 3px;
+        line-height: 1em;
+        text-shadow: var(--bg) 1px 1px;
+        width: 100%;
+      }
+
+      .performance-menu {
+        display: flex;
+        justify-content: space-around;
+        width: 100vw;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 99999;
+        padding: 1vw;
+        font-size: 1.3vw;
+      }
+
+    </style>
 
   </head>
   <body>
 
+    <div id="container"></div>
+    <div id="blocker"></div>
 
-    <canvas style="z-index:-9999999;width:98vw !important;"></canvas>
-<pre>                           .✶                   .
-シ   ...  ☻    .,           ☻      . .                 ..
-    ,;%,,..     .   ☻      ,.         ,.....              .     ☻    ..
-    ,;%,✶;,..    ,.       ,.☻  ✶,   ., .    .. ☻    .     ..        .,
-    .,;;;;,,...  . . ....!%;%%%% .    ,,.   ..    ,.      .. .✶.    .
-   ♬  ☻,%###!;,✶,. ,;###@@☺@シ@@&!&!✶☻!#@@#&@@!,,...☻    .;,;%%,   ,
-    .☻ ,;#@@@&&%%%!!&@☺☺@✶@@☺@@☺@@@@#!&☻@@✶@@@@☻!!&@#!!☻☺☺☻☻!!%,☻...  ♬
-   ,%,♬;%#@@@&%;%✶;!&@@#&☺##☺@@@@@@@#&&@@@@@@@@&&!#@&!%!!%!&&&!;,.,, シ
-,☻..,....,%!%%%!&;;!%%!,;%!!!%;%%&#!&%,;%☺;;%&!!&##@&&&&!%;%;,    ..☺   ,.
-.. ..██████╗░██████╗░░█████╗..██╗░░...;.██╗░██████╗███████╗██████╗░.,.☻ ,
- . . ██╔══██╗██╔══██╗██╔══██╗░██║░░██╗.░██║██╔════╝██╔════╝██╔══██╗,..☺,.
- . . ██████╦╝██████╔╝██║░░██║░╚██╗████╗██╔╝╚█████╗░█████╗░░██████╔╝,;;, .,
-...,.██╔══██╗██╔══██╗██║░░██║░░████╔═████║░░╚═══██╗██╔══╝░░██╔══██╗,;;...
-. ,%,██████╦╝██║░░██║╚█████╔╝░░╚██╔╝░╚██╔╝░██████╔╝███████╗██║░░██║..%;,,,,,.
-. .;.╚═════╝░╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚═╝░░╚═════╝░╚══════╝╚═╝░░╚═╝.,;%;..☻
-..,;.███████╗███████╗░██████╗████████╗██████╗░░█████╗░██████╗░░░███╗.░,;.
-  ,, ██╔════╝██╔════╝██╔════╝╚══██╔══╝╚════██╗██╔══██╗╚════██╗░████║.░..,
-  ,;.█████╗░░█████╗░░╚█████╗░.░░██║..░░░███╔═╝██║░░██║░░███╔═╝██╔██║...,,,.
- ☻.,.██╔══╝░░██╔══╝░░░╚═══██╗;░░██║,;░██╔══╝░░██║░░██║██╔══╝░░╚═╝██║░,,.  ,.
- ... ██║░░..░███████╗██████╔╝%.░██║.;░███████╗╚█████╔╝███████╗███████╗,♬
- . ...═╝░.,,..══════╝╚═════╝.;,.╚═..,.╚══════╝░╚════╝░╚══════╝╚══════╝ .
-✶.  .☻.....;&#!;;,,,,%%;,,;%;,;%,;;,.,,;;%,%;;;%;;,;%;,.,.;&%%%,!&&;.  .
-. ...♬♬ ♬ ♬!&@♬@#&#&##@&%;%#!&%!,,,,,%!#!#%!%!%,.,;;%&!;,,;%!%;,%☺☺%;☻ .
-..  ..    .%@@シ♬!♬%!&&##&&♬#✶&!#✶@@##!@#@@&!!&#!%%!###&%,,;☻;.,%!!!!;;;.
-   ....    ,;;;;;,;;;;☻%&&@#☺☺☺☺!#☺@♬♬@✶@#&!!!☻;%###&#&#%☺☻☺,;♬,☻;;,.  ...
-   ...☻%%;,,,;,✶,%!&&%;;%&@##&&&!@&#&!!%!%%;%%☺;!@#✶%!!☺;. .,;;;;;;,.   .✶
-  シ  .;%%;,..;!#@@@@☺#%☺;&@&!&&!%;;%;☺;,♬☺☺;;,,..,;.. .%♬%%!%&!!,,,;.
-    ☻.;%%;,..;!#☺@@@##%%,;;;;%!;シ.     ,. ,  ..   .   ,.✶%%,%%!,. ✶
-          ☺  .☺%&&&%,;,;,;;........☻    ;. .       ..  ..;%%,;;%,.
-                ...       .             ✶
-</pre>
+    <div class="performance-menu">
+      <a href="#" onclick="tweenStream()">LIVE (on here)</a>
+      <a href="https://www.twitch.tv/jonsatrom/?tt_content=twitch_logo&tt_medium=embed" target="_blank">LIVE  (on Twitch)</a>
+      <a href="https://teddavis.org/p5live/?cc=BFBF1" target="_blank">LIVE (on P5LIVE) join the co-coding jam!!!</a>
+    </div>
 
+    <div id="finale-marquee">
+      <marquee width="100%" direction="left" scrollamount="5" id="awards-layer-1" style="font-size: 24px;">
+        🏆 🏆 🏆 DEMO AWARDS 🏆 🏆 🏆
+      </marquee>
+      <marquee width="100%" direction="left" scrollamount="4" id="awards-layer-2" style="font-size: 18px;">
+        🏆 🏆 🏆 DEMO AWARDS 🏆 🏆 🏆
+      </marquee>
+      <marquee width="100%" direction="left" scrollamount="3" id="awards-layer-3" style="font-size: 16px;">
+        🏆 🏆 🏆 DEMO AWARDS 🏆 🏆 🏆
+        <a href="https://netnet.studio/?gh=flora-concise/not-what-it-seems/main" target="_blank" class="layer-3 award">mmmm award (most minimal math meditation)</a> =&gt;
+        <span>not what it seems by flora-concise</span>; ----
 
-    <script src="js/bg.js"></script>
+        <a href="https://netnet.studio/?gh=sarahrooney/text-me/main" target="_blank" class="layer-3 award">simulacrum award</a> =&gt;
+        <span> text me by sarah rooney</span>; ----
+
+        <a href="https://netnet.studio/?gh=tripzilch/bizniz/main" target="_blank" class="layer-3 award">best most beautiful </a> =&gt;
+        <span> BiZNiZ by ritz</span>; ----
+
+        <a href="https://netnet.studio/?gh=mbaptistabenedict/hound/main" target="_blank" class="layer-3 award">profusely prolific prize</a> =&gt;
+        <span>Michael Baptista Benedict </span>; ----
+
+        <a href="https://netnet.studio/?gh=nickmontfort/the-bug/main" target="_blank" class="layer-3 award">gLiTChiEsT</a> =&gt;
+        <span> The Bug by axaxaxas & nom de nom / TROPE</span>; ----
+
+        <a href="https://netnet.studio/?gh=Mich0608/Forgotten-HTTP-Request/main" target="_blank" class="layer-3 award">protocological poet prize</a> =&gt;
+        <span> Forgotten HTTP Request by Michelle Chen</span>; ----
+
+        <a href="https://netnet.studio/?gh=elux64/orange-islet/main" target="_blank" class="layer-3 award">healingest moment</a> =&gt;
+        <span>Orange Islet by turtle</span>; ----
+
+        <a href="https://netnet.studio/?gh=fancycookin/this-is-not-the-greatest-site-in-the-world-no-this-is-just-a-tribute/main" target="_blank" class="layer-3 award">best copypasta tribute</a> =&gt;
+        <span>this is just a tribute by fancycookin</span>; ----
+
+        <a href="https://netnet.studio/?gh=mrsgeef/Video-Girl/main" target="_blank" class="layer-3 award">the golden age award</a> =&gt;
+        <span> VIDEOGIRL by Maeve Mallers</span>; ----
+
+        <a href="https://netnet.studio/?gh=apouba/Drip/main" target="_blank" class="layer-3 award">most tender</a> =&gt;
+        <span> Drip by Abbey</span>; ----
+
+        <a href="https://netnet.studio/?gh=lilydhomer/weak-stomach-page-3/main" target="_blank" class="layer-3 award">afroistic anecdote award</a> =&gt;
+        <span> weak stomach page 3 by lilydhomer</span>; ----
+
+        <a href="https://netnet.studio/?gh=tamask-public/Mountain-Loops/main" target="_blank" class="layer-3 award">best usage of speculative cartography</a> =&gt;
+        <span> Mountain Loops by tk</span>; ----
+      </marquee>
+    </div>
+
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
     <script src="js/GradientBG.js"></script>
-    <script>
-
-    function CountDownTimer(dt, id)
-    {
-        var end = new Date(dt);
-
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var timer;
-
-        function showRemaining() {
-            // var now = new Date();
-            var date = new Date();
-            var now = new Date(date.toLocaleString('en-US', {
-              timeZone: "America/Chicago"
-            }));
-            var distance = end - now;
-            if (distance < 0) {
-
-                clearInterval(timer);
-                document.getElementById(id).innerHTML = 'EXPIRED!';
-
-                return;
-            }
-            var days = Math.floor(distance / _day);
-            var hours = Math.floor((distance % _day) / _hour);
-            var minutes = Math.floor((distance % _hour) / _minute);
-            var seconds = Math.floor((distance % _minute) / _second);
-
-            const ele = document.getElementById(id)
-            ele.innerHTML = hours + 'h ';
-            ele.innerHTML += minutes + 'm ';
-            ele.innerHTML += seconds + 's';
-
-            ele.style.bottom = '10px'
-            ele.style.left = innerWidth / 2 - ele.offsetWidth / 2 + 'px'
-
-        }
-
-        timer = setInterval(showRemaining, 1000);
-    }
-
-      const cd = document.createElement('pre')
-      cd.style.position = 'absolute'
-      cd.style.fontSize = '6vw'
-      cd.id = 'countdown'
-      document.body.appendChild(cd)
-      CountDownTimer('04/10/2021 1:0 PM', 'countdown')
-
-    </script>
+    <script src="js/libs/three.min.js"></script>
+    <script src="js/libs/tween.min.js"></script>
+    <script src="js/libs/CSS3DRenderer.js"></script>
+    <script src="js/libs/TrackballControls.js"></script>
+    <script src="js/finale.js"></script>
   </body>
 </html>

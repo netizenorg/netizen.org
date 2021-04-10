@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BROWSER FEST 2021</title>
+
+    <meta name="author" content="netizen.org">
+    <meta name="description" content="BrowserFest borrows the playful and dynamic demoparty format to celebrate and experiment with one of the most flexible and inspiring tools ever invented: the humble web browser">
+
+    <!-- social media stuff -->
+    <meta property="og:title" content="BROWSER FEST 2021">
+    <meta property="og:url" content="https://browserfest.netizen.org">
+    <meta property="og:image" content="https://browserfest.netizen.org/images/BrowserFest.png">
+    <meta property="og:description" content="BrowserFest borrows the playful and dynamic demoparty format to celebrate and experiment with one of the most flexible and inspiring tools ever invented: the humble web browser">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="browserfest.netizen.org">
+    <meta name="twitter:site" content="@netizenorg">
+
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <style media="screen">
+      #blocker {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+      .thumb::before {
+        content: "◕ ◞ ◕";
+        display: flex;
+        justify-content: flex-end;
+        padding: 5px;
+        text-decoration: none;
+        background-color: var(--netizen-tag);
+        color: var(--netizen-hint-color);
+      }
+
+      .thumb {
+        width: 480px;
+        height: calc(((1200px - 60px) / 3) * 0.75);
+        background-size: cover;
+        background-position: center;
+        border: 8px solid var(--netizen-tag);
+        border-top: 0;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      @keyframes layer1 {
+        0% {
+          background-color: var(--blue);
+          color: var(--grey);
+        }
+        50% {
+          background-color: var(--grey);
+          color: var(--blue);
+        }
+        100% {
+          background-color: var(--blue);
+          color: var(--grey);
+        }
+      }
+
+      .layer-1 {
+        background-color: var(--blue);
+        color: var(--grey);
+        animation: layer1 5s infinite;
+      }
+
+      @keyframes layer2 {
+        0% {
+          background-color: var(--green);
+          color: var(--grey);
+        }
+        50% {
+          background-color: var(--grey);
+          color: var(--green);
+        }
+        100% {
+          background-color: var(--green);
+          color: var(--grey);
+        }
+      }
+
+      .layer-2 {
+        background-color: var(--green);
+        color: var(--grey);
+        animation: layer2 6s infinite;
+      }
+
+      @keyframes layer3 {
+        0% {
+          background-color: var(--yellow);
+          color: var(--grey);
+        }
+        50% {
+          background-color: var(--grey);
+          color: var(--yellow);
+        }
+        100% {
+          background-color: var(--yellow);
+          color: var(--grey);
+        }
+      }
+
+      .layer-3 {
+        background-color: var(--yellow);
+        color: var(--grey);
+        animation: layer3 7s infinite;
+      }
+
+      .award {
+        text-shadow: none;
+        cursor: pointer;
+        text-decoration: underline;
+        padding: 8px;
+        display: inline-block;
+      }
+
+      #finale-marquee {
+        position: fixed;
+        bottom: 0px;
+        z-index: 9999;
+        padding: 0;
+        width: 100vw;
+      }
+
+      marquee {
+        background-color: var(--fg-color);
+        color: var(--xtra-white);
+        padding: 3px;
+        line-height: 1em;
+        text-shadow: var(--bg) 1px 1px;
+        width: 100%;
+      }
+
+      .performance-menu {
+        display: flex;
+        justify-content: space-around;
+        width: 100vw;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        z-index: 99999;
+        padding: 1vw;
+        font-size: 1.3vw;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div id="container"></div>
+    <div id="blocker"></div>
+
+    <div class="performance-menu">
+      <a href="#" onclick="tweenStream()">LIVE (on here)</a>
+      <a href="https://www.twitch.tv/jonsatrom/?tt_content=twitch_logo&tt_medium=embed" target="_blank">LIVE  (on Twitch)</a>
+      <a href="https://teddavis.org/p5live/?cc=BFBF1" target="_blank">LIVE (on P5LIVE) join the co-coding jam!!!</a>
+    </div>
+
+    <div id="finale-marquee">
+      <marquee width="100%" direction="left" scrollamount="3" id="awards-layer-1" style="font-size: 24px;">
+        🏆 🏆 🏆 DEMO AWARDS 🏆 🏆 🏆
+      </marquee>
+      <marquee width="100%" direction="left" scrollamount="3" id="awards-layer-2" style="font-size: 18px;">
+        🏆 🏆 🏆 DEMO AWARDS 🏆 🏆 🏆
+      </marquee>
+      <marquee width="100%" direction="left" scrollamount="3" id="awards-layer-3" style="font-size: 16px;">
+        🏆 🏆 🏆 DEMO AWARDS 🏆 🏆 🏆
+        <a href="https://netnet.studio/?gh=flora-concise/not-what-it-seems/main" target="_blank" class="layer-3 award">mmmm award (most minimal math meditation)</a> =$gt;
+        <span>not what it seems by flora-concise</span>; ----
+
+        <a href="https://netnet.studio/?gh=sarahrooney/text-me/main" target="_blank" class="layer-3 award">simulacrum award</a> =$gt;
+        <span> text me by sarah rooney</span>; ----
+
+        <a href="https://netnet.studio/?gh=tripzilch/bizniz/main" target="_blank" class="layer-3 award">best most beautiful </a> =$gt;
+        <span> BiZNiZ by ritz</span>; ----
+
+        <a href="https://netnet.studio/?gh=mbaptistabenedict/hound/main" target="_blank" class="layer-3 award">profusely prolific prize</a> =$gt;
+        <span>Michael Baptista Benedict </span>; ----
+
+        <a href="https://netnet.studio/?gh=nickmontfort/the-bug/main" target="_blank" class="layer-3 award">gLiTChiEsT</a> =$gt;
+        <span> The Bug by axaxaxas & nom de nom / TROPE</span>; ----
+
+        <a href="https://netnet.studio/?gh=Mich0608/Forgotten-HTTP-Request/main" target="_blank" class="layer-3 award">protocological poet prize</a> =$gt;
+        <span> Forgotten HTTP Request by Michelle Chen</span>; ----
+
+        <a href="https://netnet.studio/?gh=elux64/orange-islet/main" target="_blank" class="layer-3 award">healingest moment</a> =$gt;
+        <span>Orange Islet by turtle</span>; ----
+
+        <a href="https://netnet.studio/?gh=fancycookin/this-is-not-the-greatest-site-in-the-world-no-this-is-just-a-tribute/main" target="_blank" class="layer-3 award">best copypasta tribute</a> =$gt;
+        <span>this is just a tribute by fancycookin</span>; ----
+
+        <a href="https://netnet.studio/?gh=mrsgeef/Video-Girl/main" target="_blank" class="layer-3 award">the golden age award</a> =$gt;
+        <span> VIDEOGIRL by Maeve Mallers</span>; ----
+
+        <a href="https://netnet.studio/?gh=apouba/Drip/main" target="_blank" class="layer-3 award">most tender</a> =$gt;
+        <span> Drip by Abbey</span>; ----
+
+        <a href="https://netnet.studio/?gh=lilydhomer/weak-stomach-page-3/main" target="_blank" class="layer-3 award">afroistic anecdote award</a> =$gt;
+        <span> weak stomach page 3 by lilydhomer</span>; ----
+
+        <a href="https://netnet.studio/?gh=tamask-public/Mountain-Loops/main" target="_blank" class="layer-3 award">best usage of speculative cartography</a> =$gt;
+        <span> Mountain Loops by tk</span>; ----
+      </marquee>
+    </div>
+
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+    <script src="js/GradientBG.js"></script>
+    <script src="js/libs/three.min.js"></script>
+    <script src="js/libs/tween.min.js"></script>
+    <script src="js/libs/CSS3DRenderer.js"></script>
+    <script src="js/libs/TrackballControls.js"></script>
+    <script src="js/finale.js"></script>
+  </body>
+</html>

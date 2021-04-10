@@ -23,7 +23,7 @@ const dict = {
     img: 'https://netnet.studio/perenewang-1617563236128.png',
     url: 'https://netnet.studio/?gh=perenewang/Internet-Art-Final-Project/main',
     title: 'DISCO!',
-    artist: 'perne'
+    artist: 'Perene'
   },
   emmy: {
     layer: 1,

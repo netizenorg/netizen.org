@@ -14,7 +14,9 @@ const students = [
   'Khalil',
   'Alex',
   'Camrick',
-  'Giacomo'
+  'Giacomo',
+  'Azam',
+  'Rahman'
 ]
 
 function invalid (url, name, assign) {

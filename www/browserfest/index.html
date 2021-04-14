@@ -140,7 +140,8 @@
 
       .performance-menu {
         display: flex;
-        justify-content: space-around;
+        align-items: center;
+        justify-content: space-between;
         width: 100vw;
         position: fixed;
         top: 0px;
@@ -148,6 +149,10 @@
         z-index: 99999;
         padding: 1vw;
         font-size: 1.3vw;
+      }
+
+      .sponsor {
+        max-height: 100px;
       }
 
     </style>
@@ -159,10 +164,26 @@
     <div id="blocker"></div>
 
     <div class="performance-menu">
+      <div>
+        <a style="text-decoration: none;" href="https://maad.world/" target="_blank">
+          <img src="images/uchicago.png" alt="University of Chicago Media Arts and Design" class="sponsor">
+        </a>
+        <a style="text-decoration: none;" href="https://vgagallery.org/" target="_blank">
+          <img src="images/vga.png" alt="VGA Gallery" class="sponsor">
+        </a>
+      </div>
       <a href="#" onclick="tweenStream()">LIVE STREAM (archive)</a>
       <!-- <a href="https://www.twitch.tv/jonsatrom/?tt_content=twitch_logo&tt_medium=embed" target="_blank">LIVE  (on Twitch)</a> -->
       <!-- <a href="https://teddavis.org/p5live/?cc=BFBF1" target="_blank">LIVE (on P5LIVE) join the co-coding jam!!!</a> -->
       <!-- <a href="https://tacacocodin.com/live.html" target="_blank">LIVE (on TACACOCODIN)</a> -->
+      <div>
+        <a style="text-decoration: none;" href="https://runwayml.com/" target="_blank">
+          <img src="images/runway.png" alt="Runway ML" class="sponsor">
+        </a>
+        <a style="text-decoration: none;" href="https://dbrand.com/" target="_blank">
+          <img src="images/dbrand.png" alt="dbrand" class="sponsor">
+        </a>
+      </div>
     </div>
 
     <div id="finale-marquee">

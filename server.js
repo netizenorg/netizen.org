@@ -7,6 +7,7 @@ const io = require('socket.io')(http)
 const ANALYTICS = require('./my_modules/analytics.js')
 const ROUTES = require('./my_modules/routes.js')
 const SOCKETS = require('./my_modules/sockets.js')
+const BBS = require('./my_modules/bbs.js')
 const port = process.env.PORT || 80
 
 app.use(ANALYTICS)
@@ -16,6 +17,11 @@ app.use(ROUTES)
 io.on('connection', (socket) => SOCKETS(socket, io))
 
 http.listen(port, () => console.log(`listening on: ${port}`))
+
+BBS.listen(1337, (err) => {
+  if (err) return console.log(err)
+  console.log('bbs server is listening => telnet host 1337')
+})
 
 if (process.env.PROD) {
   const proxy = require('redbird')({

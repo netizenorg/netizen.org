@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>The Command Line Interface</title>
+      <meta name="author" content="netizen.org">
+      <meta name="description" content="An introduction to Command Line Interfaces for net artists.">
+
+      <!-- social media stuff -->
+      <meta property="og:title" content="The Command Line Interface">
+      <meta property="og:url" content="http://netizen.org">
+      <meta property="og:image" content="http://netizen.org/images/logo-bg.png">
+      <meta property="og:description" content="An introduction to Command Line Interfaces for net artists.">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta property="og:site_name" content="netizen.org">
+      <meta name="twitter:site" content="@netizenorg">
+
+      <link rel="icon" type="image/png" href="http://netizen.org/images/n.png">
+      <link rel="stylesheet" href="../css/main.css">
+
+    </head>
+    <body>
+      <header>
+        <h1>the Command Line</h1>
+        <h2>an introduction</h2>
+      </header>
+
+      <section>
+
+        <article>
+          <br>
+          <iframe height="500" src="https://www.youtube.com/embed/4RPtJ9UyHS0" frameborder="0" allowfullscreen class="rwd"></iframe>
+
+          <h2>what is a CLI?</h2>
+          <h3>(Command Line Interface)</h3>
+
+          <p>You typically interact with your computer's operating system through it's GUI (graphical user interface), you open directories by double clicking on the folder icons and you run programs by double-clicking on the app icons, you move windows around by clicking-and-dragging and open up "context" menus by right-mouse clicking (or double-finger clicking on Mac trackpads).</p>
+
+          <p>But before there were GUIs there were CLIs or "command line interfaces". a CLI is another way of interacting with your computer's operating system, in the CLI you can typically do everything that you can do in the GUI and more! As was mentioned in the video above, the CLI is still used regularly by programmers to do things like access and control remote computers (anywhere in the world) and building/running custom software. Getting comfortable with the Command Line means you'll be able to transcend the restrictions of the consumer-oriented interfaces of the "desktop" metaphor.</p>
+
+          <p>The instructions below assume you're using a UNIX-like operating system, like the kinds you find on Apple or Linux PCs like Raspberry Pi and most "cloud" computers (think servers), essentially everything except Windows <sup data-note="Windows also has a CLI called the command prompt and it can do all the things we'll be covering here (but often with different commands), that said, these days Windows allows you to enable a <a href='https://allthings.how/how-to-use-linux-terminal-in-windows-10/' target='_blank'>Linux Subsystem</a>."></sup></p>
+
+          <h3>Table of Contents:</h3>
+          <ol>
+            <li><a href="#the-terminal">The Terminal</a></li>
+            <li><a href="#running-commands">Running commands</a></li>
+            <li><a href="#command-options">Command options</a></li>
+            <li><a href="#quitting-a-process">Quitting a process</a></li>
+            <li><a href="#arguments-and-options">Arguments and options</a></li>
+            <li><a href="#finding-files-folders">Finding files/folders</a></li>
+            <li><a href="#creating-files-folders">Creating files/folders</a></li>
+            <li><a href="#command-redirections">Command redirection</a></li>
+            <li><a href="#sudo">Sudo</a></li>
+            <li><a href="#controlling-other-computers">Controlling other computers</a></li>
+            <li><a href="#useful-helpers">Useful helpers</a></li>
+          </ol>
+        </article>
+
+        <article>
+          <h2 id="the-terminal">the Terminal</h2>
+          <h3>&& the command prompt</h3>
+
+          <p>Let's start by opening up our "<b>terminal</b>", this is the app on Mac (Apple laptops/desktops) and Linux systems that give us access to our operating system's <b>command line</b> or "<b>shell</b>". On Mac you can find this in your Applications or by typing "terminal" into your spotlight search. You can have multiple terminals open (or terminal tabs open), each is referred to as a "<b>terminal session</b>".</p>
+
+        </article>
+
+
+        <div class="flex">
+          <img class="rwd" src="images/mac-terminal.png" alt="mac-terminal">
+          <img class="rwd" src="images/linux-terminal.png" alt="linux-terminal">
+        </div>
+      </section>
+
+      <article>
+        <p>What you'll see is a <b>command prompt</b>, this will contain a <code class>$</code> symbol, to the left of it you'll see the following information: the <b>hostname</b> (the name of the computer you're controlling), the <b>username</b> (the name of the user you are logged into this computer as) and some reference to the folder you are currently in (usually relative<sup data-note="the commands in these notes assume you have an understanding of how file-paths work (both absolute and relative paths) for more on this see our notes on <a href='../urls/index.html#file-paths'>file paths</a>."></sup> to your home directory). To the right of the <code>$</code> is where you'll type in your commands</p>
+      </article>
+
+      <article>
+        <h2 id="running-commands">running commands</h2>
+        <h3>aka CLI programs</h3>
+
+        <p>In order to run a <b>command</b> (which is what we call programs in the terminal) just type in the name of the command and press enter.</p>
+
+        <p>For example type in <code>pwd</code> and press enter. What will happen is your computer will run the "pwd" command, which will print the full absolute path of the folder your terminal session is currently in (ie. the "present working directory") and then the program will "exit" (which means it finished running and quit). You'll then be returned to a new command prompt.</p>
+
+        <p>Another simple command is <code>ls</code>, this will list all the files and folders in your present working directory.</p>
+      </article>
+
+      <br><br>
+
+      <article>
+        <h2 id="command-options">command options</h2>
+        <h3>somtimes also known as flags</h3>
+
+        <p>Most commands (ie. command line programs) have different <b>options</b> which dictate how/what the program should do when it runs. These options are written after the command (preceded by a space) and will often start with a <code>-</code> or <code>--</code>.</p>
+
+        <p>for example, the <i>ls</i> command doesn't show you any hidden folders/files by default, in order to list both visible and hidden run the <i>ls</i> command with the <i>all</i> option like this: <code>ls --all</code> or <code>ls -a</code> for short. Sometimes these are also called <b>flags</b>.</p>
+
+        <p><b>NOTE:</b> unless you had hidden files in this directory you're unlikely to notice a difference in the results except for two things a single <code>.</code> and a double <code>..</code> the single <code>.</code> represents the current directory while the <code>..</code> represents the parent directory (this should sound familiar given what you know about writing relative paths)</p>
+
+        <p>Another useful option/flag for the <code>ls</code> command is <code>-l</code> which will list the folders and files along with more information about them including their permission settings, the user who created the file, file size and the date it was last modified. You can use both the <code>-l</code> and <code>-a</code> options at the same time like this: <code>ls -l -a</code> or you can combine the flags like this <code>ls -la</code> <sup data-note="the order of the options/flags here doesn't matter, it could be <b>-la</b> or <b>-al</b>, either way works"></sup></p>
+      </article>
+
+      <article>
+        <h2 id="quitting-a-process">quitting a process</h2>
+        <h3>when they don't exit on their own</h3>
+
+        <p>So far all the commands we've gone over run very quickly and exit immediately. Some commands, however, take a very long time to finish and others run forever. In these cases you need to "interrupt" the <b>process</b><sup data-note="a <b>process</b> is what we call any application that is currently running on our computer"></sup> by pressing <b>ctrl + c</b>, this will abort the program or force it to exit.</p>
+
+        <p>Take the <code>ping</code> command for example. This command is used to test your network connection, it will send a simple packet known as an "echo request", which (like the name implies) tells the server of a website your pinging to "echo" back a packet and it will measure the time it took to get from your computer to the server and back. The <i>ping</i> command takes the URL (Web address) of a website as an argument, for example <code>ping netizen.org</code>.</p>
+
+        <p>If you run that command you'll notice data from each echo request list in the terminal one by one. The data includes info like the IP address of the server you are pining, as well as the time it took (in milliseconds) to make the round trip. You'll have to interrupt the process yourself with <b>ctrl + c</b> in order to stop pinging.</p>
+      </article>
+
+      <article>
+        <h2 id="arguments-and-options">arguments and options</h2>
+        <h3>mixing 'em up</h3>
+
+        <p>Some commands can take both options and arguments, in these situations you usually write the options before the arguments. For example, we already learned that the <code>-l</code> option in the <code>ls</code> command lists information about the files in a directory. if you only want to see the information of a particular file in the <b>pwd</b> <sup data-note="the present working directory, ie. the folder you are currently in"></sup> you can pass <code>ls</code> a filename as an argument, the full pattern looks like this <code>ls [options] [argument]</code> for example: <code>ls -l doge.png</code></p>
+
+        <p>In some cases you might have options/flags which require an argument/parameter and so you end up with a pattern that looks more like <code>[command] [option] [argument] [option] [argument]</code>. Take the <code>ping</code> command for example. Rather than running forever until you force quit the process yourself, you can pass the <code>-c</code> option (short for count) followed by the number of echo requests you want to send. Ping also has another option <code>-i</code> to specify the time in seconds between each interval, so if you wanted to send 3 echo requests with 2 seconds between each you would write <code>ping google.com -c 3 -i 2</code></p>
+      </article>
+
+      <article>
+        <h2 id="finding-files-folders">finding files/folders</h2>
+        <h3>in the command line</h3>
+
+        <p>We now know how to navigate to different folders, but that's only useful if we know where we want to go, what if we're trying to find something? A couple of very useful commands for searching for content on your drive are <code>find</code> and <code>grep</code>, the former searches for files while the latter searches inside of file's content. For example, say you want to find a particular file, maybe <i>my-notes.txt</i>, on your computer. You know that it's somewhere in your <i>Documents</i> folder so you navigate into that folder <code>cd /User/nick/Documents</code> and list it's contents <code>ls -la</code> only to realize that you've got folders in folders in folders... and can't remember where you put it!</p>
+
+        <p>This is where <code>find</code> comes in, you pass it two parameters: the first argument is the directory you want to search in and second, the option <code>-name</code> followed by the name of the file you want to find as an argument. because we are already in the <i>Documents</i> directory we can simply pass a <code>.</code> as the directory (which you may recall means the current directory), so the full command looks like this: <code>find . -name my-notes.txt</code> and just like that the command returns the path to the file you were looking for!</p>
+
+        <p>Now say that file is thousands of lines long, and you're looking for a specific thing you wrote about "cat memes", this is where <code>grep</code> comes in. You can pass a pattern or string of text you want to locate followed by the filename you want to search, for example: <code>grep "cat memes" my-notes.txt</code> and will print out every line in the document that matches the search pattern.</p>
+
+        <h3>* (wildcard)</h3>
+
+        <p>A useful trick when passing arguments to a command is the <code>*</code> symbol, also known as a "wildcard" character, you can use this symbol in paths or filenames as a stand-in to mean "anything goes". Say for example you know you've got an imaged named <i>cat-meme</i> in your <i>Documents</i> folder somewhere but can't remember if it was a <i>.jpg</i> or <i>.gif</i> or <i>.png</i> you can use the <code>*</code> in-place of the extension like <code>cat-meme.*</code> and it will list all the files named <i>cat-meme</i> regardless of their extension, for example: <code>find /Users/nick/Documents -name cat-meme.*</code> you can place the wildcard in any part of the argument, so say for example you knew the filename started with some word followed by "-meme" you could search for <code>*-meme.*</code>.</p>
+
+        <h3>~ (home folder)</h3>
+
+        <p>Another special character when writing file paths is the <code>~</code> symbol. This is a shortcut to the currently logged in user's home folder. On Mac this tends to be something like <i>/Users/username</i>, on Linux it's <i>/home/username</i>. So rather than writing something like <i>/Users/username/Downloads/cat.jpg</i> you could alternatively write <i>~/Downloads/cat.jpg</i></p>
+
+        <h3>dealing with spaces</h3>
+
+        <p>So far none of the folders and file names we've discussed have had spaces, when they do there's a couple ways to deal with them. Say you need to navigate into a file in your <i>Documents</i> folder called <i>class notes</i> with a space between the two words. You CAN NOT do this: <code>cd /Users/nick/Documents/class notes</code> because it assumes you're trying to navigate into a folder called <i>class</i> and interprets the word <i>notes</i> as a second argument.</p>
+
+        <p>Instead you have two options: first, you can surround the entire argument (in this case the directory path) in quotes like this: <code>cd "/Users/nick/Documents/class notes"</code>, or, alternatively, you can <i>escape</i> the space by preceding it with a <code>\</code> symbol, this tell the terminal to interpret the space as the <i>space character</i> rather than as a space between arguments, like this: <code>cd /Users/nick/Documents/class\ notes</code></p>
+      </article>
+
+      <article>
+        <h2 id="creating-files-folders">creating files/folders</h2>
+        <h3>as well as deleting/removing them</h3>
+
+        <p>So now you know how to find stuff and navigate around your hard-drive using the terminal. How do you create and delete files and directories? As you might expect there are command line tools for that as well. To create a directory you use the <code>mkdir</code> (short for make directory) followed by a path and name of the folder you want to make, for example if you want to create a new folder in your <i>Documents</i> folder called <i>cat-memes</i> you simply write <code>mkdir /Users/nick/Documents/cat-memes</code> or say your <b>pwd</b> happened to already be the <i>Documents</i> folder you simply write the relative path, which would just be <code>mkdir cat-memes</code>, then to get rid of it use <code>rmdir</code> (short for remove directory) like this: <code>rmdir cat-mems</code>, this will only work if the folder is empty, if it isn't you'll need to use the <code>rm</code> command.</p>
+
+        <p>The <code>rm</code> command (followed by a path to a file) is used to delete files, for example <code>rm my-cat.jpg</code> will remove the file named <i>my-cat.jpg</i> in the current directory. Back to our example from before, if <i>cat-memes</i> is a directory with stuff in it you can do this: <code>rm -rf cat-memes</code>, the <code>-f</code> flag stand for "force" and the <code>-r</code> flag stands for "recursively" which means recursively check every file and sub-directory inside "cat-memes" and them all.</p>
+
+        <p><b>WARNING:</b> be very careful with this command! Unlike moving items to the "trash can" this will delete the files permanently! There's a very cruel joke on the Internet where folks will tell people on forums to type in <code>rm -rf /</code> <b>NEVER DO THIS</b>, if you read that command carefully you'll notice it's telling your computer to delete everything inside the <i>/</i> folder (your "root" directory)... essentially this wipes your computer!</p>
+
+        <p>So that's how you delete files, to make them you have a couple of options, you can use the <code>touch</code> command followed by a <i>file-path/name</i> to simply create an empty file with that name, like this: <code>touch /Users/nick/test.txt</code> will create an empty file in my home folder called <i>test.txt</i>. Or you could use a command line text editor like <code>nano</code> you can create a file or edit an existing one by running: <code>nano /Users/nick/test.txt</code> this will open up a command-line editor, you can type whatever you want into the file and then follow the shortcut keys in the menu at the bottom to save/exit/etc <sup data-note="here's a list of all the basic nano <a hef='https://www.nano-editor.org/dist/latest/cheatsheet.html' target='_blank'>shortcuts</a>"></sup>.</p>
+
+        <p>You can also copy and move files around in the terminal using the <code>cp</code> (short for copy) and <code>mv</code> (short for move). Both of these take two arguments, first, path to the file you want to move or copy, second, path to the new file. So for example if I have a file called <i>doge.jpg</i> in my <b>pwd</b>, and I want to move it into a sub-folder called <i>dog-pics</i>, I can do: <code>mv doge.jpg dog-pics/doge.jpg</code>, if I wanted to make a copy of it instead I could do: <code>cp doge.jpg dog-pics/doge-copy.jpg</code>.</p>
+      </article>
+
+      <article>
+        <h2 id="command-redirections">Command Redirection</h2>
+        <h3>saving output and chaining commands</h3>
+
+        <p>Each command line tool can technically/generally accept input via what's called "<b>standard in</b>" and returns (ie. displays in the terminal) the result via "<b>standard out</b>" (unless there was an error in which case it responds via "<b>standard error</b>"). If you run commands like we have been the "standard out" and the "standard error" simply print (display) to the terminal, but you could alternatively redirect that output to a file using the <code>&gt;</code> symbol. Say for example you wanted to save the output of 4 <i>pings</i> to a file each day of a week in order to compare the results and see how your network speeds vary from day to day. You could do something like <code>ping google.com -c 4 &gt; monday-pings.txt</code>, and then to confirm it worked (sense the standard out is no longer printing to the terminal) check that file with <i>nano</i> <code>nano monday-pings.txt</code> or simply print the content of that file to the terminal using <i>cat</i> <code>cat monday-pings.txt</code>.</p>
+
+        <p>Another redirection technique is to "<b>pipe</b>" the standard output of one command into the standard input of another using the <code>|</code> symbol. This can be a very powerful tool as you can create all kinds of complicated chains! For example, say you wanted to list all the files in a directory that were modified in August, we know that <code>ls -la</code> will list all the files in a directory (including the date last modified), we can "pipe" the outputted list into <code>grep</code> to filter for only the lines with "Aug" in them like this: <code>ls -la | grep "Aug"</code>, you can pipe as many commands together like this as you like.</p>
+      </article>
+
+      <article>
+        <h2 id="sudo">Sudo</h2>
+        <h3>controlling root/admin processes</h3>
+
+        <p>There are a few command line tools for monitoring and controlling processes. Run <code>top</code> to see all the currently running processes as well as their PIDs (process identification numbers) and how much CPU and Memory each is using (press <i>ctrl + c</i> to quit <b>top</b>). If there's a particular process you wan to quit you can use the <code>kill</code> command and pass it the PID of a particular process. For example if while running <code>top</code> I noticed my Firefox PID was 3824, if I want to quit Firefox in the terminal I can run <code>kill 3824</code>. If I have lots of processes running and I'm trying to find the PID of a specific one, I can use the <code>ps</code> command, which will output a list of running processes, for ex: <code>ps aux</code>, and I can pipe that to <i>grep</i> to filter the list for the particular process i'm looking for, for example: <code>ps aux | grep "firefox"</code></p>
+
+        <p>You'll notice that some of the process weren't started by your user, but instead were launched by "root", here "root" doesn't mean your top directory, instead it means this was a process launched by your computer (likely on startup), you're User likely doesn't have "root access" by default, so it can't kill these processes. If you ever need root (aka "admin") privileges to run a particular command all you need to do is precede the command with "<b>sudo</b>", for example if there's a process with a PID of 1234 that I need to kill, but I can't by default because it was launched by root, I just need to do: <code>sudo kill 1234</code>, the terminal will then prompt me for my password, then I just need to type it in and hit enter.</p>
+
+        <p><b>NOTE:</b> most of the time, when you are typing in passwords into the terminal you won't see any of the text you type displayed (nor will you see dots or asterisks as is common in password fields in apps and on the Web), this might appear as though nothing is being typed in, but it is, the terminal is merely hiding it for privacy.</p>
+
+        <p>With <b>sudo</b> (or root) you can also do things like restart or shutdown a computer like: <code>sudo reboot</code> and <code>sudo poweroff</code></p>
+      </article>
+
+      <article>
+        <h2 id="controlling-other-computers">controlling other computers</h2>
+        <h3>remote access over a network</h3>
+
+        <p>You can log into a terminal session of another computer on your local WiFi network or elsewhere on the Internet securely using <code>ssh</code> (short for secure shell), you simply need the username (and password) of a user on the computer you want to log into as well as the IP address of that machine, for ex: <code>ssh nick@123.456.78.90</code> will attempt to log into the computer at the IP address 123.456.78.90 as the user "nick". I'll be prompted for a password and if I have the right one I'll now be in a terminal session on that computer and can use all the commands we've discussed to control folders, files and processes on it.<sup data-note="if this is your first time logging into this remote computer, your terminal will check to make sure this is intentional, simply respond <i>yes</i> and your computer will add a note of this in your <i>~/.ssh/known_hosts</i> file and won't bug you about it again."></sup></p>
+
+        <p>So how do you know what the IP address of a machine is? Well there are a few tools, if you want to check your own IP address on a local network you can run <code>ifconfig</code> to list all your network devices (ethernet port, WiFi card, etc) along with their local-IP addresses. It's wroth mentioning here, that if you do a Web search for "what is my IP address", what you'll see is your public-IP address, this is technically your router's IP address. Because everyone on the same network shares the router's IP address as their public-IP, it's up to your router to assing local-IP addresses to each machine on the network to properly route all the network traffic.</p>
+
+        <p>If you want to find the IP address of other computers connected to your local network you can run <code>nmap</code> with the range of IPs to scan, say you noticed your computer has an IP address of 192.168.0.12, likely the router is going to be 192.168.0.1 and every other computer on this network will likely also start with 192.168.0.<i>???</i>, you can scan a range like this: <code>nmap -sn 192.168.0.1-100</code>, when nmap is done scanning that range it will list of IP addresses for the connected computers.<sup data-note="if you run that command with <b>sudo</b> nmap will also show you the MAC addresses of each device. A MAC address is a unique number corresponding to that device, unlike an IP address which changes everytime you connect to a new network, a device's MAC address is always the same."></sup></p>
+
+        <p>If you're logging into a computer you've got on the "cloud", you can also use <i>ssh</i> except the IP address will be the computers public Internet IP address (rather than it's local address).</p>
+
+        <p>Similarly, you can copy files from one computer on a network to another by using the <code>scp</code> (secure copy) command. Say for example I've got my laptop connected to the same WiFi network as a Raspberry Pi computer that I wanted to copy a file from, I could do something like this: <code>scp pi@192.168.0.3:~/Documents/cat.jpg ~/Desktop/cat.jpg</code>, the pattern is essentially <code>scp [username]@[IP-address]:[~/path/to/file] [path/on/ur/comptuer/to/file]</code></p>
+      </article>
+
+      <article>
+        <h2 id="useful-helpers">useful helpers</h2>
+        <h3>a few CLI tips</h3>
+
+        <p>This is definitely a lot to remember all at once! Fortunately there are a few useful tricks and commands for helping jog your memory. First, when in a terminal session you can hit the <b>up/down arrows</b> to review your history of prior commands (maybe you can't remember exactly how you wrote a command but know you did it before and so it's somewhere in your history). You can also print your history to the console using the <code>history</code> command, and as usual you can use grep to filter that output for a particular command, say you remember using <code>nmap</code> but can't remember exactly what the flags you used were, you can simply do: <code>history | grep "nmap"</code> to see every time you used the <code>nmap</code> command.</p>
+
+        <p>One of the easiest mistakes to make is mistyping a folder or file's path. You might forget a sub-folder, you might misspell a file's name or forget to capitalize a letter, etc. Even the most seasoned hackers screw up file paths from time to time. One way to avoid this is using the terminal's ability to auto-complete filenames for you by using the <b>Tab</b> key when writing paths. Say for example, you wanted to open a file called <i>my-very-detailed-command-line-notes.txt<i> that was on your Desktop using <code>nano</code>, you could start to type: <code>nano ~/Des</code> at which point you can press the <b>Tab</b> key and he terminal will auto-complete the folder's name for you <code>nano ~/Desktop/</code>, you could then start typing the file's name <code>nano ~/Desktop/my</code> and hit <b>Tab</b> again so that the terminal auto-completes to: <code>nano ~/Desktop/my-very-detailed-command-line-notes.txt</code>. This doesn't always work though, if there were two files beginning with <i>my</i> the terminal won't know which one to auto-complete, so you need to make sure you've got enough of the folder or file's first few characters to make it unique.</p>
+
+        <p>We've only covered the basic ways to use some of the basic commands, but many of these commands have many more options/flags and other things you can do with them, if you ever want to learn more about a particular command there's a couple things you can do. Most commands have a quick help/example instructions accessible by running <code>-h</code> or <code>--help</code> for example, both <code>nmap -h</code> and <code>nmap --help</code> will print out a list of options you can use. Otherwise, most commands have an instructions manual that explains everything you need to know about a given command, you can access a command's manual by using the <code>man</code> command, for example: <code>man nmap</code></p>
+      </article>
+
+
+      <br><br><br>
+      <script src="../js/marginal-notes.js"></script>
+    </body>
+</html>

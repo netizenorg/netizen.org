@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
   const host = req.headers.host
   const url = req.originalUrl
   console.log(host, url)
-  if (hostDict[host]) {
+  if (hostDict[host] && url === '/') {
     console.log('in it')
     res.sendFile(path.join(__dirname, hostDict[host]))
   } else next()

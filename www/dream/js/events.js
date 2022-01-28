@@ -7,7 +7,7 @@ const tiles = []
 function tile () {
   const s = document.createElement('img')
   const tile = tileNames[Math.floor(Math.random() * tileNames.length)]
-  s.setAttribute('src', `images/tiles/${tile}.svg`)
+  s.setAttribute('src', `/dream/images/tiles/${tile}.svg`)
   s.className = 'anim-tiles'
   return s
 }

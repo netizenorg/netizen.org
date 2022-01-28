@@ -22,9 +22,9 @@ ANALYTICS.setup(app, {
   }
 })
 
-app.use(express.static(`${__dirname}/www`))
 app.use(ROUTES)
 app.use(PROXY)
+app.use(express.static(`${__dirname}/www`))
 
 const io = new SocketsServer.Server()
 io.on('connection', (socket) => SOCKETS(socket, io))

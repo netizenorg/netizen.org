@@ -8,7 +8,7 @@ let imgCnt = 37
 let curImg = 1
 let bg = document.querySelectorAll('.bg')
 let imgs = []
-for (let i = 1; i <= imgCnt; i++) imgs.push(`url(images/events/${i}.jpg)`)
+for (let i = 1; i <= imgCnt; i++) imgs.push(`url(/dream/images/events/${i}.jpg)`)
 const shuffle = (array) => array.sort(() => Math.random() - 0.5)
 shuffle(imgs)
 bg[1].style.backgroundImage = imgs[0]
@@ -39,7 +39,7 @@ const tiles = []
 function tile () {
   const s = document.createElement('img')
   const tile = tileNames[Math.floor(Math.random() * tileNames.length)]
-  s.setAttribute('src', `images/tiles/${tile}.svg`)
+  s.setAttribute('src', `/dream/images/tiles/${tile}.svg`)
   s.className = 'anim-tiles'
   return s
 }

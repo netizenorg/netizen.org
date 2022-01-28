@@ -20,17 +20,13 @@ const redirectDict = {
 module.exports = (req, res, next) => {
   const host = req.headers.host
   const url = req.originalUrl
-  console.log(host, url)
   if (hostDict[host] && url === '/') {
-    console.log('in 1')
     res.sendFile(path.join(__dirname, hostDict[host]))
   } else if (hostDict[host] && urlDict[url]) {
-    console.log('in 2')
     if (urlDict[url].host === host) {
       res.sendFile(path.join(__dirname, urlDict[url].path))
     } else next()
   } else if (redirectDict[host]) {
-    console.log('in 3')
     res.redirect(redirectDict[host])
   } else next()
 }

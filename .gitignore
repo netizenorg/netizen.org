@@ -14,3 +14,5 @@ www/classes/netart2/notes/web-audio/ex/sound-fonts/*/*
 !www/classes/netart2/notes/web-audio/ex/sound-fonts/Choir_Aahs-Ensemble/0520_Soul_Ahhs_sf2_file.js
 
 data/classes/netart2-spring2021.json
+
+data/analytics/snt_analytics.sqlite

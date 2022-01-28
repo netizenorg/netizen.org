@@ -43,9 +43,9 @@ if (process.env.ENV === 'dev') {
 } else {
   // production servers
   const credentials = {
-    key: fs.readFileSync('/etc/letsencrypt/live/netizen.org/privkey.pem', 'utf8'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/netizen.org/cert.pem', 'utf8'),
-    ca: fs.readFileSync('/etc/letsencrypt/live/netizen.org/chain.pem', 'utf8')
+    key: fs.readFileSync('/etc/letsencrypt/live/netizen.org-0001/privkey.pem', 'utf8'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/netizen.org-0001/cert.pem', 'utf8'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/netizen.org-0001/chain.pem', 'utf8')
   }
 
   const httpServer = http.createServer(app)

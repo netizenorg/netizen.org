@@ -13,8 +13,8 @@ const urlDict = {
 }
 
 const redirectDict = {
-  'www.dataruleseverythingaroundme.net': 'dream.netizen.org',
-  'dataruleseverythingaroundme.net': 'dream.netizen.org'
+  'www.dataruleseverythingaroundme.net': 'https://dream.netizen.org',
+  'dataruleseverythingaroundme.net': 'https://dream.netizen.org'
 }
 
 module.exports = (req, res, next) => {

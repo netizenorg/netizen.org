@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <title>netizen.org</title>
+      <meta name="author" content="netizen.org">
+      <meta name="description" content="netizen.org is a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through community and digital programming. Geolocated in Chicago, Illinois—at the intersection of digital literacy and Internet art—netizen.org transforms users into netizens, who are critically engaged citizens of the Net.">
+
+      <!-- social media stuff -->
+      <meta property="og:title" content="Netizen">
+      <meta property="og:url" content="http://netizen.org">
+      <meta property="og:image" content="http://netizen.org/images/logo-bg.png">
+      <meta property="og:description" content="netizen.org is a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through community and digital programming. Geolocated in Chicago, Illinois—at the intersection of digital literacy and Internet art—netizen.org transforms users into netizens, who are critically engaged citizens of the Net.">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta property="og:site_name" content="netizen.org">
+      <meta name="twitter:site" content="@netizenorg">
+
+      <link rel="icon" type="image/png" href="/images/n.png">
+      <link rel="stylesheet" href="styles.css">
+
+    </head>
+    <body>
+
+      <header>
+        <nav>
+          <a href="#students">students</a>
+          <span class="line"></span>
+          <a href="#educators">educators</a>
+        </nav>
+      </header>
+
+      <section class="splash">
+        <article>
+          <p><a href="https://netnet.studio">netnet.studio</a> is an online creative code playground for exploring the Web's creative potential; at the center of the studio is a friendly AI-TA (<i>artificial intelligence teaching assistant</i>) named netnet; part code editor, part virtual learning guide.</p>
+        </article>
+      </section>
+
+      <div class="main">
+        <section class="students">
+          <article name="students">
+            <p>
+              <b>For those just getting started</b> on their creative coding journeys netnet is here to help you navigate the studio's various edu materials, which includes <a href="#hypermedia-tutorials">hypermedia tutorials</a>, <a href="#examples">interactive examples</a> and various other references. netnet is also a fairly functional <a href="#realtime">realtime</a> code editor with built in code <a href="#code-refs">references</a> and <a href="#friendly-errors">friendly error messages</a> in addition to all your  <a href="#code-editor">standard code editor features</a>. netnet can also <a href="#github">connect to your GitHub</a> account so you can version and publish your sketches online without having to worry about the technical details.
+            </p>
+            <p>
+              want to help us make it better?
+            </p>
+          </article>
+
+          <article name="hypermedia-tutorials">
+            <p>
+              <b>Our interactive lessons introduce coding through the lens of internet art, simultaneously covering the craft, theory and history behind the practice.</b> References appear in widgets which feature videos, readings and other materials you can dive deeper into. All the code is being generated in realtime and can be remixed/edited directly during the tutorial itself. Try out our <a href="https://netnet.studio/?tutorial=what-is-code" target="_blank">What is Code</a> tutorial for example, or checkout our <a href="https://github.com/netizenorg/netnet.studio/wiki/Learning" target="_blank">wiki</a> to learn more.
+            </p>
+          </article>
+
+          <article name="examples">
+            <p>
+              Our learning guide also includes a series of ever expanding examples, which range from <b>small code snippets to more complex demos, designed for learning through realtime experimentation</b>. These can serve as starting points for your own remixes. Some of our examples are annotated and you can optionally ask netnet to explain it to you line by line, otherwise you can always double-click any piece code in the editor and netnet will do it's best to explain it to you.
+              <!-- TODO: links here like hypermedia-tutorials article above -->
+            </p>
+          </article>
+
+          <!-- <article name="references">
+            <p>
+              The studio's learning guide also includes reference widgets which list and explain all the HTML elements, CSS properties and other core concepts of the coding languages used to create your work. You can explore these directly, or simply refer to them when you need some clarification on how a particular piece of code works. These widgets also link out to other popular reference and documentation sites used by professional artists and developers.
+            </p>
+          </article> -->
+
+          <article name="code-editor">
+            <p>
+              netnet's editor was modeled on popular modern code editors and so it includes all the core functionality you'd find in these editors. But <b>our goal is not to reinvent the wheel, netnet is more like <i>training wheels</i> designed to help artists and creatives get started</b>. Our intention is to get you comfortable with these standard interfaces, features and shortcuts so that they feel familiar when your ready to graduate to using a more professional code editor.
+              <!-- TODO: link to new dedicated sketching wiki pages -->
+            </p>
+          </article>
+
+          <article name="realtime">
+            <p>
+              Modern web development involves setting up lots of tools (<i>editor, browser, local server, build system</i>) and a workflow with various steps between writing your code and seeing the result (<i>edit, save, build/compile, refresh/reload</i>). These tools/flows are designed around the process developers go through when executing predefined coding tasks. But when you're an artist experimenting with code and exploring possibilities the standard dev process can really break your creative flow. <b>Sketching ideas on netnet is as simple as visiting <a href="https://netnet.studio/#sketch" target="_blank">netnet.studio/sketch</a> and typing whatever comes to mind</b>. When you're ready to share it, simply press <b id="save-shortcut">Ctrl+S</b> and netnet will give you different options for saving and sharing your work.
+              <!-- TODO: link to new dedicated sketching wiki pages -->
+            </p>
+          </article>
+
+          <article name="code-refs">
+            <p>
+              Code is never <i>really</i> written from "scratch", even the pros regularly copy+paste code from online references, forums and examples. But copy+pasting is an art, if you don't know what your copying and where to put it, even coming across the perfect piece of code online isn't going to do you any good. For this reason we built netnet to be well versed in modern HTML, CSS and JavaScript so that <b>if you're ever looking at code in the editor you don't understand, you only need to double click that piece of code and netnet will explain it to you</b>. When prompted for more info, netnet will open our coding reference widgets as well as link to popular online resources for you to learn more.
+              <!-- TODO: link to new dedicated sketching wiki pages -->
+            </p>
+          </article>
+
+          <article name="friendly-errors">
+            <p>
+              Errors and bugs are a pretty standard part of the coding process and so various different tools exist to help identify where and what the issue might be so that you can debug your code. But these <b>dev tools display error messages using coding lingo which can be alienating for beginners</b>. Even more frustrating is the fact that bugs in HTML and CSS (unlike JavaScript) don't typically return error messages at all. <b>That's why netnet's been programmed to catch your mistakes and display HTML, CSS and JavaScript errors to you in beginner friendly language.</b>.
+              <!-- TODO: link to new dedicated sketching wiki pages -->
+            </p>
+          </article>
+
+          <article name="github">
+            <p>
+              A GitHub profile is a modern creative technologist's "portfolio" of sorts. Versioning, git and other related concepts are not exactly the easiest things for beginners to get a handle on, but in the interest of slowly easing you into the world of pro net art, we felt rather than saving projects on our own server and locking you into our system, we'd instead help get you started on your path towards becoming an open soruce developer and slowly start building out your creative portfolio with netnet's help. <b>You don't need to know how to use GitHub, you just need an account and netnet will walk you through the rest</b>.
+              <!-- TODO: link to new dedicated sketching wiki pages -->
+            </p>
+          </article>
+        </section>
+
+        <section class="educators">
+          <article name="educators">
+            <p>
+              <b>For creative coding educators</b> netnet can be leveraged in a variety of ways: Our interactive tutorials can be incorporated into a "flipped-classroom" model; As a code editor it <a href="#hurdles">removes many of the hurdles</a> for beginners; netnet can also be used to <a href="#share">quickly create and share</a> simple code examples with your students, which not only include all of it's <a href="https://github.com/netizenorg/netnet.studio/wiki/Sketching" target="_blank">beginner-focused helpers</a>, but also the ability to create code annotations. We're also working on tools to make it easier for other educators to create and contribute their own hypermedia tutorials! Check out our <a href="https://github.com/netizenorg/netnet.studio/wiki/Learning" target="_blank"> wiki</a> to find out more.
+            </p>
+          </article>
+
+          <article name="hurdles">
+            <p>
+              We've been teaching internet art and creative coding for over a decade, we've watched the Web grow and change, we've seen tools and frameworks come and go, and we're intimately familiar with the various challenges and obstacles beginners (artists in particular) regularly face. <b>netnet's code editor isn't meant to replace professional editors, rather it's designed to smooth out the learning curve</b> for students as well as enable educators to spend more time on teaching the code and concepts and less time setting up and troubleshooting the tooling. Check out our <a href="https://github.com/netizenorg/netnet.studio/wiki/Learning" target="_blank"> wiki</a> to find out more.
+            </p>
+          </article>
+
+          <article name="share">
+            <p>
+              While netnet can <a href="#github">connect to a GitHub</a> account for hosting/publishing projects made in it's editor, you can also <b>use it to create simple sketches to quickly share with students without the need to create any accounts</b>. This is possible because we store a compressed version of the sketch in the shareable URL itself, here's an example! netnet's core editor (<i>with built in <a href="#code-refs">code references</a> and <a href="#friendly-errors">friendly errors</a></i>) is also available separately and can be used to embed notes/examples on other sites, like a canvas page for example. It's all <a href="https://github.com/netizenorg/netitor" target="_blank">open source</a>, so you can implement the editor into your own edu applications! Check out our <a href="https://github.com/netizenorg/netnet.studio/wiki/Learning" target="_blank">wiki</a> to learn out more.
+            </p>
+          </article>
+        </section>
+      </div>
+
+
+
+      <footer>
+        made with &lt;3 by the folks at <a href="https://netizen.org">netizen.org</a>
+        <div id="play-message">click here to play the demo video!</div>
+      </footer>
+
+
+      <script src="js/BGGradient.js"></script>
+      <script src="js/libs/dat.gui.min.js"></script>
+      <script src="js/libs/three.min.js"></script>
+      <script src="js/libs/tween.umd.js"></script>
+      <script src="js/libs/OrbitControls.js"></script>
+      <script src="js/libs/TransformControls.js"></script>
+      <script src="js/libs/GLTFLoader.js"></script>
+      <script src="js/GradShaderMaterial.js"></script>
+      <script src="js/CyberSpace.js"></script>
+      <script src="/js/Averigua.js"></script>
+      <script src="js/main.js"></script>
+      <script src="/stats-not-tracks.min.js"></script>
+    </body>
+</html>

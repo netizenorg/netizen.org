@@ -61,6 +61,7 @@ a:hover {
 b {
   font-family: 'fira-sans-bold';
   font-style: italic;
+  font-size: 26px;
 }
 
 .THREE {
@@ -257,6 +258,10 @@ article > p {
   header > nav {
     font-size: 22px;
     padding: 0 8px;
+  }
+
+  b {
+    font-size: 18px;
   }
 
   .line { display: none; }

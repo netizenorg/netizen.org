@@ -207,8 +207,39 @@ function goTo (e) {
   }, 600)
 }
 
+function hideMenuWhenScrolledOver () {
+  let article
+  const y = window.scrollY
+  const header = document.querySelector('header')
+  const stu = header.querySelector('a[href="#students"]')
+  const edu = header.querySelector('a[href="#educators"]')
+  const off = header.offsetTop + header.offsetHeight
+  const eduOff = document.querySelector('.educators').offsetTop
+  const articles = document.querySelectorAll('article[name]')
+  for (let i = 0; i < articles.length; i++) {
+    const box = articles[i].getBoundingClientRect()
+    if (box.y + box.height > 0) { article = box; break }
+  }
+
+  if (article && window.innerWidth <= 700) {
+    if (article.y - off < 0) header.style.display = 'none'
+    else header.style.display = 'flex'
+  } else if (article) {
+    if (y > eduOff + window.innerHeight - off) {
+      if (article.y - off < 0) edu.style.visibility = 'hidden'
+      else edu.style.visibility = 'visible'
+      stu.style.visibility = 'visible'
+    } else {
+      if (article.y - off < 0) stu.style.visibility = 'hidden'
+      else stu.style.visibility = 'visible'
+      edu.style.visibility = 'visible'
+    }
+  }
+}
+
 window.addEventListener('mousemove', (e) => bg.draw(e.clientX, e.clientY))
 window.addEventListener('scroll', (e) => pageScrolled(e))
+window.addEventListener('scroll', (e) => hideMenuWhenScrolledOver(e))
 window.addEventListener('resize', (e) => resize())
 window.addEventListener('load', (e) => setup())
 document.querySelectorAll('a[href^="#"]')

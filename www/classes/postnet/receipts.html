@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Research Receipt</title>
+    <style>
+        @font-face {
+         font-family: 'Inconsolata';
+         font-style: normal;
+         font-weight: 400;
+         src: local(''),
+          url('/css/fonts/inconsolata-v20-latin-regular.woff2') format('woff2'),
+          url('/css/fonts/inconsolata-v20-latin-regular.woff') format('woff');
+       }
+
+       @font-face {
+         font-family: 'Inconsolata';
+         font-style: normal;
+         font-weight: 800;
+         src: local(''),
+          url('/css/fonts/inconsolata-v20-latin-800.woff2') format('woff2'),
+          url('/css/fonts/inconsolata-v20-latin-800.woff') format('woff');
+       }
+      * { box-sizing: border-box; }
+      body {
+        background-color: red;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+      }
+      .receipt {
+        font-family: 'Inconsolata', monospace;
+        display: inline-block;
+        background-color: #fff;
+        padding: 30px;
+        max-width: 410px;
+        margin: 25px;
+        box-shadow: 0px 15px 23px rgba(0,0,0,0.5);
+      }
+      .receipt h1 {
+        text-align: center;
+        margin: 30px 0px;
+        font-size: 24px;
+        font-weight: 800;
+        overflow-wrap: break-word;
+      }
+      .receipt hr {
+        border-style: dashed;
+      }
+      .receipt p {
+        text-align: right;
+      }
+
+      .receipt a {
+        color: black;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <b>Recipts Archive</b>
+      <div style="display:none">
+        <b>fitler by:</b>
+        <select id="assignment">
+          <option value="assignment">[ASSIGNMENT]</option>
+          <option value="side-effects">tech side-effects</option>
+          <option value="origins">tech origins</option>
+          <option value="wtf-internet">wtf is the Internet</option>
+          <option value="meme-genealogies">meme genealogies</option>
+          <option value="ai-promises">promises of AI</option>
+          <option value="ai-perils">perils of AI</option>
+          <option value="misc-receipt">misc research receipt</option>
+        </select>
+        <select id="tags">
+          <option value="tag">[TAG]</option>
+        </select>
+      </div>
+    </header>
+
+    <section role="search results" id="results"></section>
+
+    <script>
+
+      let data = []
+
+      function addTags (list) {
+        const tags = document.querySelector('#tags')
+        list.forEach(tag => {
+          tag = tag.toLowerCase().trim()
+          const opt = document.createElement('option')
+          opt.setAttribute('value', tag)
+          opt.textContent = tag
+          tags.appendChild(opt)
+        })
+      }
+
+      function addResult (item) {
+        console.log(item);
+        const div = document.createElement('div')
+        div.className = 'receipt'
+        div.innerHTML = `
+          <a href="${item.url}">
+            <h1>${item.claim}</h1>
+          </a>
+          <hr>
+          <p>posted by ${item.researcher}</p>
+        `
+        document.querySelector('#results').appendChild(div)
+      }
+
+      window.addEventListener('load', async () => {
+        const res = await fetch('/api/postnet/receipts')
+        const roster = await res.json()
+        Object.keys(roster).map(id => {
+          const receipts = roster[id].receipts.map(r => {
+            r.researcher = roster[id].name; return r
+          })
+          data.push(...receipts)
+        })
+        data.map(r => r.tags).forEach(arr => addTags(arr))
+        data.forEach(item => addResult(item))
+      })
+    </script>
+  </body>
+</html>

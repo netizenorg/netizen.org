@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Submit Your Receipt</title>
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #assignments p {
+        text-align: center;
+      }
+
+      #saic-id {
+        width: 78px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <article id="assignments">
+      <p id="intro">Submit Your Receipt</p>
+      <p>
+        <button id="upload">upload file</button>
+        <input id="saic-id" type="text" placeholder="your SAIC ID">
+        <select id="assignment">
+          <option value="assignment">assignment</option>
+          <option value="side-effects">tech side-effects</option>
+          <option value="origins">tech origins</option>
+          <option value="wtf-internet">wtf is the Internet</option>
+          <option value="meme-genealogies">meme genealogies</option>
+          <option value="ai-promises">promises of AI</option>
+          <option value="ai-perils">perils of AI</option>
+          <option value="misc-receipt">misc research receipt</option>
+        </select>
+        <button id="submit">submit</button>
+      </p>
+    </article>
+
+    <script src="/js/FileUploader.js"></script>
+    <script>
+      let data = null
+      let roster = []
+      const ele = document.querySelector('#intro')
+      const fu = new FileUploader({
+        maxSize: 1000,
+        types: ['application/json'],
+        click: '#upload',
+        ready: (file) => {
+          // const a = 'data:application/json;base64,'
+          const d = file.data.split('base64,')[1]
+          const o = JSON.parse(window.atob(d))
+          if (!o.claim || !o.date) {
+            ele.style.color = 'red'
+            ele.textContent = 'This JSON file is not a receipt'
+          } else {
+            ele.style.color = 'black'
+            ele.textContent = 'Submit Your Receipt'
+            document.querySelector('#upload').textContent = 'FILE UPLOADED'
+            data = o
+            data.url = `https://nbriz.github.io/show-ur-receipts/#data,${d}`
+          }
+        },
+        error: (err) => {
+          console.error(err)
+          ele.style.color = 'red'
+          ele.textContent = err
+        }
+      })
+
+      function invalid (id, assign) {
+        if (!id || id === '') return 'missing SAIC ID'
+        if (!Object.keys(roster).includes(id)) return `${id} is not a student in this class`
+        if (assign === 'assignment') return 'choose an assignment from the drop down list'
+        if (!data) return 'you haven\'t uploaded your reeipt, click upload file.'
+        else return false
+      }
+
+      function success (res) {
+        if (res.message === 'thnx! your receipt has been submitted') {
+          const id = document.querySelector('#saic-id')
+          const assignment = document.querySelector('#assignment')
+          data = null
+          id.value = ''
+          assignment.value = 'assignment'
+          ele.style.color = 'black'
+          ele.textContent = 'Submit Your Receipt'
+          document.querySelector('#upload').textContent = 'upload file'
+          window.alert(res.message)
+        } else {
+          ele.style.color = 'red'
+          ele.textContent = res.message
+          console.log(res.message);
+        }
+      }
+
+      function submit () {
+        const id = document.querySelector('#saic-id').value
+        const assignment = document.querySelector('#assignment').value
+        const err = invalid(id, assignment)
+        if (err) {
+          ele.style.color = 'red'
+          ele.textContent = err
+          return
+        }
+        const opts = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id, data, assignment })
+        }
+        window.fetch('/api/postnet/new-receipt', opts)
+          .then(res => res.json())
+          .then(res => success(res))
+          .catch(err => window.alert(err))
+      }
+
+      window.addEventListener('load', async function () {
+        const submitBtn = document.querySelector('#submit')
+        submitBtn.addEventListener('click', submit)
+
+        const res = await fetch('/api/postnet/receipts')
+        roster = await res.json()
+        console.log(roster);
+      })
+    </script>
+  </body>
+</html>

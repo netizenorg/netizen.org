@@ -37,4 +37,30 @@ router.post('/api/netart2/assignment', (req, res) => {
   }
 })
 
+// nick's PostInternet receipts submissions end point
+router.get('/api/postnet/receipts', (req, res) => {
+  const rosterPath = path.join(__dirname, '../data/classes/postnet-spring2022.json')
+  const roster = JSON.parse(fs.readFileSync(rosterPath, 'utf8'))
+  res.json(roster)
+})
+
+router.post('/api/postnet/new-receipt', (req, res) => {
+  try {
+    const rosterPath = path.join(__dirname, '../data/classes/postnet-spring2022.json')
+    const roster = JSON.parse(fs.readFileSync(rosterPath, 'utf8'))
+    const s = roster[req.body.id]
+    const r = req.body.data
+    r.assignment = req.body.assignment
+    if (s.receipts.map(d => d.url).includes(r.url)) {
+      return res.json({ message: 'You\'ve already submitted that receipt' })
+    } else {
+      s.receipts.push(r)
+      fs.writeFileSync(rosterPath, JSON.stringify(roster, null, 2))
+    }
+  } catch (err) {
+    return res.json({ message: err })
+  }
+  res.json({ message: 'thnx! your receipt has been submitted' })
+})
+
 module.exports = router

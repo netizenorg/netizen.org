@@ -252,10 +252,11 @@ playMessage.addEventListener('click', () => playMsg('hide'))
 class Demo extends CyberSpace {
   constructor (opts) {
     super(opts)
-    const p = Averigua.platformInfo()
-    const alpha = p.mobile && p.browser.name === 'Safari' ? 1 : 0.35
-    this.grad = new GradShaderMaterial({ alpha })
-    this.grad.material.transparent = alpha === 0.35
+    // const alpha = p.mobile && p.browser.name === 'Safari' ? 1 : 0.35
+    // this.grad = new GradShaderMaterial({ alpha })
+    // this.grad.material.transparent = alpha === 0.35
+    this.grad = new GradShaderMaterial({ alpha: 0.35 })
+    this.grad.material.transparent = true
     this.loadLapTop((laptop) => {
       const geo = new THREE.BoxGeometry(0.55, 0.55, 0.50)
       const mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 })
@@ -327,13 +328,18 @@ class Demo extends CyberSpace {
   }
 
   loadLapTop (callback) {
+    const p = Averigua.platformInfo()
     const loader = new THREE.GLTFLoader().setPath('models/')
     loader.load('Laptop_01.gltf', (gltf) => {
       this.laptop = gltf.scene
       this.laptop.scale.set(0.05, 0.05, 0.05)
       this.laptop.scale.x *= 1.25
       this.laptop.traverse((child) => {
-        if (child.isMesh) child.material = this.grad.material
+        if (child.isMesh) {
+          child.material = p.mobile && p.browser.name === 'Safari'
+            ? new THREE.MeshNormalMaterial()
+            : this.grad.material
+        }
         // if (child.isMesh) child.material = new THREE.MeshNormalMaterial()
       })
       if (callback) callback(this.laptop)

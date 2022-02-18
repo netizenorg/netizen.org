@@ -254,7 +254,7 @@ class Demo extends CyberSpace {
     super(opts)
     const p = Averigua.platformInfo()
     const alpha = p.mobile && p.browser.name === 'Safari' ? 1 : 0.35
-    this.grad = new GradShaderMaterial({ alpha: 0.35 })
+    this.grad = new GradShaderMaterial({ alpha })
     this.grad.material.transparent = alpha === 0.35
     this.loadLapTop((laptop) => {
       const geo = new THREE.BoxGeometry(0.55, 0.55, 0.50)

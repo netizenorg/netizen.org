@@ -1,0 +1,12 @@
+<section style="font-family:monospace;font-size:24px;"></section>
+<script src="/js/Averigua.js"></script>
+<script>
+  const a = Averigua.platformInfo()
+  document.querySelector('section').innerHTML = `
+    <b>mobile:</b> ${a.mobile}<br>
+    <b>browser:</b> ${a.browser.name} - ${a.browser.version}<br>
+    <b>platform:</b> ${a.platform}<br>
+    <b>oscpu:</b> ${a.oscpu}<br>
+    <b>processors:</b> ${a.processors}<br>
+  `
+</script>

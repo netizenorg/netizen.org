@@ -249,11 +249,12 @@ playMessage.addEventListener('click', () => playMsg('hide'))
 // ----------------------------
 //                             ---------------------------
 //    3D stuff                                            ----------------------
-
 class Demo extends CyberSpace {
   constructor (opts) {
     super(opts)
-    this.grad = new GradShaderMaterial({ alpha: 0.35 })
+    const p = Averigua.platformInfo()
+    const alpha = p.mobile && p.browser.name === 'Safari' ? 1 : 0.35
+    this.grad = new GradShaderMaterial({ alpha })
     this.grad.material.transparent = true
     this.loadLapTop((laptop) => {
       const geo = new THREE.BoxGeometry(0.55, 0.55, 0.50)

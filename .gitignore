@@ -13,7 +13,7 @@ www/classes/netart2/notes/web-audio/ex/sound-fonts/*/*
 !www/classes/netart2/notes/web-audio/ex/sound-fonts/Music_Box-Chromatic_Percussion/0100_SBLive_sf2.js
 !www/classes/netart2/notes/web-audio/ex/sound-fonts/Choir_Aahs-Ensemble/0520_Soul_Ahhs_sf2_file.js
 
-data/classes/netart2-spring2021.json
+data/classes/*.json
 
 data/analytics/snt_analytics.sqlite
 data/analytics/salt.json

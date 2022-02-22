@@ -63,7 +63,7 @@
 
     <header>
       <b>Recipts Archive</b>
-      <div style="display:none">
+      <div>
         <b>fitler by:</b>
         <select id="assignment">
           <option value="assignment">[ASSIGNMENT]</option>
@@ -123,6 +123,23 @@
         })
         data.map(r => r.tags).forEach(arr => addTags(arr))
         data.forEach(item => addResult(item))
+        //
+        document.querySelector('#assignment').value = 'assignment'
+        document.querySelector('#tags').value = 'tag'
+      })
+
+      document.querySelector('#assignment').addEventListener('input', e => {
+        const v = e.target.value
+        const d = data.filter(d => d.assignment === v)
+        document.querySelector('#results').innerHTML = ''
+        d.forEach(item => addResult(item))
+      })
+
+      document.querySelector('#tags').addEventListener('input', e => {
+        const v = e.target.value
+        const d = data.filter(d => d.tags.includes(v))
+        document.querySelector('#results').innerHTML = ''
+        d.forEach(item => addResult(item))
       })
     </script>
   </body>

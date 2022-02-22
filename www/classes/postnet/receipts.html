@@ -121,6 +121,11 @@
           })
           data.push(...receipts)
         })
+        data = data.map(r => {
+          r.tags = r.tags.map(t => t.replace('#', ''))
+          return r
+        })
+        //
         data.map(r => r.tags).forEach(arr => addTags(arr))
         data.forEach(item => addResult(item))
         //

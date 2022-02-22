@@ -92,12 +92,68 @@ const chatBanner = `${C[17]}
 |___________________________________________________________|
 ${C[0]}`
 
+const wifinotes = `${C[22]}:::::::::::::::::::: WiFi Wizardry Notes ::::::::::
+.--.      .-'.      .--.      .--.      .--.      .--.
+:::::.\\::::::::.\\::::::::.\\::::::::.\\::::::::.\\:::::::
+'      \`--'      \`.-'      \`--'      \`--'      \`--'...
+
+${C[18]}BASIC TERMINAL COMMANDS:
+${C[22]}check for your local IP address: ${C[17]}ifconfig
+${C[22]}check "present working directory" (ie. folder): ${C[17]}pwd
+${C[22]}"change directory": ${C[17]}cd [path/to/folder]
+${C[22]}create new folder: ${C[17]}mkdir [foldername]
+${C[22]}create new file: ${C[17]}touch [filename]
+${C[22]}edit file: ${C[17]}nano [filename]
+
+${C[22]}:::::.\\::::::::.\\::::::::.\\::::::::.\\::::::::.\\:::::::
+
+${C[18]}LOGGING INTO ANOTHER COMPUTER:
+${C[22]}secure shell: ${C[17]}ssh [user]@[ip-address]
+
+${C[18]}SCANNING A NETWORK:
+${C[22]}local network scan: ${C[17]}nmap -sn [IP]-[range]
+${C[22]}(example ${C[17]}nmap -sn 192.168.0.0-255${C[22]})
+
+${C[18]}MULTIPLE TERMINAL SCREENS:
+
+${C[22]}first run ${C[17]}screen${C[22]}, once it's running you can then run commands. All commands start with ${C[17]}ctrl a${C[22]} followed by...
+   ${C[17]}c${C[22]} create new terminal
+   ${C[17]}spacebar${C[22]} switch to next terminal
+   ${C[17]}backspace${C[22]} switch to previous terminal
+   ${C[17]}[num]${C[22]} switch to specific number terminal
+   ${C[17]}l${C[22]} split screen vertically
+   ${C[17]}S${C[22]} (capital S) split screen horizontally
+   ${C[17]}tab${C[22]} switch between screens
+   ${C[17]}Q${C[22]} (capital Q) unsplit
+
+${C[22]}:::::.\\::::::::.\\::::::::.\\::::::::.\\::::::::.\\:::::::
+
+${C[18]}WIFI WIZARDRY:
+Aircrack-ng commands ${C[32]}WARNING${C[0]}${C[22]}: running many of these commands on a network that you do not own yourself (or that you otherwise don't have permission to run them on) is illegal, a violation of the Computer Fraud and Abuse Act.
+
+${C[22]}list WiFi devices: ${C[17]}airmon-ng
+${C[22]}switch device into monitor mode: ${C[17]}airmon-ng start [device]
+${C[22]}start scanning w/that monitor mode device: ${C[17]}airodump-ng [device]
+(press a to switch between display modes)
+${C[22]}start monitoring specific network:
+${C[17]}airodump-ng [device] --bssid [router-MAC] -c [channel] -w [path/to/save/file]
+${C[22]}send deauth packets:
+${C[17]}aireplay-ng [device] -0 [num] -a [router-MAC] -c [client-MAC]
+${C[22]}crack the password :
+${C[17]}aircrack-ng -w [path/to/wordlist.txt] [path/to/file.cap]
+
+
+${C[0]}`
+
 function handleData (socket, data) {
   data = data.toString()
   data = data.substr(0, data.length - 2) // clear \r\n
 
   if (data === '@quit') {
     socket.end()
+  } else if (data === 'root') {
+    socket.write(C[39])
+    socket.write(wifinotes)
   } else if (!socket.handle) {
     socket.handle = data.toUpperCase()
     socket.write(C[39])

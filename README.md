@@ -1,2 +1,2 @@
 # netizen.org
-our home on the Internet
+our home on our Internet 💻🎨❤️

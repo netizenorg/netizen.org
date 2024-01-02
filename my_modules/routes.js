@@ -37,6 +37,13 @@ router.post('/api/netart2/assignment', (req, res) => {
   }
 })
 
+// nick's Digitizing Human Rights data
+router.get('/api/dhr/:group', (req, res) => {
+  const g = req.params.group
+  const json = require('../data/dhr.json')
+  res.json({ code: json[g].code })
+})
+
 // nick's PostInternet receipts submissions end point
 router.get('/api/postnet/receipts', (req, res) => {
   const rosterPath = path.join(__dirname, '../data/classes/postnet-spring2022.json')

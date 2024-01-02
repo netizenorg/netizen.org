@@ -1,0 +1,27 @@
+<style>
+  iframe {
+    border: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+</style>
+<iframe src="" width="" height=""></iframe>
+<script>
+  const group = window.location.toString().split('dhr/')[1].split('/')[0]
+
+  async function main () {
+    const req = await window.fetch(`/api/dhr/${group}`)
+    const json = await req.json()
+    const iframe = document.querySelector('iframe')
+    const content = iframe.contentDocument || iframe.contentWindow.document
+    content.open()
+    content.write(json.code)
+    if (content.title) document.title = content.title
+    content.close()
+  }
+
+  window.addEventListener('load', main)
+</script>

@@ -1,0 +1,200 @@
+* { box-sizing: border-box; }
+body { margin: 0; overflow: hidden }
+
+section {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 75% 25%;
+  height: 100vh;
+}
+
+/* NOTE:
+  netizen colors CSS variables are made available via netitor.js
+  change theme by opening the Web Console and run: ne.theme = "monokai"
+  check out full list of colors using ur browser's web inspector
+*/
+#nfo {
+  padding: 5px 20px;
+  background-color: var(--netizen-text);
+  border-top: 10px solid var(--netizen-tag);
+  border-right: 10px solid var(--netizen-tag);
+  font-family: sans-serif;
+  color: var(--netizen-background);
+  overflow: scroll;
+}
+#nfo nav {
+  display: flex;
+  padding-bottom: 16px;
+  width: 100%;
+  justify-content: space-between;
+}
+#nfo p { line-height: 25px; }
+#nfo a { color: var(--netizen-tag); }
+#nfo a:hover { color: var(--netizen-string); }
+#nfo p code {
+  color: var(--netizen-text);
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: var(--netizen-background);
+}
+
+#editor {
+  overflow-y: scroll;
+  background: var(--netizen-background);
+  border-right: 10px solid var(--netizen-tag);
+}
+
+#output {
+  grid-row: 1 / 3;
+  grid-column: 2 / 2;
+}
+
+/* ............................................................ MENU ........ */
+
+nav .main {
+  display: flex;
+  width: 135px;
+  justify-content: space-between;
+  padding: 9px;
+}
+
+nav .main svg {
+  cursor: pointer;
+  transform: scale(1.4);
+}
+
+nav .main svg > * {
+  fill: var(--netizen-background);
+}
+
+nav .main svg:hover > * {
+  fill: var(--netizen-tag);
+}
+
+nav .main svg > .str {
+  fill: none;
+  stroke: var(--netizen-background);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-opacity: 1;
+}
+nav .main svg:hover > .str {
+  stroke: var(--netizen-tag);
+}
+
+@keyframes blinking {
+  97% { content: '( ◕ ◞ ◕ )' }
+  100% { content: '( — ◞ — )' }
+}
+
+.face {
+  font-size: 32px;
+  padding: 5px;
+  padding-bottom: 15px;
+}
+.face > a {
+  color: var(--netizen-background) !important;
+  text-decoration: none;
+}
+.face > a:hover { color: var(--netizen-tag) !important; }
+.face div:before {
+  content: '( ◕ ◞ ◕ )';
+  animation: blinking 10s infinite;
+}
+
+/* ............................................................ edu + error . */
+
+.error {
+  position: relative;
+  border-radius: 5px;
+  background-color: rgb(100, 0, 0) !important;
+  padding: 20px !important;
+  color: var(--netizen-text) !important;
+}
+
+.error:before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  right: 62px;
+  border-width: 12px;
+  border-style: solid;
+  border-color: transparent transparent rgb(100, 0, 0) transparent;
+}
+
+.edu {
+  position: relative;
+  border: 5px solid var(--netizen-tag);
+  border-radius: 5px;
+  padding: 0px 10px !important;
+}
+
+.edu:before {
+  content: "";
+  position: absolute;
+  top: -28px;
+  right: 54px;
+  border-width: 12px;
+  border-style: solid;
+  border-color: transparent transparent var(--netizen-tag) transparent;
+}
+
+.edu:after {
+  content: "";
+  position: absolute;
+  top: -19px;
+  right: 56px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent var(--netizen-text) transparent;
+}
+
+.error a { color: var(--netizen-number) !important; }
+
+/* ............................................................ settings .... */
+
+.settings, .tools {
+  font-family: inconsolata, monospace;
+  text-align: left;
+  color: var(--netizen-background);
+  display: flex;
+  justify-content: space-between;
+}
+
+.tools button {
+  cursor: pointer;
+}
+
+.tools button:hover {
+  color: var(--netizen-background);
+  background-color: var(--netizen-tag);
+}
+
+.settings input {
+  background-color: var(--netizen-meta);
+  font-family: monospace;
+  color: var(--netizen-hint-color);
+  padding: 6px;
+  border: none;
+  margin: 6px;
+  width: 110px;
+  border-radius: 5px;
+}
+
+.settings select, .tools button {
+  padding: 3px 6px 4px;
+  border: 0;
+  border-radius: 5px;
+  margin: 0;
+  background: var(--netizen-background);
+  color: var(--netizen-meta);
+  font-family: inconsolata, monospace;
+  font-size: 15px;
+  line-height: 1.2em;
+  cursor: pointer;
+}
+
+.kit ul {
+  margin: 0;
+}

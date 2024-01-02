@@ -9,6 +9,8 @@ function clientSentMessage (socket, io, msg) {
   console.log(`${socket.id} said: ${msg}`)
 }
 
+// culture jamming class (NO LONGER ACTIVE)
+/*
 function updateNotePad (socket, t) {
   socket.broadcast.emit('note-pad-update', t)
   const data = require('../data/notepad.json')
@@ -24,6 +26,37 @@ function getNotePad (socket) {
   const data = require('../data/notepad.json')
   socket.emit('init-note-pad', data)
 }
+*/
+
+function updateDHRData (socket, data) {
+  if (typeof data.group !== 'string') return
+  const json = require('../data/dhr.json')
+  const hist = require(`../data/dhr-${data.group}-history.json`)
+  const filepath = path.join(__dirname, '../data/dhr.json')
+  const histpath = path.join(__dirname, `../data/dhr-${data.group}-history.json`)
+  const err = e => { if (err) console.log(e) }
+  if (json[data.group].code !== data.code) { // update if this is new code
+    socket.broadcast.emit('editor-broadcast', data)
+    // update main database
+    json[data.group].code = data.code
+    const date = new Date()
+    const dateOpts = { timeZone: 'America/Chicago', hour12: true }
+    json[data.group].updated = date.toLocaleString('en-US', dateOpts)
+    fs.writeFile(filepath, JSON.stringify(json, null, 2), e => err(e))
+    // update history database
+    hist.push({
+      user: data.name,
+      date: date.getTime(),
+      code: data.code
+    })
+    fs.writeFile(histpath, JSON.stringify(hist, null, 2), e => err(e))
+  }
+}
+
+function getDHRData (socket) {
+  const data = require('../data/dhr.json')
+  socket.emit('editor-init', data)
+}
 
 module.exports = (socket, io) => {
   // console.log('a user connected')
@@ -32,22 +65,26 @@ module.exports = (socket, io) => {
   socket.on('disconnect', () => { someoneLoggedOff(socket, io) })
   socket.on('new-message', (m) => { clientSentMessage(socket, io, m) })
 
-  // for test page
-  if (socket.request.headers.referer.includes('artware')) {
-    socket.join('artware-room')
-    socket.emit('new-id', socket.id)
-    socket.on('drawing', (d) => socket.to('artware-room').emit('new-draw', d))
-    socket.on('moving', (d) => socket.to('artware-room').emit('new-move', d))
-    socket.on('cleared', (d) => socket.to('artware-room').emit('new-clear', d))
-    socket.on('switched-mode', (d) => socket.to('artware-room').emit('new-mode', d))
-    socket.on('video-resized', (d) => socket.to('artware-room').emit('resized-video', d))
-    socket.on('vol-changed', (d) => socket.to('artware-room').emit('change-vol', d))
-    socket.on('play-audio', (d) => socket.to('artware-room').emit('audio-play', d))
-    socket.on('pause-audio', (d) => socket.to('artware-room').emit('audio-pause', d))
-    socket.on('disconnect', () => socket.to('artware-room').emit('bye', socket.id))
-  }
+  // // for test page
+  // if (socket.request.headers.referer.includes('artware')) {
+  //   socket.join('artware-room')
+  //   socket.emit('new-id', socket.id)
+  //   socket.on('drawing', (d) => socket.to('artware-room').emit('new-draw', d))
+  //   socket.on('moving', (d) => socket.to('artware-room').emit('new-move', d))
+  //   socket.on('cleared', (d) => socket.to('artware-room').emit('new-clear', d))
+  //   socket.on('switched-mode', (d) => socket.to('artware-room').emit('new-mode', d))
+  //   socket.on('video-resized', (d) => socket.to('artware-room').emit('resized-video', d))
+  //   socket.on('vol-changed', (d) => socket.to('artware-room').emit('change-vol', d))
+  //   socket.on('play-audio', (d) => socket.to('artware-room').emit('audio-play', d))
+  //   socket.on('pause-audio', (d) => socket.to('artware-room').emit('audio-pause', d))
+  //   socket.on('disconnect', () => socket.to('artware-room').emit('bye', socket.id))
+  // }
 
-  // for class page
+  getDHRData(socket)
+  socket.on('editor-update', (data) => updateDHRData(socket, data))
+
+  // culture jamming class (NO LONGER ACTIVE)
+  /*
   // TODO: add logic for diff "room"
   io.emit('user-entered', socket.id)
   socket.on('disconnect', () => io.emit('user-left', socket.id))
@@ -61,4 +98,5 @@ module.exports = (socket, io) => {
 
   getNotePad(socket)
   socket.on('note-pad-input', (t) => updateNotePad(socket, t))
+  */
 }

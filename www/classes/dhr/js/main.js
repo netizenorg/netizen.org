@@ -49,6 +49,7 @@ ne.cm.on('keydown', (cm, e) => window.numChange(e))
 // •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•* socket events
 
 socket.on('editor-init', (data) => {
+  console.log(data, group)
   ne.code = data[group].code
 })
 

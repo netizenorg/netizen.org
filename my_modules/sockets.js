@@ -29,6 +29,7 @@ function getNotePad (socket) {
 */
 
 function updateDHRData (socket, data) {
+  console.log(data)
   if (typeof data.group !== 'string') return
   const json = require('../data/dhr.json')
   const hist = require(`../data/dhr-${data.group}-history.json`)

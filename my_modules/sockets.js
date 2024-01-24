@@ -29,7 +29,7 @@ function getNotePad (socket) {
 */
 
 function updateDHRData (socket, data) {
-  console.log(data)
+  // console.log(data)
   if (typeof data.group !== 'string') return
   const json = require('../data/dhr.json')
   const hist = require(`../data/dhr-${data.group}-history.json`)
@@ -43,7 +43,7 @@ function updateDHRData (socket, data) {
     const date = new Date()
     const dateOpts = { timeZone: 'America/Chicago', hour12: true }
     json[data.group].updated = date.toLocaleString('en-US', dateOpts)
-    console.log(filepath, json)
+    // console.log(filepath, json)
     fs.writeFile(filepath, JSON.stringify(json, null, 2), e => err(e))
     // update history database
     hist.push({
@@ -51,7 +51,7 @@ function updateDHRData (socket, data) {
       date: date.getTime(),
       code: data.code
     })
-    console.log(histpath, hist)
+    // console.log(histpath, hist)
     fs.writeFile(histpath, JSON.stringify(hist, null, 2), e => err(e))
   }
 }

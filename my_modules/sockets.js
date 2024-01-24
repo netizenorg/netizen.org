@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 function someoneLoggedOff (socket, io) {
-  console.log(`${socket.id} is gone!`)
+  // console.log(`${socket.id} is gone!`)
 }
 
 function clientSentMessage (socket, io, msg) {
@@ -63,7 +63,7 @@ function getDHRData (socket) {
 module.exports = (socket, io) => {
   // console.log('a user connected')
   // connected = io.sockets.clients().connected
-  console.log(`${socket.id} connected!`)
+  // console.log(`${socket.id} connected!`)
   socket.on('disconnect', () => { someoneLoggedOff(socket, io) })
   socket.on('new-message', (m) => { clientSentMessage(socket, io, m) })
 

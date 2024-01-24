@@ -84,7 +84,10 @@ module.exports = (socket, io) => {
   // }
 
   getDHRData(socket)
-  socket.on('editor-update', (data) => updateDHRData(socket, data))
+  socket.on('editor-update', (data) => {
+    console.log('got it', data)
+    updateDHRData(socket, data)
+  })
 
   // culture jamming class (NO LONGER ACTIVE)
   /*

@@ -50,7 +50,7 @@ ne.cm.on('keydown', (cm, e) => window.numChange(e))
 // •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•* socket events
 
 socket.on('editor-init', (data) => {
-  console.log(data, group)
+  console.log(data, group, data[group].code)
   ne.code = data[group].code
 })
 

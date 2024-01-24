@@ -40,7 +40,6 @@ ne.on('cursor-activity', (eve) => {
 
 ne.on('code-update', () => {
   const name = window.localStorage.getItem('name') || 'anonymous'
-  console.log('update', { group, name, code: ne.code })
   socket.emit('editor-update', { group, name, code: ne.code })
 })
 
@@ -50,7 +49,6 @@ ne.cm.on('keydown', (cm, e) => window.numChange(e))
 // •.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•*•.¸¸¸.•* socket events
 
 socket.on('editor-init', (data) => {
-  console.log(data, group, data[group], Object.keys(data[group]))
   ne.code = data[group].code
 })
 

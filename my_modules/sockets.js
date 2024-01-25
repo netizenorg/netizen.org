@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 function someoneLoggedOff (socket, io) {
-  // console.log(`${socket.id} is gone!`)
+  console.log(`${socket.id} is gone!`)
 }
 
 function clientSentMessage (socket, io, msg) {
@@ -28,41 +28,8 @@ function getNotePad (socket) {
 }
 */
 
-function updateDHRData (socket, data) {
-  console.log('updated info', data.group, data.name)
-  if (typeof data.group !== 'string') return
-  const json = require('../data/dhr.json')
-  const hist = require(`../data/dhr-${data.group}-history.json`)
-  const filepath = path.join(__dirname, '../data/dhr.json')
-  const histpath = path.join(__dirname, `../data/dhr-${data.group}-history.json`)
-  const err = e => { if (err) console.log(e) }
-  if (json[data.group].code !== data.code) { // update if this is new code
-    socket.broadcast.emit('editor-broadcast', data)
-    // update main database
-    json[data.group].code = data.code
-    const date = new Date()
-    const dateOpts = { timeZone: 'America/Chicago', hour12: true }
-    json[data.group].updated = date.toLocaleString('en-US', dateOpts)
-    console.log(filepath, typeof json)
-    fs.writeFile(filepath, JSON.stringify(json, null, 2), e => err(e))
-    // update history database
-    hist.push({
-      user: data.name,
-      date: date.getTime(),
-      code: data.code
-    })
-    console.log(histpath, typeof hist)
-    fs.writeFile(histpath, JSON.stringify(hist, null, 2), e => err(e))
-  }
-}
-
-function getDHRData (socket) {
-  const data = require('../data/dhr.json')
-  socket.emit('editor-init', data)
-}
-
 module.exports = (socket, io) => {
-  // console.log('a user connected')
+  console.log('a user connected')
   // connected = io.sockets.clients().connected
   // console.log(`${socket.id} connected!`)
   socket.on('disconnect', () => { someoneLoggedOff(socket, io) })
@@ -82,12 +49,6 @@ module.exports = (socket, io) => {
   //   socket.on('pause-audio', (d) => socket.to('artware-room').emit('audio-pause', d))
   //   socket.on('disconnect', () => socket.to('artware-room').emit('bye', socket.id))
   // }
-
-  getDHRData(socket)
-  socket.on('editor-update', (data) => {
-    // console.log('got it', data)
-    updateDHRData(socket, data)
-  })
 
   // culture jamming class (NO LONGER ACTIVE)
   /*

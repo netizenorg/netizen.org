@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Fira Mono';
+  src: url('fonts/Fira_Mono/FiraMono-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  src: url('fonts/Fira_Mono/FiraMono-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fira Mono';
+  src: url('fonts/Fira_Mono/FiraMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  src: url('fonts/Zen_Maru_Gothic/ZenMaruGothic-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  src: url('fonts/Zen_Maru_Gothic/ZenMaruGothic-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  src: url('fonts/Zen_Maru_Gothic/ZenMaruGothic-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  src: url('fonts/Zen_Maru_Gothic/ZenMaruGothic-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  src: url('fonts/Zen_Maru_Gothic/ZenMaruGothic-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

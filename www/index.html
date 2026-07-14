@@ -6,86 +6,103 @@
 
       <title>netizen.org</title>
       <meta name="author" content="netizen.org">
-      <meta name="description" content="netizen.org is a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through community and digital programming. Geolocated in Chicago, Illinois—at the intersection of digital literacy and Internet art—netizen.org transforms users into netizens, who are critically engaged citizens of the Net.">
+    <meta name="description" content="netizen.org propels curious citizens of the ‘net beyond problematic defaults towards a more creative, playful, and equitable digital world. We are a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through public lectures, workshops, digital tools, online events and festivals.">
 
       <!-- social media stuff -->
-      <meta property="og:title" content="Netizen">
+      <meta property="og:title" content="netizen.org">
       <meta property="og:url" content="http://netizen.org">
-      <meta property="og:image" content="http://netizen.org/images/logo-bg.png">
-      <meta property="og:description" content="netizen.org is a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through community and digital programming. Geolocated in Chicago, Illinois—at the intersection of digital literacy and Internet art—netizen.org transforms users into netizens, who are critically engaged citizens of the Net.">
+      <meta property="og:image" content="http://netizen.org/images/ntz-square.jpg">
+    <meta property="og:description" content="netizen.org propels curious citizens of the ‘net beyond problematic defaults towards a more creative, playful, and equitable digital world. We are a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through public lectures, workshops, digital tools, online events and festivals.">
       <meta name="twitter:card" content="summary_large_image">
       <meta property="og:site_name" content="netizen.org">
       <meta name="twitter:site" content="@netizenorg">
 
-      <link rel="icon" type="image/png" href="images/n.png">
-      <link rel="stylesheet" href="css/styles.css">
-
+      <link rel="icon" href="images/ntz-logo.svg" type="image/svg+xml">
+      <link rel="stylesheet" href="css/fonts.css">
       <style media="screen">
-        marquee {
-          background:#ff5760;
-          color:#fff;
-          padding: 10px;
+        :root {
+          --prim-a: #fff;
+          --prim-b: #000;
+          --out-cubic: cubic-bezier(0.215,0.61,0.355,1);
+        }
+
+        body {
+          margin: 0;
+          background: var(--prim-a);
+
+          overflow-x: hidden;
+
+          font-family: 'Zen Maru Gothic', serif;
+          background-color: var(--prim-b);
+          color: var(--prim-a);
+        }
+
+        #loader {
           position: fixed;
-          bottom: 0px;
-          z-index: 999;
-          width: 100vw;
+          top: 0px;
           left: 0px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          width: 100vw;
+          height: 100vh;
         }
 
-        @media (max-width: 767px) {
-          marquee {
-            font-size: 4.3vw;
-          }
+        #loader > img {
+          max-width: 60%;
         }
 
+        @keyframes marquee-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .marquee-wrapper {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          overflow: hidden;
+        }
+
+        .message {
+          display: flex;
+          width: max-content;
+          animation: marquee-scroll 30s linear infinite;
+        }
+
+        .message span {
+          font-size: 3em;
+          white-space: nowrap;
+          flex-shrink: 0;
+          padding-right: 0.5em;
+        }
       </style>
-
     </head>
     <body>
 
-      <a href="https://www.indiegogo.com/projects/sunraise-with-sonnenzimmer--2#/" target="_blank">
-        <marquee>
-          🌼☀️🌼 help Sonnenezimmer help us!!! donate to the Sunraiser!!! click here!!!  🌼☀️🌼
-        </marquee>
-      </a>
-
-
-      <section>
-        <header>
-          <img src="images/netizen.gif" alt="netizen.org">
-        </header>
-
-        <div id="info">
-          <p>
-            netizen.org propels curious citizens of the ‘net beyond problematic defaults towards a more creative, playful, and equitable digital world. We are a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through <a target="_blank" href="http://dream.netizen.org">public lectures</a>, <a style="color:var(--yellow)" href="https://www.eventbrite.com/e/chicago-internet-walking-tour-tickets-60203483239" target="_blank">workshops</a>, <a href="https://netizen.org/netnet" target="_blank" style="color:var(--green)">digital tools</a>, <a href="https://netizen.org/bias-out-of-the-box/" target="_blank" style="color:var(--red)">online events</a> and <a href="https://browserfest.netizen.org/" target="_blank" style="color:var(--blue)">festivals</a>.
-          </p>
-          <!-- <p>
-            Our next (online) event is <a href="https://browserfest.netizen.org/" target="_blank" style="color:var(--blue)">BrowserFest</a>, a friendly online competition and celebration of creative coding! Join us if you'd like to <a href="https://netnet.studio/?w=tutorials-guide" style="color:var(--red)">learn</a> + <a href="https://browserfest.netizen.org/participate.html" style="color:var(--yellow)">make</a> + <a href="https://browserfest.netizen.org/gallery.html" style="color:var(--green)">remix</a> + <a href="https://browserfest.netizen.org/participate.html" style="color:var(--purple)">submit</a>!
-          </p> -->
-          <!-- <p>
-            netizen.org is a 501(c)3 tax deductible organization, consider making a <a href="https://donorbox.org/netizen" target="_blank" style="color:var(--green)">donation</a>! Your support helps ensure our tools and workshops remain accessible to folks from all backgrounds.
-          </p> -->
-        </div>
-
-        <footer>
-          <a href="mailto:hi@netizen.org">
-            <span class="contact-title">contact</span>
-            <span class="contact-value">h<i></i>i@ne<i></i>ti<i></i>zen.org</span>
-          </a>
-          <a href="https://twitter.com/netizenorg" target="_blank">
-            <span class="contact-title">twitter</span>
-            <span class="contact-value">@netizenorg</span>
-          </a>
-          <a href="https://www.instagram.com/netizenorg/" target="_blank">
-            <span class="contact-title">instagram</span>
-            <span class="contact-value">@netizenorg</span>
-          </a>
-          <a href="https://donorbox.org/netizen" target="_blank">
-            <span class="contact-title">DONATE</span>
-          </a>
-        </footer>
+      <section id="loader">
+        <img src="images/logo-inverted-animated.svg" alt="netizen.org logo animated for the load screen">
       </section>
-      <script src="/stats-not-tracks.min.js"></script>
-      <script src="js/main.js"></script>
+
+      <div class="marquee-wrapper">
+        <div class="message">
+          <span><b>*.O</b> updates coming soon <b>*.O</b> hi@netizen.org</span>
+          <span><b>*.O</b> updates coming soon <b>*.O</b> hi@netizen.org</span>
+          <span><b>*.O</b> updates coming soon <b>*.O</b> hi@netizen.org</span>
+          <span><b>*.O</b> updates coming soon <b>*.O</b> hi@netizen.org</span>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        const c = ['#ff9999', '#ff99cc', '#ff99ff', '#cc99ff', '#9999ff', '#99ccff', '#99ffff', '#99ffcc', '#99ff99', '#ccff99', '#ffff99', '#ffcc99']
+
+        document.querySelectorAll('.message b').forEach((b,i) => {
+          b.style.color = c[i*2 % c.length / 2]
+        })
+      </script>
+
     </body>
 </html>

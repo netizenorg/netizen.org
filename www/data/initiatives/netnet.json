@@ -1,0 +1,36 @@
+{
+  "title": "netnet.studio",
+  "sub-title": "Exploring the WWWeb's Creative Potential",
+  "date": "2020-present",
+  "urls": {
+    "website": "https://netnet.studio/",
+    "presentation": "https://netizen.org/netnet/"
+  },
+  "partners": ["The Clinic For Open Source Arts", "The University of Chicago", "The School of the Art Institute of Chicago"],
+  "content": [
+    "<a href=\"https://netnet.studio\" target=\"_blank\">netnet.studio</a> is a playful, open-source, real-time code editor paired with a human-authored \"classical AI\" Teaching Assistant. As an AI-TA, netnet supports students by explaining code fragments, encouraging best practices, and correcting common mistakes. As a beginner-focused editor, netnet assumes your aim is digital literacy—not necessarily becoming a professional developer or poetic coder (though it can lead there). Digital literacy isn’t about technical mastery; it’s about something far more important: agency.",
+    "netnet.studio has been successfully used by hundreds of students across universities including the University of Chicago, the University of Waterloo and others. By removing many of the technical hurdles beginners face, netnet.studio offers a smoother ramp into creative coding, saving instructors hours in the classroom and reducing student frustration. Its self-revealing interface design also enables educators to introduce complex topics, like version control with Git, earlier than traditional tools allow."
+  ],
+  "grid": [
+    {
+      "image": "images/netnet/netnet1.jpg",
+      "alt": "A translucent pink-and-purple laptop floats against a soft blue gradient, on it's screen we see one of netnet's interactive tutorials paused on a frame which includes three overlapping windows, a video player with Nick Briz explaining the work of early influential net.artists, another video titled “Mendi + Keith Obadike” and an old-school eBay page listing “Blackness For Sale”.",
+      "credit": "Video and Screenshot by Nick Briz"
+    },
+    {
+      "image": "images/netnet/netnet2.jpg",
+      "alt": "A translucent pink-and-purple laptop floats against a soft blue gradient, on it's screen we see one of netnet's interactive tutorials paused on a frame which features a neon-green, terminal-style ASCII diagram, the work wwwwwwwww.jodi.org also known as the \"misconfigured ascii drawing\". Over the ASCII there are two windows, the first with Nick Briz explaining this influential work and the other is netnet's code editor feautring the code behind this net.art piece.",
+      "credit": "Video and Screenshot by Nick Briz"
+    },
+    {
+      "image": "images/netnet/netnet3.jpg",
+      "alt": "A translucent pink-and-purple laptop floats against a soft blue gradient, its screen split vertically: the left half shows dark-mode CSS code, the right a bright green canvas dotted with a column of multicolored pixel discs. A floating “Color Widget” dialog hovers on the right, displaying hue, saturation, and brightness sliders and a live pie-chart preview of the selected green.",
+      "credit": "Video and Screenshot by Nick Briz"
+    },
+    {
+      "image": "images/netnet/netnet4.jpg",
+      "alt": "A translucent pink-and-purple laptop floats against a soft blue gradient, its screen’s bright green workspace hosts a curved chain of neon pixel-art discs. A small dark code editor window sits in the lower left, showing CSS keyframe rules for animating the discs’ spin effect.",
+      "credit": "Video and Screenshot by Nick Briz"
+    }
+  ]
+}

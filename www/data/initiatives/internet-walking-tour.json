@@ -1,0 +1,35 @@
+{
+  "title": "The Chicago Internet Walking Tour",
+  "date": "April 25, 2019",
+  "sub-title": "Learning to See the Internet",
+  "urls": {
+    "announcement": "https://mailchi.mp/da3c4b7a8bd4/dream-with-us-this-thursday-1869121?e=[UNIQID]"
+  },
+  "partners": ["Mozilla"],
+  "content": [
+    "Though we interact with the Internet every day on our phones and laptops, that view only scratches the surface of a vast, hidden network often reduced to abstract notions like “the cloud.” On the Internet Walking Tour, Ingrid Burrington—author of <a href=\"https://www.penguinrandomhouse.com/books/538586/networks-of-new-york-by-ingrid-burrington/\" target=\"_blank\" style=\"font-style:italic;\">Networks of New York</a>—revealed Chicago’s physical infrastructure: the spray-painted street markings, manhole covers, junction boxes, cable routers and buildings that quietly power our wired world.",
+    "But the Internet isn’t just wired; it’s also wireless. With Nick Briz and Brannon Dorsey’s <a href=\"https://nickbriz.work/?portfolio=WiFi-Data-Safari\" target=\"_blank\">WiFi Data Safari</a> app, invisible packets became visible as we peeked into building networks and observed devices “spewing out personally identifiable information into the WiFi ether for anyone to capture and use,” illustrating, as <a href=\"https://reallifemag.com/silent-shout/\" target=\"_blank\">Real Life Magazine</a> wrote, “all the data that anyone—marketers, governments, malefactors—could learn to pick up from the wi-fi radio ether.”"
+  ],
+  "grid": [
+    {
+      "image": "images/walking-tour/netwalkingtour1.jpg",
+      "alt": "A guide, Nick Briz, in a black shirt and sunglasses gestures with his hands while speaking to a diverse walking tour group gathered on a city sidewalk in front of a modern glass building.",
+      "credit": "Photograh by Kim Kovacik"
+    },
+    {
+      "image": "images/walking-tour/netwalkingtour2.jpg",
+      "alt": "A walking tour group stands at a busy urban corner listening to a guide, Ingrid Burrington, whose back is to the camera as she explains what street markings reveal about the Internet ifrastructure below",
+      "credit": "Photograh by Kim Kovacik"
+    },
+    {
+      "image": "images/walking-tour/netwalkingtour3.jpg",
+      "alt": "The tour guide, Ingrid Burrington, stands on a low concrete ledge, pointing upward at a ShotSpotter device while participants look on from the sidewalk below under leafy trees.",
+      "credit": "Photograh by Kim Kovacik"
+    },
+    {
+      "image": "images/walking-tour/netwalkingtour4.jpg",
+      "alt": "Tour guide Brannon Dorsey, in an Internet Society tee holds a laptop in one hand and raises his other hand as he addresses a crowd standing around a city intersection.",
+      "credit": "Photograh by Kim Kovacik"
+    }
+  ]
+}

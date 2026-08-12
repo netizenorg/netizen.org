@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>SxN Image Processing</title>
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/brand.css">
+    <link rel="stylesheet" href="../css/desktop.css">
+    <style>
+      body {
+        --size: 50px;
+        margin: 0;
+        background-color: #fff;
+        background-image: linear-gradient(#eee 2px, transparent 1px),
+          linear-gradient(90deg, #eee 2px, transparent 1px);
+        background-size: var(--size) var(--size);
+        position: relative;
+        z-index: 1;
+        height: 200vh;
+      }
+
+      .grid {
+        background: transparent;
+        left: 50px;
+        top: 50px;
+      }
+
+      .grid > div {
+        transition: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid"></div>
+    <script src="../js/nn.min.js"></script>
+    <script src="../js/dat.gui.min.js"></script>
+    <script src="../js/netizen-syrup-image.js"></script>
+    <script src="../js/netizen-grid.js"></script>
+    <script>
+
+      window.colors = [
+        ['#ff9999', '#ff99cc', '#ff99ff', '#cc99ff', '#9999ff', '#99ccff', '#99ffff', '#99ffcc', '#99ff99', '#ccff99', '#ffff99', '#ffcc99'],
+        ['#993333', '#993366', '#993399', '#663399', '#333399', '#336699', '#339999', '#339966', '#339933', '#669933', '#999933', '#996633']
+      ]
+
+      const images = ['becca', 'brannon', 'harlo', 'ingrid', 'janice', 'margaret', 'melody', 'tara']
+      const zIndexes = [1, 2, 3, 4]
+
+      const settings = {
+        reset: () => window.location.reload(),
+        newColors: () => {
+          grid.updateColors()
+          const colors = [
+            grid.getBlock(1).style.backgroundColor,
+            grid.getBlock(2).style.backgroundColor
+          ]
+          syrup.update({ colors })
+        },
+        randomize: () => randomize(),
+        image: 'becca',
+        transition: 0.5
+      }
+
+      const huffhack = {
+        process: true,
+        opacity: 0.2,
+        zIndex: 3,
+        seed: 7
+      }
+
+      const pixelate = {
+        process: true,
+        opacity: 1,
+        zIndex: 1,
+        size: 8,
+        threshold: 128
+      }
+
+      const dither = {
+        process: true,
+        opacity: 0.42,
+        zIndex: 2,
+        algorithm: 'bayer',
+        dotSize: 3,
+        threshold: 174
+      }
+
+      const ascii = {
+        process: true,
+        opacity: 0.5,
+        zIndex: 4,
+        chars: 'O*.  ',
+        fontSize: 8,
+        fgColor: 'white'
+      }
+
+      const gui = new dat.GUI()
+      gui.add(settings, 'reset').name('RESET TO DEFAULT (+new colors)')
+      gui.add(settings, 'newColors').name('NEW COLOR SCHEME')
+      gui.add(settings, 'randomize').name('RANDO (customized random)')
+      gui.add(settings, 'image', images).onChange(() => {
+        clean.set('src', `../images/dream/${settings.image}.jpg`)
+        syrup.updateImage(`../images/dream/${settings.image}.jpg`)
+      })
+      // gui.add(settings, 'transition', 0, 1, 0.01).name('hover transition speed').onChange(() => {
+      //   nn.get('.grid > div > img').css({ transition: `opacity ${settings.transition}s`})
+      // })
+
+      const p = gui.addFolder('pixelation'); p.open()
+      p.add(pixelate, 'process').listen().onChange(update)
+      p.add(pixelate, 'opacity', 0, 1, 0.01).listen().onChange(update)
+      p.add(pixelate, 'zIndex', zIndexes).listen().onChange(update)
+      p.add(pixelate, 'size', 1, 64, 1).listen().onChange(update)
+      p.add(pixelate, 'threshold', 1, 256, 1).listen().onChange(update)
+
+      const h = gui.addFolder('jpeg glitch'); h.open()
+      h.add(huffhack, 'process').listen().onChange(update)
+      h.add(huffhack, 'opacity', 0, 1, 0.01).listen().onChange(update)
+      h.add(huffhack, 'zIndex', zIndexes).listen().onChange(update)
+      h.add(huffhack, 'seed', 1, 100, 1).listen().onChange(update)
+
+      const d = gui.addFolder('dithering'); d.open()
+      d.add(dither, 'process').listen().onChange(update)
+      d.add(dither, 'opacity', 0, 1, 0.01).listen().onChange(update)
+      d.add(dither, 'zIndex', zIndexes).listen().onChange(update)
+      d.add(dither, 'algorithm', ['floydSteinberg', 'atkinson', 'bayer']).listen().onChange(update)
+      d.add(dither, 'dotSize', 1, 28, 1).listen().onChange(update)
+      d.add(dither, 'threshold', 1, 256, 1).listen().onChange(update)
+
+      const a = gui.addFolder('ASCII'); a.open()
+      a.add(ascii, 'process').listen().onChange(update)
+      a.add(ascii, 'opacity', 0, 1, 0.01).listen().onChange(update)
+      a.add(ascii, 'zIndex', zIndexes).listen().onChange(update)
+      a.add(ascii, 'chars').listen().onChange(update)
+      a.add(ascii, 'fontSize', 1, 32).listen().onChange(update)
+      a.add(ascii, 'fgColor', ['white', 'black']).listen().onChange(update)
+
+      function update() {
+        syrup.huffhack = huffhack
+        syrup.dither = dither
+        syrup.pixelate = pixelate
+        syrup.ascii = ascii
+        syrup.update()
+      }
+
+      function randomize () {
+        let order = [2, 3, 4]
+        order = nn.shuffle(order)
+        // while most values glitch on Firefox/Mac
+        // only these values seem to work on Chrome/Mac
+        // (have not tested on other platforms yet)
+        const gvals = [7, 19, 35, 45, 46, 79, 86, 87, 90, 96]
+
+        pixelate.process = true
+        pixelate.opacity = nn.random(0.5, 1)
+        pixelate.zIndex = 1
+        pixelate.size = nn.random(6, 28)
+        pixelate.threshold = nn.random(16, 128)
+
+        huffhack.process = nn.random() > 0.5 ? true : false
+        huffhack.opacity = nn.random(0, 0.5)
+        huffhack.zIndex = order[0]
+        huffhack.seed = nn.random(gvals)
+
+        dither.process = nn.random() > 0.5 ? true : false
+        dither.opacity = nn.random()
+        dither.zIndex = order[1]
+        dither.algorithm = 'bayer'
+        dither.dotSize = nn.random([1, 3, 5])
+        dither.threshold = 174 // doesn't matter for bayer (only other algos)
+
+        ascii.process = nn.random() > 0.5 ? true : false
+        ascii.opacity = nn.random()
+        ascii.zIndex = order[2]
+        ascii.chars = nn.random(['O*.   ', 'O*.  ', 'O*. ', 'O*. '])
+        ascii.fontSize = nn.random(4, 12)
+        ascii.fgColor = nn.random(['black', 'white'])
+
+        update()
+        gui.updateDisplay()
+      }
+
+      const grid = new NetizenGrid({
+        selector: '.grid',
+        grid: [
+          { x: 0, y: 0, w: 3, h: 2 },
+          { x: 0, y: 2, w: 3, h: 1 }
+        ]
+      })
+
+      const syrup = new NetizenSyrupImage({
+        image: '../images/dream/becca.jpg',
+        ele: grid.getBlock(1),
+        colors: [
+          grid.getBlock(1).style.backgroundColor,
+          grid.getBlock(2).style.backgroundColor
+        ],
+        huffhack: huffhack,
+        dither: dither,
+        pixelate: pixelate,
+        ascii: ascii
+      })
+
+      const clean = nn.create('img')
+        .set('src', '../images/dream/becca.jpg')
+        .set('name', 'clean')
+        .addTo('.grid div:nth-child(1)')
+
+      nn.get('.grid div:nth-child(1)')
+        .on('mouseover', () => {
+          nn.getAll('.grid div:nth-child(1) img').forEach(img => {
+            if (img.name !== 'clean') img.style.opacity = 0
+          })
+        })
+        .on('mouseout', () => {
+          nn.getAll('.grid div:nth-child(1) img').forEach(img => {
+            if (img.name !== 'clean') {
+              img.style.opacity = syrup[img.name].opacity
+            }
+          })
+        })
+
+
+
+    </script>
+  </body>
+</html>

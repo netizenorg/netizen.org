@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>netizen.org</title><!-- bent on bending tech -->
+
+    <!-- TODO: before launch we'll need to update the content of our meta tags -->
+    <meta name="author" content="netizen.org">
+    <meta name="description" content="netizen.org propels curious citizens of the 'net beyond problematic defaults towards a more creative, playful, and equitable digital world. We are a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through public lectures, workshops, digital tools, online events and festivals.">
+
+    <meta property="og:title" content="netizen.org">
+    <meta property="og:url" content="http://netizen.org">
+    <meta property="og:image" content="http://netizen.org/images/logo-bg.png">
+    <meta property="og:description" content="netizen.org propels curious citizens of the 'net beyond problematic defaults towards a more creative, playful, and equitable digital world. We are a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through public lectures, workshops, digital tools, online events and festivals.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="netizen.org">
+    <meta name="twitter:site" content="@netizenorg">
+
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/brand.css">
+    <link rel="stylesheet" href="css/mobile.css">
+  </head>
+  <body>
+
+    <section id="loader">
+      <img src="images/logo-inverted-animated.svg" alt="netizen.org logo animated for the load screen">
+    </section>
+
+    <header>
+      <img id="netizen-logo" src="images/logo-white.svg" alt="netizen.org logo" tabindex=0 role="button" aria-label="Go to home">
+      <button id="hamburger-menu" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <nav id="mobile-nav" class="mobile-nav">
+      <div class="nav-content">
+        <span name="about" class="nav-item">About</span>
+        <span name="initiatives" class="nav-item">
+          Initiatives
+        </span>
+        <span name="support" class="nav-item">Support</span>
+      </div>
+      
+      <!-- Sub-navigation removed - Initiatives now goes directly to page -->
+    </nav>
+
+    <main>
+      <!-- Homepage Section -->
+      <section id="home" class="content-section active">
+        <div class="hero">
+          <div class="hero-image"></div>
+          <!-- background image attribution; populated by the hero module
+               (or setupHeroImage's fallback path) in js -->
+          <div id="hero-credit" hidden></div>
+          <!-- <div class="hero-text">
+            <h1>netizen.org</h1>
+            <p class="tagline">bent on bending tech</p>
+          </div> -->
+        </div>
+        
+        <div class="content-block">
+          <!-- headings come from the JSON copy itself now (it opens with its
+               own <h1>); the hardcoded section labels doubled them up -->
+          <div id="about-main">
+            <p>Loading content...</p>
+          </div>
+        </div>
+
+        <!-- feature video (new release spotlight) -- data/main.json
+             "featureVideo", shared with desktop -->
+        <div id="home-feature"></div>
+
+        <!-- syrup'd initiative teasers, mirroring the desktop home grid;
+             which initiatives appear comes from data/main.json
+             "featuredOnHome" (single source, shared with desktop) -->
+        <div id="home-initiatives"></div>
+
+        <!-- newsletter CTA, bent-text treatment like desktop's BEND THIS
+             SITE -- data/main.json "newsletterUrl" -->
+        <div id="home-newsletter"></div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="content-section">
+        <div class="content-block">
+          <div id="about-content">
+            <p>Loading content...</p>
+          </div>
+        </div>
+
+        <div class="grid-separator"></div>
+
+        <div class="content-block">
+          <div id="about-sub">
+            <p>Loading content...</p>
+          </div>
+        </div>
+
+        <div class="grid-separator"></div>
+
+        <div class="content-block">
+          <h2>The Crew</h2>
+          <img src="images/the-crew.jpg" alt="The netizen.org crew" class="crew-image">
+        </div>
+      </section>
+
+      <!-- Initiatives Section -->
+      <section id="initiatives" class="content-section">
+        <div class="content-block">
+          <div id="initiatives-main">
+            <p>Loading content...</p>
+          </div>
+        </div>
+
+        <div class="grid-separator">
+          <div class="grid"></div>
+        </div>
+        
+        <!-- Sub-navigation header -->
+        <div class="initiatives-subheader" id="initiatives-subheader">
+          <!-- Sub-nav items will be populated by JavaScript -->
+        </div>
+        
+        
+        <div class="grid-separator">
+          <div class="grid"></div>
+        </div>
+        
+        <div class="content-block">
+          <div id="initiatives-sub">
+            <p>Loading content...</p>
+          </div>
+        </div>
+        
+        <div class="grid-separator">
+          <div class="grid"></div>
+        </div>
+        
+        <div class="content-block">
+          <div id="initiatives-list" class="initiatives-grid">
+            <!-- Initiatives will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Support Section -->
+      <section id="support" class="content-section">
+        <div class="content-block">
+          <div id="support-main">
+            <p>Loading content...</p>
+          </div>
+        </div>
+        
+        <div class="grid-separator"></div>
+        
+        <div class="content-block">
+          <div id="support-sub">
+            <p>Loading content...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Individual Initiative Pages -->
+      <section id="initiative-detail" class="content-section">
+        <div class="initiative-header">
+          <button class="back-button">&#8592; Back to Initiatives</button>
+          <h1 id="initiative-title">Loading...</h1>
+          <h2 id="initiative-subtitle"></h2>
+        </div>
+        
+        <div class="grid-separator"></div>
+        
+        <div class="initiative-content">
+          <div id="initiative-text">
+            <p>Loading content...</p>
+          </div>
+          
+          <!-- Metadata section - match desktop layout -->
+          <div class="initiative-metadata">
+            <div>
+              <small class="bold-blue">Date</small>
+              <small id="initiative-date"></small>
+            </div>
+            <div id="initiative-partners-section">
+              <small class="bold-blue">Partners</small>
+              <small id="initiative-partners"></small>
+            </div>
+            <div id="initiative-links-section">
+              <small class="bold-blue">Links</small>
+              <div id="initiative-links"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid-separator"></div>
+        
+        <div id="initiative-gallery" class="gallery-grid">
+          <p>Loading gallery...</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <img src="images/word-mark-tag-line-white.svg" alt="netizen.org, bent on bending tech">
+    </footer>
+
+    <script src="js/nn.min.js"></script>
+    <script src="js/netitor.min.js"></script>
+    <script src="js/grids.js"></script>
+    <script src="js/netizen-grid.js"></script>
+    <script src="js/netizen-syrup-image.js"></script>
+    <script src="js/netizen-bent-text.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/netizen-mobile-hero.js"></script>
+    <script src="js/mobile.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,880 @@
+/* Mobile-specific styles for netizen.org */
+
+/* Loader */
+#loader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--prim-b); /* dark scheme, matching desktop */
+  opacity: 1;
+  transition: opacity var(--tt) var(--out-cubic);
+}
+
+#loader > img {
+  max-width: 60%;
+}
+
+/* Dark ground under everything: the transparent header floats over this on
+   interior pages (main sits 80px down, so body shows through the strip),
+   and short pages don't bottom out into a white void. */
+body {
+  background: var(--prim-b);
+}
+
+/* Header: transparent everywhere, like desktop -- it floats over the hero on
+   home and over the dark body/content on interior pages. The white bar it
+   used to be on interior pages is gone with the dark scheme; the
+   difference-blend logo and hamburger read white over dark and black over
+   the white dropdown, so no per-page logic is needed anymore. */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ...except while the dropdown is open: it goes solid white so header +
+   panel read as one continuous surface. .nav-open is managed in js
+   (toggleMobileNav) rather than :has() so the header stays solid until the
+   panel has actually finished sliding away -- a pure CSS swap flips the
+   instant the class drops, exposing the hero behind a still-visible panel. */
+body.nav-open header {
+  background: var(--prim-a);
+}
+
+#netizen-logo {
+  width: 25vw;
+  max-width: 120px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: difference; /* white mark inverts against whatever's underneath, so it can't get lost in a dark corner */
+}
+
+#netizen-logo:hover {
+  opacity: 0.8;
+}
+
+/* Hamburger Menu */
+#hamburger-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 44px;
+  justify-content: center;
+  isolation: isolate; /* flattens the bars into one shape before blending -- otherwise each bar diff-blends against the other where they cross, double-inverting the X's center back to white */
+  mix-blend-mode: difference;
+}
+
+#hamburger-menu span {
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+#hamburger-menu.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#hamburger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger-menu.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background: var(--prim-a); /* White background like desktop */
+  z-index: 99;
+  /* clear the full header height too, not just the panel's own height --
+     parking it behind the header only hides it while the header is
+     opaque, so on home (transparent header) the closed panel's pills
+     would show straight through */
+  transform: translateY(calc(-100% - 80px));
+  transition: transform 0.3s ease, visibility 0.3s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  /* keep the closed nav from underlapping the header && stealing taps */
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.mobile-nav.active {
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.nav-content {
+  padding: 2rem 1rem 1rem 1rem;
+  display: flex;
+  flex-direction: row; /* Changed from column to row for horizontal layout */
+  gap: 1rem; /* Restored gap for 3 items */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping if needed on very small screens */
+}
+
+/* Nav items inside mobile menu should match desktop pill styling */
+.mobile-nav .nav-item {
+  color: var(--prim-a) !important; /* White text on black pills */
+  background-color: var(--prim-b) !important; /* Black background like desktop sec-nav */
+  border: 1px solid var(--prim-b) !important; /* Black border like desktop */
+}
+
+.mobile-nav .nav-item:hover {
+  background-color: var(--prim-a) !important; /* White background on hover like desktop */
+  color: var(--prim-b) !important; /* Black text on hover like desktop */
+  border: 1.25px solid var(--prim-b) !important; /* Match desktop hover border */
+}
+
+.nav-item {
+  color: var(--prim-a); /* White text like desktop sec-nav */
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.25em 1.3em 0.35em 1.3em; /* Match desktop sec-nav padding */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  border-radius: 2em; /* Pill shape like desktop */
+  border: 1px solid var(--prim-b); /* Black border like desktop */
+  background-color: var(--prim-b); /* Black background like desktop */
+  position: relative; /* For submenu positioning */
+  text-align: center;
+  user-select: none;
+  margin: 0 0.15rem; /* Match desktop spacing */
+}
+
+.nav-item:hover,
+.nav-item.active {
+  border: 1.25px solid var(--prim-b); /* Match desktop hover border */
+  background-color: var(--prim-a); /* White background on hover like desktop */
+  color: var(--prim-b); /* Black text on hover like desktop */
+}
+
+/* Sub-navigation styles removed - Initiatives now navigates directly to page */
+
+/* Initiatives page sub-header */
+.initiatives-subheader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Initiative sub-navigation links - match hamburger menu pill styling */
+.initiative-subnav-link {
+  color: var(--prim-a) !important; /* White text like hamburger menu */
+  background-color: var(--prim-b) !important; /* Black background like hamburger menu */
+  border: 1px solid var(--prim-a) !important; /* white border -- a black pill on the now-black section would vanish without it */
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.25em 1.3em 0.35em 1.3em; /* Match hamburger menu padding */
+  border-radius: 2em; /* Pill shape like hamburger menu */
+  transition: all 0.3s ease;
+  text-align: center;
+  user-select: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0.15rem; /* Match hamburger menu spacing */
+}
+
+.initiative-subnav-link:hover {
+  background-color: var(--prim-a) !important; /* White background on hover like hamburger menu */
+  color: var(--prim-b) !important; /* Black text on hover like hamburger menu */
+  border: 1.25px solid var(--prim-b) !important; /* Match hamburger menu hover border */
+}
+
+.initiative-subnav-item {
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.1);
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.initiative-subnav-item:hover,
+.initiative-subnav-item.active {
+  background: var(--prim-a);
+  color: var(--prim-b);
+}
+
+/* Main Content */
+main {
+  display: flow-root; /* new BFC so the hero's negative margin below can't collapse through and shift this element */
+  margin-top: 80px;
+  min-height: calc(100vh - 80px);
+  background: var(--prim-b); /* dark scheme, matching desktop */
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+/* Pull the home hero up behind the now-transparent floating header;
+   other sections keep main's normal 80px offset untouched. */
+#home .hero {
+  margin-top: -80px;
+}
+
+/* Content Sections */
+.content-section {
+  display: none;
+  padding: 0;
+}
+
+.content-section.active {
+  display: block;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 50vh;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1.0; /* Changed from 0.3 to full opacity */
+  z-index: 1;
+  transition: background-image 1s ease;
+}
+
+/* Canvas hero (syrup + drifting wordmark, js/netizen-mobile-hero.js).
+   Sits over the background-image, which stays underneath as the instant
+   first paint and as the fallback if the module can't boot. */
+.hero-image canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s var(--out-cubic);
+}
+
+.hero-image canvas.ready {
+  opacity: 1;
+}
+
+/* Feature video: stacks full-width at its native ratio */
+#home-feature iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+}
+
+/* Newsletter CTA: a short block for the bent-text canvas to fill */
+#home-newsletter {
+  position: relative;
+  height: 140px;
+  overflow: hidden;
+}
+
+#home-newsletter canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Home initiative teasers: stacked syrup'd tiles, tap to open. NetizenSyrupImage
+   appends its layers as <img>s, so the tile pins them all cover-style. */
+.home-initiative-tile {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.home-initiative-tile img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-initiative-tile .tile-title {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 5;
+  font-family: 'Fira Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--prim-a);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  padding-bottom: 1px;
+}
+
+/* Background image attribution, hugging the hero's bottom right --
+   same Fira Mono + dark halo treatment as desktop's #splash-credit */
+#hero-credit {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  z-index: 2;
+  font-family: 'Fira Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--prim-a);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.85);
+}
+
+#hero-credit[hidden] { display: none; }
+
+#hero-credit a,
+#hero-credit span {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  padding-bottom: 1px;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  padding: 2rem;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+.tagline {
+  font-size: 1.1rem;
+  margin: 0;
+  opacity: 0.8;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+/* Content Blocks */
+.content-block {
+  padding: 2rem 1rem;
+  background: var(--prim-b); /* dark scheme, matching desktop */
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+.content-block h2 {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  margin: 0 0 1.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.content-block p {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+/* Links inherit brand.css (blue) or their own inline styles -- the JSON
+   copy's var(--prim-a) links were authored for this dark ground. The
+   pile of !important overrides that forced links black for the white
+   scheme lived here; the flip made them obsolete. */
+
+.content-block a:hover {
+  opacity: 0.8;
+}
+
+.crew-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+/* Grid Separators */
+.grid-separator {
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-separator .grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1.0 !important; /* Full opacity for vibrant grids */
+}
+
+/* Ensure grid cells are fully opaque and vibrant */
+.grid-separator .grid > div {
+  opacity: 1.0 !important;
+  filter: none !important;
+}
+
+/* Initiatives Grid */
+.initiatives-grid {
+  padding: 2rem 1rem;
+  background: var(--prim-b); /* dark scheme, matching desktop */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+.initiatives-grid p {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+.initiative-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.initiative-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+}
+
+.initiative-card:active {
+  transform: translateY(0);
+}
+
+.initiative-card h3 {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+}
+
+.initiative-card p {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  opacity: 0.8;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Initiative Detail */
+.initiative-header {
+  padding: 2rem 1rem;
+  background: var(--prim-b); /* dark scheme, matching desktop */
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+/* Make H1 blue like desktop */
+#initiative-title {
+  color: var(--blue) !important;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+/* Make H2 subtitle normal weight like desktop */
+#initiative-subtitle {
+  color: var(--prim-a) !important;
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 0.25rem 0;
+}
+
+/* Back button styling */
+.back-button {
+  background: none;
+  border: none;
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  font-size: 1rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.back-button:hover {
+  color: var(--prim-a);
+}
+
+#initiative-title {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 700;
+}
+
+#initiative-subtitle {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
+  opacity: 0.8;
+}
+
+#initiative-date {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  opacity: 0.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.initiative-content {
+  padding: 2rem 1rem;
+  background: var(--prim-b); /* dark scheme, matching desktop */
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+/* Metadata section - match desktop three-column layout */
+.initiative-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.initiative-metadata > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hide empty metadata sections */
+.initiative-metadata > div[style*="display: none"] {
+  display: none !important;
+}
+
+.initiative-metadata .bold-blue {
+  font-weight: 600;
+  color: var(--blue) !important;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.initiative-metadata small {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Links styling to match desktop */
+#initiative-links a {
+  color: var(--blue) !important;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  display: block;
+  margin: 0.25rem 0;
+}
+
+#initiative-links a:hover {
+  text-decoration: underline;
+}
+
+#initiative-text p {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+/* Ensure links are visible on black background */
+#initiative-text a,
+#initiative-text span[style*="color:blue"] {
+  color: var(--blue) !important; /* Use brand blue color for links */
+  text-decoration: underline;
+}
+
+#initiative-text a:hover,
+#initiative-text span[style*="color:blue"]:hover {
+  color: var(--prim-a) !important; /* lighter on hover -- dark scheme */
+}
+
+/* Initiative links styling */
+#initiative-links {
+  margin: 1.5rem 0;
+}
+
+#initiative-links a {
+  display: inline-block;
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  text-decoration: underline;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+#initiative-links a:hover {
+  color: var(--prim-b);
+}
+
+#initiative-partners {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+}
+
+#initiative-partners h4 {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+#initiative-partners p {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  opacity: 0.8;
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+  padding: 0;
+  margin: 0;
+  background: var(--prim-b); /* dark scheme, matching desktop */
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+.gallery-grid p {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+}
+
+.gallery-item {
+  background: #000;
+  border-radius: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.gallery-item .caption {
+  padding: 1rem;
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.gallery-item .credit {
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  opacity: 0.6;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+  background: var(--prim-b); /* dark scheme -- the wordmark svg is white */
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+footer img {
+  width: 200px;
+  max-width: 80%;
+  /* Removed white filter to use original logo colors */
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+  }
+  
+  .content-block {
+    padding: 1.5rem 1rem;
+  }
+  
+  .initiative-card {
+    padding: 1rem;
+  }
+  
+  #initiative-title {
+    font-size: 1.5rem;
+  }
+  
+  .grid-separator {
+    height: 150px;
+  }
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .initiative-card:hover {
+    transform: none;
+  }
+  
+  .gallery-item:hover img {
+    transform: none;
+  }
+  
+  .nav-item:hover,
+  .back-button:hover {
+    opacity: 1;
+  }
+}
+
+/* Clean, minimal styles */
+.crew-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px 0;
+}
+
+
+/* Caption styling */
+.caption {
+  padding: 10px;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  font-size: 0.8rem;
+}
+
+.credit {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Submenu toggle button - removed since we're using the entire nav item as toggle */
+
+/* Submenu toggle active state - removed since we're using the entire nav item as toggle */
+
+/* Make sure nav items are properly aligned */
+.nav-item {
+  display: block;
+  padding: 12px 20px;
+  color: var(--prim-a); /* dark scheme, matching desktop */
+  font-size: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.nav-item:last-child {
+  border-bottom: none;
+}
+
+/* ========================================
+   DARK MODE STYLES - SAVED FOR FUTURE IMPLEMENTATION
+   ========================================
+   
+   To implement dark mode, uncomment the following styles and
+   add a dark mode toggle mechanism:
+   
+   #loader {
+     background: var(--prim-b);
+   }
+   
+   header {
+     background: var(--prim-b);
+   }
+   
+   #netizen-logo {
+     filter: brightness(0) invert(1); /* Make logo white */
+   }
+   
+   main {
+     background: var(--prim-b);
+     color: var(--prim-a); /* Ensure all text is white */
+   }
+   
+   .nav-item {
+     color: var(--prim-a);
+   }
+   
+   .nav-item:hover {
+     background: rgba(255, 255, 255, 0.1);
+     color: var(--prim-a);
+   }
+   
+   /* Sub-navigation styles removed - Initiatives now navigates directly to page */
+   
+   .grid-separator .grid {
+     opacity: 1.0; /* Full opacity for dark mode grids */
+   }
+   
+   footer {
+     background: var(--prim-b);
+     color: var(--prim-a);
+   }
+   
+   footer img {
+     filter: brightness(0) invert(1); /* Make footer logo white */
+   }
+   
+   #initiative-text span[style*="color:blue"] {
+     color: var(--prim-a) !important; /* Force white text for blue links */
+     text-decoration: underline;
+   }
+   
+   #initiative-text span[style*="color:blue"]:hover {
+     color: rgba(255, 255, 255, 0.8) !important;
+   }
+   
+   ======================================== */

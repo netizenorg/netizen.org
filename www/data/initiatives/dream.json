@@ -1,0 +1,164 @@
+{
+  "title": "D.R.E.A.M.",
+  "sub-title": "Data Rules Everything Around Me",
+  "date": "2015<br>2018-2019",
+  "urls": {
+    "website": "https://dream.netizen.org/",
+    "video playlist": "https://www.youtube.com/watch?v=Vz6A8ehxUG4&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp",
+    "blog post": "https://blog.mozilla.org/en/firefox/ethical-technologist-becca-ricks-kicks-off-mozillas-d-r-e-a-m-speaker-series/"
+  },
+  "partners": ["Mozilla", "Make City"],
+  "content": [
+    "Privacy has been pronounced dead; allegedly “free” services cost us troves of personal data; our governments know more about us than we do ourselves. No one actually “Agrees” to these “Conditions”, yet short of abandoning all modern conveniences, resistance seems futile. But fear not! There are loads of projects and people working on ways to take back our digital agency. Data Rules Everything Around Me, or D.R.E.A.M., was a roughly-monthly series devoted to openly discussing these topics. Featured writers, artists, developers and other cultural producers were invited to share their research and perspectives on the data that fuels the systems that run our world.",
+    "While the talks themselves were not recorded to encourage free and open dialogue, the netizen.org team <a href=\"https://www.youtube.com/watch?v=Vz6A8ehxUG4&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp\" target=\"blank\">produced videos</a> with each of the speakers to share key insights and topics discussed with the audience at the pubic event."
+  ],
+  "grid": [
+    {
+      "image": "images/dream/dream1.jpg",
+      "alt": "A hand belonging to the photographer, Kim Kovacik, holds a D.R.E.A.M. event flyer in sharp focus, with a blurred audience seated before a projector screen in a warm, exposed-brick loft space.",
+      "credit": "Photograh by Kim Kovacik"
+    },
+    {
+      "image": "images/dream/dream2.jpg",
+      "alt": "Side view of D.R.E.A.M. attendees seated in cicular rows of chairs, some leaning forward, others relaxed, listening intently in an industrial-style meeting room.",
+      "credit": "Photograph by Kim Kovacik"
+    },
+    {
+      "image": "images/dream/dream3.jpg",
+      "alt": "The speaker, Tara Vancil, in a black tee gestures with painted red nails as she speaks, flanked by two moderators, Jon Satrom and Nick Briz, against a brick wall and speaker setup.",
+      "credit": "Photograph by Kim Kovacik"
+    },
+    {
+      "image": "images/dream/dream7.jpg",
+      "alt": "Audience members including a note-taking woman in a blue jacket and a pensive man with a durag lean in from their chairs during the discussion.",
+      "credit": "Photograph by Kim Kovacik"
+    },
+    {
+      "image": "images/dream/dream9.jpg",
+      "alt": "Close-up of hands of an audience memeber sketching a laptop illustration and jotting bullet-point notes in a notebook, with out-of-focus chairs and attendees behind.",
+      "credit": "Photograph by Kim Kovacik"
+    },
+    {
+      "image": "images/dream/dream12.jpg",
+      "alt": "Wide shot of a packed loft venue: the speaker, Janice Gates, is seated beteen the two moderators, Nick Briz and Jon Satrom, beneath sponsor banners and a projected slide titled ‘How Detroit Residents Built Their Own Internet,’ facing an engaged audience.",
+      "credit": "Photograph by Kim Kovacik"
+    },
+    {
+      "image": "images/dream/becca.jpg",
+      "title": "Recasting Digital Shadows w/ Becca Ricks",
+      "date": "2018.11.29",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=Vz6A8ehxUG4&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=1",
+        "announcement": "https://mailchi.mp/6631283e4591/dream-with-us-this-thursday?e=[UNIQID]"
+      },
+      "content": [
+        "The trails of data we leave online plug us into categories that can shape–and potentially limit–who we think we are. Social platforms and algorithms are exerting unchecked power over our bodies and behavior. But fear not! People like Becca Ricks are creatively exploring how to rectify, obfuscate, embody, and recast our digital shadows."
+      ],
+      "alt": "Becca Ricks being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    },
+    {
+      "image": "images/dream/tara.jpg",
+      "title": "Decentralizing the Web w/ Tara Vancil",
+      "date": "2019.01.31",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=ynbxQGEjpN4&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=3",
+        "announcement": "https://mailchi.mp/e3b4dcd6636d/dream-with-us-this-thursday-1732425?e=[UNIQID]"
+      },
+      "content": [
+        "One of the web’s greatest features is its potential to be extremely decentralized. While possible in theory, in practice this isn’t always the case. Web sites live on servers, and these servers are increasingly being controlled by a handful of digital monopolies.",
+        "But fear not! People like Tara Vancil are working to democratize and decentralize the Web. She’s the co-founder of Blue Link Labs, the team behind Beaker, a peer-to-peer Web browser, and Hashbase, a decentralized cloud service for hosting files. She discusses contemporary cloud empires and how we can reconfigure and reimagine our digital environments with new technologies based on the foundational ideas of the Internet."
+      ],
+      "alt": "Tara Vanicl being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    },
+    {
+      "image": "images/dream/melody.jpg",
+      "title": "Zombie Data: Stories told by Discarded Devices w/ Melody Haase",
+      "date": "2019.02.28",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=9H8xhUTSHDg&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=4",
+        "announcement": "https://mailchi.mp/88ce98ca60c1/dream-with-us-this-thursday-1806733?e=[UNIQID]"
+      },
+      "content": [
+        "Our cellphones can tell a lot about us–and they never forget. The data we generate, from texts to pictures to web searches, create a detailed picture of who we are, long after we upgrade devices. Our e-waste is a treasure trove of intimate stories accessible to those that try to access them.",
+        "But fear not! Melody Haase is a project manager at 4Discovery as well as a professional creeper who specializes in internet-based investigative and intelligence research and analysis. Using her skills for good, Melody provides educational support for investigators and clients on topics related to international terrorism, intellectual property theft, and financial & securities schemes and crimes."
+      ],
+      "alt": "Melody Haase being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    },
+    {
+      "image": "images/dream/brannon.jpg",
+      "title": "Exploring the Invisible Commons with Brannon Dorsey",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=bjt9_oQC9jM&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=6"
+      },
+      "content": [
+        "The electromagnetic spectrum is where we communicate. It's radio. It's wifi. It's cellular. While regulation is crucial to making it all work, priority is being given to powerful companies over public use. The small areas available for experimentation and play are being squeezed. It's hard to fight for a commons that is invisible.",
+        "But fear not! People like Brannon Dorsey are scanning the frequencies and digging into the technologies we often take for granted. As a researcher, hacker, and artist, Brannon creatively misuses technology to probe assumptions and sniff out the bits and bytes floating around us."
+      ],
+      "alt": "Brannon Dorsey being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    },
+    {
+      "image": "images/dream/margaret.jpg",
+      "title": "Debugging Bias in AI w/ Margaret Mitchell",
+      "date": "2019.04.25",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=zl9y8tg7MA0&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=5",
+        "announcement": "https://mailchi.mp/10ddd01c0d82/dream-with-us-this-thursday-1873533?e=[UNIQID]"
+      },
+      "content": [
+        "Artificial intelligence is being used to adjust our credit and price our insurance. \"Predictive\" algorithmic policing is amplifying existing human bias on our streets. Many machine learning experts can’t explain why their software acts the way it does.",
+        "But fear not! People like Margaret Mitchell are working on ways to evolve artificial intelligence towards positive goals. Margaret leads the Ethical Artificial Intelligence team in Google's Research & Machine Intelligence group. Her work combines computer vision, natural language processing, social media, many statistical methods, and insights from cognitive science."
+      ],
+      "alt": "Margaret Mitchell being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    },
+    {
+      "image": "images/dream/janice.jpg",
+      "title": "How Detroit Residents Built Their Own Internet w/ Janice Gates",
+      "date": "2019.05.30",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=vSrU3kIMfIU&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=7",
+        "announcement": "https://mailchi.mp/9fd51a931abe/dream-with-us-this-thursday-1893181?e=[UNIQID]"
+      },
+      "content": [
+        "With mega-mergers and fewer options for Internet access, we're being forced into paying higher prices for slower speeds. Internet service providers can now legally prioritize their own services, filter web-sites, and spy on our traffic.",
+        "But fear not! People like Janice Gates are working with communities to build their own networks and create their own ISPs."
+      ],
+      "alt": "Janice Gates being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    },
+    {
+      "image": "images/dream/harlo.jpg",
+      "title": "Journalism, Activism, & the Surveillance State w/ Harlo Holmes",
+      "date": "2018.12.13",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=QBWkl9sBrxc&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=2",
+        "announcement": "https://mailchi.mp/6656dc4aaa49/dream-with-us-this-thursday-1723897?e=[UNIQID]"
+      },
+      "content": [
+        "There are a lot of apps and services that provide us with security and privacy, like some messaging apps, but there's a lot still to do.",
+        "Fully secure and encrypted messaging started as something important to activists, dissidents, and journalists. But in a time when big companies are siphoning off tons of our data, it has amazingly also become standard for popular consumer messaging apps like WhatsApp, Skype, and Messenger. Harlo Holmes, Director of Newsroom Digital Security at Freedom of the Press Foundation, talks about how this radical idea got smuggled into common usage for everyone's benefit."
+      ],
+      "alt": "Harlo Holmes being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    },
+    {
+      "image": "images/dream/ingrid.jpg",
+      "title": "Seeing the Internet w/ Ingrid Burrington",
+      "date": "2015.11.04",
+      "urls": {
+        "video": "https://www.youtube.com/watch?v=E5f7Jikg7ZU&list=PLnRGhgZaGeBssPV4cFfvbgk50lgc-9dUp&index=8",
+        "announcement": "https://us12.campaign-archive.com/?e=[UNIQID]&u=6eee3b6fabea3bad38a2463ab&id=3f4ebc6866"
+      },
+      "content": [
+        "“We notice infrastructure when it stops working–and something about the Internet in recent years has not been working–in ways that are really hard to understand and sometimes really hard to identify. I think the more we take time to actually look at all these individuals pieces, from cable to code, [the more] we have the opportunity to challenge and change the way it’s working.”",
+        "Ingrid Burrington is an artist and writer based in New York dedicated to combating mainstream [mis]understandings of networked infrastructure. She’s written for and worked with institutions along these lines including Eyebeam, eyeo, Data and Society Research Institute, Deep Lab, the Atlantic and the Nation among others. She’ll be sharing with us some of the teaching tools and perspectives she’s developed for thinking about how to integrate network infrastructure into the digital literacy dialogue and how we consider political questions when talking about things like fiber optic cables, cell towers, roads and bridges. Check out her Crash Course in Digital Literacy"
+      ],
+      "alt": "Ingrid Burrington being interviewed against a white background",
+      "credit": "Videographer Jon Satrom"
+    }
+  ]
+}

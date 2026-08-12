@@ -1,0 +1,180 @@
+:root {
+  --prim-a: #fff;
+  --prim-b: #000;
+  --blue: #0000ff;
+  --hs: 7.5rem; /* header height size */
+  --r: 5vw; /* radius for borders */
+  --tt: 0.8s; /* transition time */
+
+  /* word‐spacing: 20px → 1.25rem (assuming 16px base) */
+  /* --ws: 0.25rem; */
+
+  /* font sizes */
+  --fs-title: 2.5rem;    /* 40px */
+  --lh-title: 2.25rem;   /* 36px */
+
+  --fs-heading: 1.49rem;   /* 32px */
+  --lh-heading: 1.27rem; /* 30px */
+  --ls-heading: 0.002rem;
+
+  --fs-subtitle: 1.19rem;  /* 24px */
+  --lh-subtitle: 0.74rem; /* 26px */
+  --ls-subtitle: 0.003rem;
+
+  --fs-body-web: 1.22rem; /* 21px */
+  --lh-body-web: 1.575rem;    /* 120% */
+  --ls-body-web: 0.005rem;
+  --ws-body-web: 0rem;
+
+  --fs-body-print: 0.8125rem; /* 13px */
+  --lh-body-print: 1.125rem;  /* 18px */
+
+  /* tertiary fluid size between 12–17px */
+  /* --fs-tertiary: clamp(0.75rem, 1vw, 1.0625rem);
+  --lh-tertiary: calc(clamp(0.75rem, 1vw, 1.0625rem) * 1.2); */
+  --fs-tertiary: 0.83rem;
+  --lh-tertiary: 1.0625rem;
+
+  /* NOTE: assuming ascii-splash is set to 16:9 */
+  --splash-height: calc(100vw * 9/16 - var(--hs));
+
+  --out-cubic: cubic-bezier(0.215,0.61,0.355,1);
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*   Refer to the Typographic Hierarchy section in netizen.org brand book    */
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--blue);
+  color: var(--prim-a);
+}
+
+/* firefox */
+::-moz-selection {
+  background: var(--blue);
+  color: var(--prim-a);
+}
+
+body {
+  margin: 0;
+  font-family: 'Zen Maru Gothic', serif;
+  /* font-family: 'Fira Mono', monospace; */
+}
+
+/* Main title (e.g. first-level headings) */
+h1 {
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+}
+
+/* Subtitle (e.g. second-level headings) */
+h2 {
+  font-size: var(--fs-heading);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--ls-heading);
+}
+
+/* Section headings (e.g. third-level) */
+h3 {
+  font-size: var(--fs-subtitle);
+  line-height: var(--lh-subtitle);
+  letter-spacing: var(--ls-subtitle);
+  margin-top: 0;
+}
+
+h4 {
+  font-size: var(--fs-body-web);
+  line-height: var(--lh-body-web);
+  word-spacing: var(--ws-body-web);
+  letter-spacing: var(--ls-body-web);
+  margin-top: 0;
+}
+
+/* Body text on screen */
+span, p {
+  font-size: var(--fs-body-web);
+  line-height: var(--lh-body-web);
+  word-spacing: var(--ws-body-web);
+  letter-spacing: var(--ls-body-web);
+  margin: 0;
+}
+
+/* Tertiary text (e.g. captions, footnotes) */
+small {
+  font-family: "Fira Mono", monospace;
+  font-size: var(--fs-tertiary);
+  line-height: var(--lh-tertiary);
+}
+
+a {
+  color: var(--blue);
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Support-page actions (shared: both sites render support copy on the dark
+   scheme). The stripe-buy-button renders its own UI; .support-cta matches
+   the site's pill language for the netnet link beside it. */
+.support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.support-cta {
+  display: inline-block;
+  padding: 0.4em 1.3em 0.5em 1.3em;
+  border: 1px solid var(--prim-a);
+  border-radius: 2em;
+  color: var(--prim-a);
+  text-decoration: none;
+}
+
+.support-cta:hover {
+  background: var(--prim-a);
+  color: var(--prim-b);
+}
+
+/* Donation is the primary action: filled where the netnet link is outline.
+   A native pill straight to the Stripe Payment Link -- the checkout is
+   still entirely Stripe-hosted, but the button is ours and the page loads
+   no third-party script for it. */
+.support-donate {
+  background: var(--prim-a);
+  color: var(--prim-b);
+}
+
+.support-donate:hover {
+  background: transparent;
+  color: var(--prim-a);
+}
+
+blockquote {
+  font-style: italic;
+  margin: 0 0 0 1rem;
+}
+
+blockquote:before {
+  content: "❝";
+  margin-left: -1rem;
+  padding-right: 0.5rem;
+  font-size: 2rem;
+}
+
+/* Body text for print */
+@media print {
+  p {
+    font-size: var(--fs-body-print);
+    line-height: var(--lh-body-print);
+    /* word-spacing: var(--ws); */
+  }
+}

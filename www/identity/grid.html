@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<style>
+  /* netnet default bg */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    --size: 50px;
+    margin: 0;
+    background-image: linear-gradient(#eee 2px, transparent 1px),
+      linear-gradient(90deg, #eee 2px, transparent 1px);
+    background-size: var(--size) var(--size);
+    position: relative;
+    z-index: 1;
+    height: 200vh;
+  }
+  
+  .grid {
+    position: relative;
+    width: 1000px;
+    height: 600px;
+    margin: 50px;
+    background: #eee;
+  }
+
+  .grid div {
+    position: absolute;
+    padding: 10px;
+  }
+  
+
+</style>
+
+<select id='esel'></select>
+
+<div class="grid">
+</div>
+
+<script src="https://cdn.jsdelivr.net/gh/netizenorg/netnet-standard-library/build/nn.min.js"></script>
+<script>
+/* global nn  */
+  
+  const easingOptions = [
+    'OutCubic', 'InOutQuart', 'OutQuint', 'OutBack', 'InOutBack', 'OutBounce'
+  ]
+  
+  let currentEase = 'OutCubic'
+  nn.get('#esel')
+    .set('options', easingOptions)
+    .on('change', () => { currentEase = nn.get('#esel').value })
+
+    
+  window.colors = [
+    ['#ff9999', '#ff99cc', '#ff99ff', '#cc99ff', '#9999ff', '#99ccff', '#99ffff', '#99ffcc', '#99ff99', '#ccff99', '#ffff99', '#ffcc99'],
+    ['#993333', '#993366', '#993399', '#663399', '#333399', '#336699', '#339999', '#339966', '#339933', '#669933', '#999933', '#996633']
+  ]
+  
+  const totalCols = 6
+  const totalRows = 4
+  const placed = []
+
+  const grid = [
+    { x: 0, y: 0, w: 1, h: 1 },
+    { x: 1, y: 0, w: 2, h: 1 },
+    
+    { x: 3, y: 0, w: 3, h: 2 },
+    { x: 3, y: 2, w: 3, h: 1 },
+    
+    { x: 0, y: 1, w: 2, h: 2 },
+    { x: 2, y: 1, w: 1, h: 2 },
+    
+    { x: 0, y: 3, w: 2, h: 1 },
+    { x: 2, y: 3, w: 4, h: 1 }
+  ]
+  
+  const grid2 = [
+    { x: 0, y: 0, w: 1, h: 2 },
+    { x: 1, y: 0, w: 2, h: 2 },
+    
+    { x: 3, y: 0, w: 3, h: 1 },
+    { x: 3, y: 1, w: 3, h: 2 },
+    
+    { x: 0, y: 2, w: 2, h: 1 },
+    { x: 2, y: 2, w: 1, h: 1 },
+    
+    { x: 0, y: 3, w: 4, h: 1 },
+    { x: 4, y: 3, w: 2, h: 1 }
+  ]
+  
+  const isAdjacent = (a, b) => {
+    const horiz = (a.x + a.w === b.x || b.x + b.w === a.x) &&
+      (a.y < b.y + b.h && b.y < a.y + a.h)
+    const vert = (a.y + a.h === b.y || b.y + b.h === a.y) &&
+      (a.x < b.x + b.w && b.x < a.x + a.w)
+    return horiz || vert
+  }
+
+  const randomColorIndexes = () => {
+    const max = window.colors[0].length
+    const idxs = [...Array(max).keys()]
+    nn.shuffle(idxs)
+    return [idxs[0], idxs[1]]
+  }
+
+  const pickPairIndices = (cellA, cellB, placed) => {
+    const L = window.colors[0].length
+    const all = [...Array(L).keys()]
+
+    // gather forbidden indices from neighbours
+    const forbid0 = placed
+      .filter(p => p.palette === 0 && isAdjacent(p.cell, cellA))
+      .map(p => p.index)
+    const forbid1 = placed
+      .filter(p => p.palette === 1 && isAdjacent(p.cell, cellB))
+      .map(p => p.index)
+
+    // allowed sets
+    const allow0 = all.filter(i => !forbid0.includes(i))
+    const allow1 = all.filter(i => !forbid1.includes(i))
+
+    // build all (i,j) with i≠j
+    const pairs = []
+    allow0.forEach(i => {
+      allow1.forEach(j => {
+        if (i !== j) pairs.push([i, j])
+      })
+    })
+
+    if (pairs.length > 0) {
+      return pairs[Math.floor(Math.random() * pairs.length)]
+    }
+    // fallback to totally random distinct pair
+    return randomColorIndexes()
+  }
+
+  function createGridBlock (cell, color) {
+    const leftPct   = cell.x  / totalCols * 100
+    const topPct    = cell.y  / totalRows * 100
+    const widthPct  = cell.w  / totalCols * 100
+    const heightPct = cell.h  / totalRows * 100
+
+    nn.create('div')
+      .css({
+        left:   `${leftPct}%`,
+        top:    `${topPct}%`,
+        width:  `${widthPct}%`,
+        height: `${heightPct}%`,
+        background: color
+      })
+      .addTo('.grid')
+  }
+  
+  for (let i = 0; i < grid.length; i += 2) {
+    const cellA = grid[i]
+    const cellB = grid[i + 1]
+
+    const [i1, i2] = pickPairIndices(cellA, cellB, placed)
+    const c1 = window.colors[0][i1]
+    const c2 = window.colors[1][i2]
+
+    // remember who we placed where
+    placed.push({ cell: cellA, palette: 0, index: i1 })
+    placed.push({ cell: cellB, palette: 1, index: i2 })
+
+    createGridBlock(cellA, c1)
+    createGridBlock(cellB, c2)
+  }
+  
+  
+  let currentGrid = grid
+  function animateToGrid () {
+    const newGrid = currentGrid === grid ? grid2 : grid
+    
+    const blocks = nn.getAll('.grid div')
+    const start = performance.now()
+    // capture each block’s initial %-values
+    const initial = blocks.map(block => ({
+      left:   parseFloat(block.style.left),
+      top:    parseFloat(block.style.top),
+      width:  parseFloat(block.style.width),
+      height: parseFloat(block.style.height)
+    }))
+    // compute target %-values
+    const targets = newGrid.map(cell => ({
+      left:   cell.x / totalCols * 100,
+      top:    cell.y / totalRows * 100,
+      width:  cell.w / totalCols * 100,
+      height: cell.h / totalRows * 100
+    }))
+    const duration = 800
+    const easeFn = t => nn.ease(currentEase, t)
+
+    function update (now) {
+      const elapsed = now - start
+      const t = Math.min(1, elapsed / duration)
+      const eased = easeFn(t)
+
+      blocks.forEach((block, i) => {
+        const init   = initial[i]
+        const target = targets[i]
+        // interpolate and apply
+        block.css({
+          left:   `${nn.lerp(init.left,   target.left,   eased)}%`,
+          top:    `${nn.lerp(init.top,    target.top,    eased)}%`,
+          width:  `${nn.lerp(init.width,  target.width,  eased)}%`,
+          height: `${nn.lerp(init.height, target.height, eased)}%`
+        })
+      })
+
+      if (t < 1) {
+        requestAnimationFrame(update)
+      }
+    }
+
+    requestAnimationFrame(update)
+    currentGrid = newGrid
+  }
+
+  nn.get('.grid').on('click', () => animateToGrid())
+</script>

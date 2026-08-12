@@ -1,0 +1,750 @@
+
+body {
+  margin: 0;
+  background: var(--prim-a);
+
+  overflow-x: hidden;
+
+  font-family: 'Zen Maru Gothic', serif;
+  background-color: var(--prim-b);
+}
+
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+
+.prim-nav,
+.sec-nav {
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  display: inline-block;
+  padding: 0.25em 1.3em 0.35em 1.3em;
+  border: 1px solid transparent;
+  border-radius: 2em;
+  margin: 0 0.15rem;
+  min-width: 8rem;
+}
+
+.prim-nav {
+  border: 1px solid var(--prim-a);
+  background-color: var(--prim-a);
+  color: var(--prim-b);
+}
+
+.prim-nav:hover,
+.prim-nav.selected {
+  border: 1px solid var(--prim-b);
+  background-color: var(--prim-b);
+  color: var(--prim-a);
+}
+
+.sec-nav {
+  border: 1px solid var(--prim-b);
+  background-color: var(--prim-b);
+  color: var(--prim-a);
+}
+
+.sec-nav:hover,
+.sec-nav.selected {
+  border: 1.25px solid var(--prim-b);
+  background-color: var(--prim-a);
+  color: var(--prim-b);
+}
+
+/* Negative/posterized nav treatment.
+   Scoped to `header nav` so it can't catch the bend panel's buttons, which
+   share .sec-nav. It only needs to cover the splash state: NetizenNav swaps
+   these spans to .prim-nav on interior pages (where the splash is hidden and
+   the body is white), so the filter never runs over flat white.
+   backdrop-filter inverts + posterizes only what's *behind* the pill, leaving
+   the label to draw normally on top; the veil then holds contrast, and the
+   halo text-shadow keeps the glyphs alive whichever way the plate lands. */
+header nav .sec-nav {
+  border-color: transparent;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: var(--prim-a);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  /* blur before the posterize: without it, ascii trails drifting under the nav
+     stay as discrete high-contrast marks that saturate() then amplifies, and
+     they read as speckle sitting ON the pill rather than behind it. Blurring
+     first dissolves them into diffuse colour, so posterize lands on soft
+     regions. 1.5-2px is enough; more just spends the effect. */
+  -webkit-backdrop-filter: invert(1) blur(2px) url(#post4) saturate(1.7);
+  backdrop-filter: invert(1) blur(2px) url(#post4) saturate(1.7);
+  transition: background-color 0.22s ease, color 0.22s ease, text-shadow 0.22s ease;
+}
+
+header nav .sec-nav:hover {
+  /* text flips to black, so the veil that helps it is white -- and the halo
+     flips with it, which is what keeps contrast no matter the plate's tone */
+  border-color: transparent;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: var(--prim-b);
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.85);
+}
+
+.cap {
+  text-transform: capitalize;
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*.O                       logo + header + menu                          *.O */
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+
+#loader {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--prim-b);
+  opacity: 1;
+  transition: opacity var(--tt) var(--out-cubic);
+}
+
+#loader > img {
+  max-width: 60%;
+}
+
+#netizen-logo {
+  position: fixed;
+  top: 15px;
+  left: 23px;
+  z-index: 110;
+  width: 155px;
+  cursor: pointer;
+  /* Solid white, no blend. mix-blend-mode: difference made the mark invert
+     against the splash, which read as washed-out and semi-transparent rather
+     than as a logo sitting on the page. */
+}
+
+@media (max-width: 700px) {
+  #netizen-logo {
+    width: 18vw;
+  }
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3.5vh;
+
+  height: var(--hs);
+  max-height: 120px;
+
+  transition: background 1s var(--out-cubic);
+}
+
+header .burger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: none;
+}
+
+#splash-canvas {
+  position: fixed;
+  display: block;
+  height: auto;
+  transition: opacity 1s var(--out-cubic);
+}
+
+/* Background image attribution, hugging the bottom right of the splash.
+   Fira Mono per the brand book's tertiary role (specs / descriptive text).
+   Sits above the splash but below the header, so it can never overlap the nav. */
+#splash-credit {
+  position: fixed;
+  right: 18px;
+  z-index: 90;
+  /* `top` is set in desktop.js from the splash canvas height -- CSS can't read
+     it, and the canvas box is fixed rather than in flow */
+  font-family: 'Fira Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--prim-a);
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  transition: opacity 0.35s var(--out-cubic);
+}
+
+#splash-credit[hidden] { display: none; }
+
+#splash-credit a,
+#splash-credit span {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+  padding-bottom: 1px;
+}
+
+#splash-credit a:hover {
+  border-bottom-color: var(--prim-a);
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*.O                    content (case studies) elements                  *.O */
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+
+#content {
+  position: relative;
+  top: var(--hs);
+  left: 100vw;
+
+  width: 100vw;
+  height: var(--splash-height);
+  transition: all var(--tt) var(--out-cubic);
+
+  background: var(--prim-b);
+}
+
+#content > div {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: calc(100% / 3);
+  min-height: 100%;
+  height: auto;
+  color: var(--prim-a);
+  padding: var(--lh-title);
+}
+
+#content > div > .cell-content {
+  opacity: 0;
+  transition: opacity 0.4s var(--out-cubic);
+}
+
+#content > div > .cell-content.visible {
+  opacity: 1;
+}
+
+#content > div > .cell-content > .content-copy {
+  max-width: 42rem;
+}
+
+#content > div > .cell-content > .content-copy > small {
+  display: inline-block;
+  margin-top: 100px;
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*                                              initiatives navigation/menu  */
+
+#content > div.sub-nav {
+  padding-right: 0px;
+}
+
+#content > div.sub-nav > .sub-nav-item {
+  opacity: 0;
+  color: var(--prim-b);
+  font-weight: 600;
+  display: block;
+  margin: 0;
+
+  padding: 0.2em 0 0.2em 0.7em;
+  border-radius: 2em 0 0 2em;
+
+  transition: opacity 0.4s var(--out-cubic);
+}
+
+
+#content > div.sub-nav > .sub-nav-item:hover {
+  background: var(--blue);
+  color: var(--prim-a);
+  cursor: pointer;;
+}
+
+#content > div.sub-nav > .sub-nav-item.selected {
+  background: var(--prim-b);
+  color: var(--prim-a);;
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*                                                    initatives case-study  */
+
+
+#content .case-study {
+  display: flex;
+  alignItems: self-start;
+}
+
+@media (max-width: 1486px) {
+  #content .case-study {
+    display: block;
+  }
+}
+
+#content .case-study > div:nth-child(1) {
+  max-width: 41rem;
+}
+
+#content .case-study > div:nth-child(2) {
+  margin-top: 0;
+  margin-left: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+.case-study > div:nth-child(2) > small {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1486px) {
+  #content .case-study > div:nth-child(2) {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-left: 0;
+    max-width: 41rem;
+  }
+
+  .case-study > div:nth-child(2) > small {
+    margin: 0 0.5rem;
+  }
+}
+
+#content .case-study h2 {
+  margin: 3px 0 1rem 0;
+}
+
+#content .case-study .bold-blue {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+#content .case-study p {
+  margin: 1rem 0;
+}
+
+.case-study-thumb-title {
+  position: absolute;
+  z-index: 10;
+  padding: var(--lh-title);
+  margin: 0;
+  transition: opacity var(--tt) var(--out-cubic);
+  line-height: 1.75rem;
+  max-width: 35rem;
+}
+
+.case-study-thumb-caption {
+  position: absolute;
+  bottom: 0;
+  padding: 0.6rem;
+  margin: 1rem;
+  background: var(--prim-b);
+  color: var(--prim-a);
+  font-family: "Fira Mono", monospace;
+  font-size: var(--fs-tertiary);
+  line-height: var(--lh-tertiary);
+  word-spacing: var(--ws);
+  opacity: 0;
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*                                               case-study detail (pop up)  */
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.case-study-detail {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 200;
+
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+
+  padding: var(--lh-title);
+  opacity: 0;
+  transition: opacity var(--tt) var(--out-cubic);
+}
+
+.case-study-detail img {
+  width: 100%;
+}
+
+.case-study-detail .title-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.case-study-detail .close {
+  user-select: none;
+  cursor: pointer;
+  font-size: var(--fs-tertiary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  border: 0.1rem solid var(--prim-b);
+  border-radius: var(--r);
+  padding: 0 0.7rem 0.1rem 0.7rem;
+  height: 1.7rem;
+}
+
+.case-study-detail .close:hover {
+  color: var(--prim-a);
+  background: var(--prim-b);
+}
+
+.case-study-detail .close img {
+  height: var(--fs-tertiary);
+  margin: 0.1rem 0 0 0.5rem;
+}
+
+.case-study-detail .featured-image {
+  position: relative;
+}
+
+.case-study-detail .back-next-row {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+}
+
+.case-study-detail .back-next-row img {
+  width: 50px;
+  background: var(--prim-b);
+  padding: 15px 17px;
+}
+
+.case-study-detail .back-next-row img:hover {
+  background: var(--blue);
+  cursor: pointer;
+}
+
+/* .case-study-detail .info-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.case-study-detail .content {
+  max-width: 42rem;
+  margin-top: 4rem;
+}
+
+.case-study-detail .content p {
+  margin: 0 0 1rem 0;
+} */
+
+.case-study-detail .content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.case-study-detail .content > div:nth-child(1) {
+  margin-left: 28%;
+  max-width: 42rem;
+  margin-bottom: 3rem;
+}
+
+.case-study-detail .content > div:nth-child(1) p {
+  margin-bottom: 1rem;
+}
+
+.case-study-detail .content > div:nth-child(2) {
+  max-width: 300px;
+  margin-top: 1rem;
+}
+
+.case-study-detail .content > div:nth-child(2) > div {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1486px) {
+  .case-study-detail .content {
+    flex-direction: column;
+  }
+
+  .case-study-detail .content > div:nth-child(2) {
+    margin-left: 28%;
+  }
+}
+
+.case-study-detail .bold-blue {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*.O                               the grid                              *.O */
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+
+
+.grid {
+  position: relative;
+  top: var(--hs);
+  width: 100vw;
+  height: calc(100vw * 0.75);
+  background: var(--prim-b);
+}
+
+.grid > div {
+  position: absolute;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: all 0.7s var(--out-cubic);
+}
+
+/* Feature video sits first, in home-grid block 2, which is near-square --
+   the iframe holds 16:9 and centres vertically, so the block's own colour
+   frames it top and bottom. Colour-blocking, not letterbox bars. */
+.feature-video {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.feature-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  display: block;
+}
+
+.grid > div > img {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity var(--tt) var(--out-cubic);
+  cursor: pointer;
+}
+
+.grid > div > img[name="clean"] {
+  opacity: 0;
+}
+
+.grid > div:hover > img[name="clean"] {
+  opacity: 1
+}
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*.O                                bend panel                           *.O */
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+
+.bend-panel {
+  display: none; /* hide to start */
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--tt) var(--out-cubic);
+}
+
+.bend-panel .options {
+  /* height: 25%; */
+  background: var(--prim-a);
+  padding: 1rem;
+}
+
+.bend-panel .options .row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.bend-panel .options button {
+  margin-left: 0 !important;
+}
+
+.bend-panel .options .label {
+  margin: 0 1rem;
+}
+
+.bend-panel #editor {
+  /* height: 75%; */
+}
+
+#cm-complete-0 {
+  z-index: 201;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  cursor: pointer;
+}
+
+/* hide the real checkbox */
+.toggle-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* the “track” */
+.toggle-switch .slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+  border-radius: 14px;
+  transition: background 0.2s;
+}
+
+/* the “knob” */
+.toggle-switch .slider::before {
+  content: "";
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  left: 2px;
+  top: 2px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+/* checked state */
+.toggle-switch input:checked + .slider {
+  background: var(--blue);
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(22px);
+}
+
+/* reset */
+.bend-panel input[type="range"] {
+  -webkit-appearance: none;
+  /* width: 100%; */
+  background: transparent;
+  cursor: pointer;
+}
+.bend-panel input[type="range"]:focus {
+  outline: none;
+}
+
+/* WebKit track & thumb */
+.bend-panel input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #ccc;
+  border-radius: 3px;
+}
+.bend-panel input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--blue);
+  border-radius: 50%;
+  margin-top: -5px; /* vertically center thumb */
+  transition: background 0.2s, transform 0.2s;
+}
+.bend-panel input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Firefox track & thumb */
+.bend-panel input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: #ccc;
+  border-radius: 3px;
+}
+.bend-panel input[type="range"]::-moz-range-progress {
+  height: 6px;
+  background: var(--blue);
+  border-radius: 3px;
+}
+.bend-panel input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--blue);
+  border: none;
+  border-radius: 50%;
+  transition: background 0.2s, transform 0.2s;
+}
+.bend-panel input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* IE/Edge */
+.bend-panel input[type="range"]::-ms-track {
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.bend-panel input[type="range"]::-ms-fill-lower {
+  background: #ccc;
+  border-radius: 3px;
+}
+.bend-panel input[type="range"]::-ms-fill-upper {
+  background: #ccc;
+  border-radius: 3px;
+}
+.bend-panel input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--blue);
+  border-radius: 50%;
+  margin-top: 0; /* Edge centers thumb automatically */
+  transition: background 0.2s, transform 0.2s;
+}
+.bend-panel input[type="range"]::-ms-thumb:hover {
+  transform: scale(1.1);
+}
+.bend-panel input[type="range"]:focus::-ms-fill-lower,
+.bend-panel input[type="range"]:focus::-ms-fill-upper {
+  background: var(--blue);
+}
+
+
+
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+/*.O                                  footer                             *.O */
+/*.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O *.O */
+
+footer {
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  top: var(--hs);
+
+  width: 100vw;
+  padding: 1em 2em;
+  height: 150px;
+
+  color: var(--prim-a);
+  background-color: var(--prim-b);
+}
+
+footer img[src="images/word-mark-tag-line-white.svg"] {
+  width: 186px;
+}
+
+.wordmark {
+  font-size: 2em;
+}
+
+.cm-s-netizen {
+  font-size: 0.1rem !important;
+}

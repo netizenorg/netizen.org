@@ -1,0 +1,41 @@
+{
+  "initiatives": [
+    "netnet.json",
+    "bias-out-of-the-box.json",
+    "browserfest.json",
+    "dream.json",
+    "internet-walking-tour.json",
+    "artware-incubator.json"
+  ],
+  "splashImages": [
+    { "src": "images/home/home-patchbay-hydra.jpg", "initiative": "artware-incubator" },
+    { "src": "images/home/IMG_1510a.jpg", "initiative": "netnet" },
+    { "src": "images/home/IMG_1512.jpg", "initiative": "netnet" },
+    { "src": "images/home/home-glitch-scope.jpg", "initiative": "artware-incubator" },
+    { "src": "images/home/IMG_1514.jpg", "initiative": "netnet" },
+    { "src": "images/home/WA106458-2026-07-10.jpg", "label": "Nø School Artware Performance", "href": "#initiatives" },
+    { "src": "images/home/netnet-intro-poster.jpg" },
+    { "src": "images/home/dream1.jpg", "initiative": "dream" },
+    { "src": "images/home/dream9.jpg", "initiative": "dream" },
+    { "src": "images/home/netnet2.jpg", "initiative": "netnet" },
+    { "src": "images/home/netnet4.jpg", "initiative": "netnet" },
+    { "src": "images/home/netwalkingtour3.jpg", "initiative": "internet-walking-tour" }
+  ],
+  "featuredOnHome": ["netnet", "dream", "internet-walking-tour"],
+  "featureVideo": { "youtubeId": "wtsDvFxQx-A", "title": "Introducing netnet.studio" },
+  "newsletterUrl": "https://buttondown.com/netizen.org",
+  "copy": {
+    "about": {
+      "main": "<h1>We are Netizens</h1><p>netizen.org propels curious citizens of the ’net beyond <i>problematic defaults</i> toward a more creative, playful, and equitable digital world. <b style='font-style: italic;'>We are a collective of artists, educators, and technologists genuinely excited about human agency online.</b> Through developing and organizing free and open-source tools, educational resources, workshops, and experimental projects, we cultivate situations for understanding the technologies shaping contemporary life by making wild stuff with them.</p>",
+      "sub": "We're a 501(c)(3) organization co-run by the folks in the image below, Nick Briz, SHAWNÉ MICHAELAIN HOLLOWAY, and jon.satrom with support from many others. Ping us at <a href=\"mailto:hi@netizen.org\" style=\"color: var(--prim-a)\">h<i></i>i@net<span></span>izen.org</a>."
+    },
+    "initiatives": {
+      "main": "<h1>Programming for Internet Citizens</h1> <p>At netizen.org, our goal is to transform “users” into “netizens” who are critically engaged with the digital technologies that make up our networked environment. While the projects featured here vary in their format, from interactive online platforms to participatory in-person events, they all share a commitment to this central mission: empowering individuals to understand, question, and creatively shape the digital world.</p>",
+      "sub": "The term \"<a href=\"https://johndecember.com/cmc/mag/1996/sep/callnet.html\" target=\"_blank\" style=\"color: var(--prim-a)\">netizen</a>\" or \"Internet citizen\" was coined in the 90s when the Internet, thanks in large part to the Web, started to go mainstream. Netizen's were those who didn't just use the net, but took an active role in creating it; stewarding the digital commons and protecting it's core values of open access, net neutrality, privacy and free speech."
+    },
+    "support": {
+      "main": "<h1>We make to think</h1><p style='margin-bottom:1.5em'>Netizen.org supports artists, educators, students, and anyone using the Internet as a space for making, learning, experimentation, and expression.</p><p style='margin-bottom:1.5em'>The web is a public medium we can shape ourselves. At a moment when more of our digital lives are automated, optimized, and generated for us, we think human-made spaces on the internet matter more than ever.</p><p style='margin-bottom:1.5em'>We develop free and open-source tools, educational resources, workshops, and experimental projects that help people understand the technologies shaping contemporary life by making with them.</p><p style='margin-bottom:1.5em'>Your support gives us time to do this work. Donations help sustain netizen.org and compensate the artists, educators, developers, and collaborators who make it possible. We are building an organization where creative labor is valued, people are paid equitably, and experimental work has the time it needs to develop.</p><div class='support-actions'><a class='support-cta support-donate' href='https://buy.stripe.com/fZu6oIf4NeZwejU7EG8IU00' target='_blank' rel='noopener'>♥ Donate</a><a class='support-cta' href='https://netnet.studio/docs/' target='_blank' rel='noopener'>♥ Support netnet.studio</a></div>",
+      "sub": "Netizen NFP is a Section 501(c) (3) charitable organization, EIN: 81-2445948. All donations are deemed tax-deductible absent any limitations on deductibility applicable to a particular taxpayer. No goods or services were provided in exchange for your contribution."
+    }
+  }
+}

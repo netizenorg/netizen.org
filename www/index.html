@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>netizen.org</title>
+    <!-- bent on bending tech -->
+    <meta name="author" content="netizen.org">
+    <meta name="description" content="netizen.org propels curious citizens of the ‘net beyond problematic defaults towards a more creative, playful, and equitable digital world. We are a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through public lectures, workshops, digital tools, online events and festivals.">
+
+    <meta property="og:title" content="netizen.org">
+    <meta property="og:url" content="http://netizen.org">
+    <meta property="og:image" content="http://netizen.org/images/logo-bg.png">
+    <meta property="og:description" content="netizen.org propels curious citizens of the ‘net beyond problematic defaults towards a more creative, playful, and equitable digital world. We are a collective of new media artists, educators and activists on a mission to reestablish human agency in the information age through public lectures, workshops, digital tools, online events and festivals.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="netizen.org">
+    <meta name="twitter:site" content="@netizenorg">
+
+    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/brand.css">
+    <link rel="stylesheet" href="css/desktop.css">
+  </head>
+  <body>
+
+    <!-- posterize filter for the nav's backdrop treatment (see css/desktop.css,
+         "header nav .sec-nav") -- backdrop-filter can't quantize colour on its
+         own, so it references this -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <filter id="post4" x="0%" y="0%" width="100%" height="100%">
+        <feComponentTransfer>
+          <feFuncR type="discrete" tableValues="0 0.333 0.667 1"/>
+          <feFuncG type="discrete" tableValues="0 0.333 0.667 1"/>
+          <feFuncB type="discrete" tableValues="0 0.333 0.667 1"/>
+        </feComponentTransfer>
+      </filter>
+    </svg>
+
+    <section id="loader">
+      <img src="images/logo-inverted-animated.svg" alt="netizen.org logo animated for the load screen">
+    </section>
+
+    <img id="netizen-logo" src="images/logo-white.svg" alt="netizen.org logo" tabindex=0 role="button" aria-label="Go to home">
+
+    <header>
+      <div class="burger">
+        =
+      </div>
+      <nav>
+        <span name="about" class="sec-nav">About</span>
+        <span name="initiatives" class="sec-nav">Initiatives</span>
+        <span name="support" class="sec-nav">Support</span>
+      </nav>
+    </header>
+
+    <main>
+      <div id="splash-canvas"></div>
+
+      <!-- background image attribution; positioned in desktop.js because
+           #splash-canvas is a fixed, zero-width box (its canvas is fixed too,
+           so it contributes no size) and can't anchor anything -->
+      <div id="splash-credit" hidden></div>
+
+      <div id="content"></div>
+
+      <div id="main-grid" class="grid"></div>
+
+      <footer>
+        <img src="images/word-mark-tag-line-white.svg" alt="netizen.org, bent on bending tech<">
+      </footer>
+    </main>
+
+    <script src="js/nn.min.js"></script>
+    <script src="js/netitor.min.js"></script>
+    <script src="js/netizen-nav.js"></script>
+    <script src="js/netizen-ascii-splash.js"></script>
+    <script src="js/netizen-content-block.js"></script>
+    <script src="js/netizen-grid.js"></script>
+    <script src="js/netizen-bend-panel.js"></script>
+    <script src="js/netizen-syrup-image.js"></script>
+    <script src="js/netizen-bent-text.js"></script>
+    <script src="js/load-case-study.js"></script>
+    <script src="js/grids.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/desktop.js"></script>
+    <script src="js/netizen-splash-reveal.js"></script>
+  </body>
+</html>

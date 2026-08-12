@@ -1,0 +1,13 @@
+{
+  "title": "BrowseFest",
+  "date": "Feb 22 - Apr 10, 2021",
+  "sub-title": "A Virtual Demoparty",
+  "urls": {
+    "website": "https://browserfest.netizen.org/"
+  },
+  "partners": ["The University of Chicago", "runway ml", "dbrand", "VGA Gallery"],
+  "content": [
+    "BrowserFest was a friendly online competition and celebration of creative coding inspired by the playful and dynamic demoparty format. It was a virtual festival bent on fostering the artful development of and experimentation with the web. For a little over one month participants explored making, remixing, and hacking the web through live sessions, interactive tutorials, and handy starter (code) packs. The fest culminated in a realtime interactive online event with browser based performances and prizes awarded to the winners."
+  ],
+  "grid": []
+}

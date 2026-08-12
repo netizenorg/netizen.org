@@ -19,3 +19,5 @@ data/analytics/snt_analytics.sqlite
 data/analytics/salt.json
 
 www/netnet/videos/*
+
+www/videos/*

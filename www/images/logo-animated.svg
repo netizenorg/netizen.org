@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Layer_1" xmlns="http://www.w3.org/2000/svg" width="5.222in" height="3.045in" viewBox="0 0 375.982 219.256">
+  <path d="M266.354,0c-60.449,0-109.628,49.179-109.628,109.628s49.179,109.628,109.628,109.628,109.629-49.179,109.629-109.628S326.803,0,266.354,0ZM347.307,109.628c0,44.637-36.315,80.952-80.953,80.952s-80.952-36.315-80.952-80.952,36.315-80.953,80.952-80.953,80.953,36.315,80.953,80.953Z"/>
+
+  <path d="M133.273,218.767c12.047,0,21.813-9.766,21.813-21.812s-9.766-21.813-21.813-21.813-21.813,9.766-21.813,21.813,9.766,21.812,21.813,21.812"/>
+
+  <style>
+    @keyframes fade {
+      0%, 100% { opacity: 0; }
+      50%      { opacity: 1; }
+    }
+
+    #point-1,
+    #point-2,
+    #point-3,
+    #point-4,
+    #point-5 {
+      animation: fade 2s ease-in-out infinite both;
+    }
+
+    #point-1 { animation-delay: 0.8s; }
+    #point-2 { animation-delay: 0.6s; }
+    #point-3 { animation-delay: 0.4s; }
+    #point-4 { animation-delay: 0.2s; }
+    #point-5 { animation-delay: 0s; }
+  </style>
+
+  <path
+     style="opacity:1;fill:#666666;stroke:#000000;stroke-width:28.082;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     d="M 63.502371,61.66245 63.76384,14.887238"
+     id="point-1"/>
+  <path
+     style="opacity:1;fill:#666666;stroke:#000000;stroke-width:28.082;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     d="M 65.940653,65.074053 113.16649,50.54025"
+     id="point-2"/>
+   <path
+      style="opacity:1;fill:#666666;stroke:#000000;stroke-width:28.082;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+      d="M 93.673624,108.65171 66.166475,69.703885"
+      id="point-3"/>
+  <path
+     style="opacity:1;fill:#666666;stroke:#000000;stroke-width:28.082;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     d="M 33.104496,108.27897 60.948212,70.449351"
+     id="point-4"/>
+   <path
+      style="opacity:1;fill:#666666;stroke:#000000;stroke-width:28.082;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+      d="M 14.467841,50.318976 60.016379,65.603821"
+      id="point-5"/>
+</svg>

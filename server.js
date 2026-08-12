@@ -6,21 +6,10 @@ const app = express()
 const http = require('http')
 const https = require('https')
 const SocketsServer = require('socket.io')
-const ANALYTICS = require('stats-not-tracks')
 const ROUTES = require('./my_modules/routes.js')
 const SOCKETS = require('./my_modules/sockets.js')
 const PROXY = require('./my_modules/proxy.js')
 const BBS = require('./my_modules/bbs.js')
-
-ANALYTICS.setup(app, {
-  path: `${__dirname}/data/analytics`,
-  admin: {
-    route: 'analytics',
-    secret: process.env.JWT_SECRET,
-    hash: process.env.ADMIN_PWD,
-    token: process.env.ADMIN_TOKEN
-  }
-})
 
 app.use(ROUTES)
 app.use(PROXY)
@@ -39,7 +28,6 @@ if (process.env.ENV === 'dev') {
   const httpServer = http.createServer(app)
   httpServer.listen(8000, () => console.log('listening on 8000'))
   io.attach(httpServer)
-  ANALYTICS.live(httpServer, io)
 } else {
   // production servers
   const credentials = {
@@ -56,5 +44,4 @@ if (process.env.ENV === 'dev') {
 
   io.attach(httpServer)
   io.attach(httpsServer)
-  ANALYTICS.live(httpServer, io)
 }

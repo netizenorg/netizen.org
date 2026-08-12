@@ -3,6 +3,11 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- app routes now use real paths (/initiatives/dream, etc), so every
+         relative asset/fetch reference below needs to resolve from the
+         site root regardless of how deep the current URL is -->
+    <base href="/">
+
     <title>netizen.org</title>
     <!-- bent on bending tech -->
     <meta name="author" content="netizen.org">

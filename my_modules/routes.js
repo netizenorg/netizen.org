@@ -10,6 +10,15 @@ router.get('/readme', (req, res) => {
   res.sendFile(path.join(__dirname, '../README.md'))
 })
 
+// The desktop/mobile apps are single-page apps that now route these
+// sections client-side via the History API (real paths, not #hashes) --
+// none of them are real files, so a hard refresh or a shared link needs the
+// server to hand back index.html and let the app's own router take it from
+// there (same file express.static already serves for '/').
+router.get(['/about', '/support', '/initiatives', '/initiatives/:name'], (req, res) => {
+  res.sendFile(path.join(__dirname, '../www/index.html'))
+})
+
 router.post('/api/test', (req, res) => {
   const message = `u said ${req.body.message}`
   res.json({ message })

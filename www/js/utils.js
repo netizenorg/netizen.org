@@ -57,7 +57,7 @@ function splashCredit (entry) {
     ? window.data.initiatives[entry.initiative]
     : null
   const label = entry.label || (init && init.title) || null
-  const href = entry.href || (entry.initiative ? `#initiatives/${entry.initiative}` : null)
+  const href = entry.href || (entry.initiative ? `/initiatives/${entry.initiative}` : null)
   if (!label) return null   // nothing to say yet (or deliberately muted)
   return { label, href }
 }

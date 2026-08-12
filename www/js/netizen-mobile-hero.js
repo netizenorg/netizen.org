@@ -246,11 +246,20 @@
       const c = window.splashCreditForSrc(src)
       if (!c) { creditEle.innerHTML = ''; creditEle.hidden = true; return }
       creditEle.hidden = false
-      // a plain anchor is enough on mobile: mobile.js listens for hashchange
-      // (unlike desktop, which needed goToHash because it never did)
       creditEle.innerHTML = c.href
         ? `<a href="${c.href}">${c.label}</a>`
         : `<span>${c.label}</span>`
+      // c.href is a real path now (e.g. /initiatives/dream), so a plain
+      // click would trigger a full page reload instead of an in-app nav --
+      // route it through mobile.js's router the same way desktop does for
+      // its own splash credit.
+      const a = creditEle.querySelector('a')
+      if (a && typeof routePath === 'function') {
+        a.addEventListener('click', e => {
+          e.preventDefault()
+          routePath(c.href.replace(/^\/+/, ''))
+        })
+      }
     }
 
     const advance = async () => {

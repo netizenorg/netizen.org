@@ -45,7 +45,12 @@ class NetizenNav {
   }
 
   updatePage (sec) {
-    window.location.hash = '#' + sec
+    const path = sec === 'logo' ? '/' : '/' + sec
+    // guards against double-pushing when this is called in response to a
+    // popstate event, where the address bar has already moved to `path`
+    if (window.location.pathname !== path) {
+      window.history.pushState({ sec }, '', path)
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
     if (sec === 'logo') this._deactivate()
     else this._activate(sec)

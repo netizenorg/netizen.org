@@ -136,7 +136,8 @@ window.loadCaseStudy = function (o) {
   const span = nn.getAll('.sub-nav-item')
     .filter(ele => ele.getAttribute('name') === o.name)[0]
 
-  window.location.hash = '#initiatives/' + o.name
+  const path = '/initiatives/' + o.name
+  if (window.location.pathname !== path) window.history.pushState(null, '', path)
 
   nn.getAll('.sub-nav-item').forEach(s => s.classList.remove('selected'))
   span.classList.add('selected')

@@ -442,11 +442,11 @@ async function main () {
     console.log('Loading content...')
     loadContent()
     
-    // Handle initial URL hash
-    handleInitialHash()
-    
-    // Listen for hash changes (browser back/forward)
-    window.addEventListener('hashchange', handleHashChange)
+    // Handle initial URL
+    handleInitialPath()
+
+    // Listen for browser back/forward
+    window.addEventListener('popstate', handlePopState)
     
     // Sub-navigation removed - Initiatives now navigates directly to page
     
@@ -876,16 +876,16 @@ function setupNavigation() {
 
 // Sub-navigation functionality removed - Initiatives now navigates directly to page
 
-// Route a hash that may carry an initiative slug. "#initiatives/netnet" used
+// Route a path that may carry an initiative slug. "initiatives/netnet" used
 // to be passed straight to navigateTo(), which did
 // getElementById('initiatives/netnet'), found nothing, hid every section, and
 // left a blank page -- shared deep links died silently on mobile. Split the
 // slug off, land on the initiatives list, then open the detail once its data
 // exists (initiative JSONs load async; on a cold load the slug's record may
 // not be there yet, hence the bounded poll).
-function routeHash(hash) {
-  if (hash.startsWith('initiatives/')) {
-    const slug = hash.split('/')[1]
+function routePath(path) {
+  if (path.startsWith('initiatives/')) {
+    const slug = path.split('/')[1]
     navigateTo('initiatives')
     let tries = 0
     const wait = setInterval(() => {
@@ -901,29 +901,42 @@ function routeHash(hash) {
       }
     }, 120)
   } else {
-    navigateTo(hash)
+    navigateTo(path)
   }
 }
 
-// Handle initial URL hash on page load
-function handleInitialHash() {
-  const hash = window.location.hash.substring(1) // Remove the # symbol
-  console.log('Initial hash:', hash)
+// Handle the initial URL on page load. `?redirect=` carries a path here
+// when desktop.js bounced a mobile visitor off a deep link (e.g.
+// /initiatives/dream) -- see the isMobile check in desktop.js's main().
+// Once read, the address bar is normalized back to the clean path so it
+// doesn't keep mobile.html or the redirect param dangling in the URL.
+function handleInitialPath() {
+  const params = new URLSearchParams(window.location.search)
+  const redirect = params.get('redirect')
+  let path = redirect || window.location.pathname
+  if (path === '/mobile.html') path = '/'
 
-  if (hash && hash !== 'home') {
-    // Navigate to the section specified in the URL
-    routeHash(hash)
+  if (window.location.pathname !== path || window.location.search) {
+    window.history.replaceState(null, '', path)
+  }
+
+  const clean = path.replace(/^\/+/, '')
+  console.log('Initial path:', clean)
+
+  if (clean && clean !== 'home') {
+    routePath(clean)
   }
 }
 
-// Handle hash changes (browser back/forward navigation)
-function handleHashChange() {
-  const hash = window.location.hash.substring(1) // Remove the # symbol
-  console.log('Hash changed to:', hash)
+// Handle browser back/forward navigation
+function handlePopState() {
+  const path = window.location.pathname.replace(/^\/+/, '')
+  console.log('Path changed to:', path)
 
-  if (hash && hash !== currentSection) {
-    // Navigate to the new section
-    routeHash(hash)
+  if (path && path !== currentSection) {
+    routePath(path)
+  } else if (!path && currentSection !== 'home') {
+    navigateTo('home')
   }
 }
 
@@ -998,11 +1011,16 @@ function navigateTo(section) {
     activeNavItem.classList.add('active')
   }
   
-  // Update URL hash to match desktop behavior (only if not already set)
-  if (section !== 'initiative-detail' && window.location.hash !== `#${section}`) {
-    window.location.hash = `#${section}`
+  // Update the URL to match desktop's path-based routing (only if it
+  // actually needs to move -- guards against double-pushing when this runs
+  // in response to a popstate event, where the address bar already moved)
+  if (section !== 'initiative-detail') {
+    const path = section === 'home' ? '/' : '/' + section
+    if (window.location.pathname !== path) {
+      window.history.pushState({ section }, '', path)
+    }
   }
-  
+
   currentSection = section
   currentInitiative = null
   
@@ -1308,7 +1326,12 @@ function showInitiativeDetail(initiativeName) {
   
   currentInitiative = initiativeName
   currentSection = 'initiative-detail'
-  
+
+  const path = '/initiatives/' + initiativeName
+  if (window.location.pathname !== path) {
+    window.history.pushState({ section: 'initiative-detail', initiative: initiativeName }, '', path)
+  }
+
   // Hide all sections
   const sections = document.querySelectorAll('.content-section')
   sections.forEach(section => {
@@ -1648,7 +1671,10 @@ function openMobileLightbox(gridItems, currentIndex) {
 // data/main.json "featuredOnHome", shared with desktop, so content changes
 // happen in one place. Presentation differs on purpose: stacked full-width
 // tiles instead of grid blocks, title overlaid (no hover here to reveal
-// anything), tap navigates via location.hash so routeHash() does the rest.
+// anything), tap opens the detail directly -- buildHomeInitiatives() only
+// renders a tile once that initiative's data is already loaded (see the
+// `ready` check below), so there's no need to route through routePath()'s
+// wait-for-data poll the way a cold deep link does.
 // Not addSyrupImgToMobile(): its tap toggles a clean-image reveal, which is
 // the wrong gesture for a link.
 function buildHomeInitiatives() {
@@ -1699,7 +1725,7 @@ function buildHomeInitiatives() {
       tile.appendChild(title)
 
       tile.addEventListener('click', () => {
-        window.location.hash = '#initiatives/' + name
+        showInitiativeDetail(name)
       })
     })
 

@@ -112,7 +112,7 @@ function addSyrupImgToGrid (opts = {}) {
 // real images in their own `grid` array can feature here (bias-out-of-the-box,
 // browserfest, and artware-incubator have none yet) -- same random-pick
 // pattern showInitiatives() already uses for D.R.E.A.M.'s own thumbnail.
-// goToHash is the same routine deep links and the splash credit use:
+// goToPath is the same routine deep links and the splash credit use:
 // loadCaseStudy() assumes the initiatives sub-nav already exists in the DOM
 // (it looks up `.sub-nav-item[name=...]`), which is only true after
 // nav.updatePage('initiatives') has run and had time to render it -- calling
@@ -144,7 +144,7 @@ function populateHomeGrid () {
       path: nn.random(images),
       ele1: grid.getBlock(blocks[0]),
       ele2: grid.getBlock(blocks[1]),
-      callback: () => goToHash('#initiatives/' + name)
+      callback: () => goToPath('/initiatives/' + name)
     })
   })
 
@@ -385,12 +385,12 @@ function setupSplashCredit () {
         ele.innerHTML = c.href
           ? `<a href="${c.href}">${c.label}</a>`
           : `<span>${c.label}</span>`
-        // href="#initiatives/dream" only ever updates the address bar: this is
-        // a single-page app with no hashchange listener, so a plain <a> click
-        // just silently rewrites the URL and nothing on screen moves. Drive
-        // navigation the same way URLHandling() does on a cold load instead.
+        // href="/initiatives/dream" would otherwise trigger a real page
+        // navigation on click (pushState-based routing has no native
+        // equivalent of the old hash-anchor trick). Drive it through the
+        // same in-app router URLHandling() uses on a cold load instead.
         const a = ele.querySelector('a')
-        if (a) a.addEventListener('click', e => { e.preventDefault(); goToHash(c.href) })
+        if (a) a.addEventListener('click', e => { e.preventDefault(); goToPath(c.href) })
       }
     }
     updateVisibility()   // also catches nav changes, which fade the canvas
@@ -399,29 +399,36 @@ function setupSplashCredit () {
   setInterval(render, 400)
 }
 
-// Shared by the cold-load hash handler below and by in-page links (the splash
-// credit) that need the same routing but can't rely on a native hashchange --
-// this app has no such listener, so a plain <a href="#..."> only rewrites the
-// address bar and nothing on screen moves.
-async function goToHash (hash) {
-  if (hash.includes('#about')) {
+// Shared by the cold-load path handler below, by in-page links (the splash
+// credit) that need the same routing but can't rely on a real navigation,
+// and by the popstate listener that drives browser back/forward.
+async function goToPath (path) {
+  const clean = path.replace(/^\/+/, '') // '/initiatives/dream' -> 'initiatives/dream'
+  if (clean.startsWith('about')) {
     nav.updatePage('about')
-  } else if (hash.includes('#initiatives')) {
+  } else if (clean.startsWith('initiatives')) {
     nav.updatePage('initiatives')
-    const parts = hash.split('/')
+    const parts = clean.split('/')
     if (parts.length > 1) {
       await nn.sleep(1200)
       const item = nn.get(`.sub-nav-item[name="${parts[1]}"]`)
       if (item) item.click()
     }
-  } else if (hash.includes('#support')) {
+  } else if (clean.startsWith('support')) {
     nav.updatePage('support')
+  } else if (nav.state !== 0) {
+    nav.updatePage('logo') // back/forward landed on '/'
   }
 }
 
 async function URLHandling () {
-  return goToHash(window.location.hash)
+  return goToPath(window.location.pathname)
 }
+
+// window.location.pathname has already moved by the time this fires (that's
+// how popstate works), so goToPath -> nav.updatePage's own pathname check
+// keeps this from pushing a duplicate history entry.
+window.addEventListener('popstate', () => goToPath(window.location.pathname))
 
 function resize () {
   if (window.blockerTimer) {
@@ -444,7 +451,17 @@ function resize () {
 }
 
 async function main () {
-  if (nn.isMobile()) window.location = 'mobile.html'
+  if (nn.isMobile()) {
+    // absolute, not relative: with real paths now (e.g. /initiatives/dream)
+    // a relative 'mobile.html' would resolve to /initiatives/mobile.html.
+    // Carry the intended path along so mobile.js can land on the same
+    // section instead of silently bouncing every deep link back to home.
+    const path = window.location.pathname
+    window.location = path && path !== '/'
+      ? `/mobile.html?redirect=${encodeURIComponent(path)}`
+      : '/mobile.html'
+    return
+  }
 
   // load initial data
   window.data = await loadData()

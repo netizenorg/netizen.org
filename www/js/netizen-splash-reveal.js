@@ -52,7 +52,16 @@ function bootSplashReveal () {
   // desktop.js's main() is async (it awaits loadData() before constructing
   // `splash`), so this script's own <script> tag can easily finish parsing
   // before window.splash exists. Poll rather than assume load order.
-  if (typeof splash === 'undefined' || !splash || !splash.canvas) {
+  //
+  // splash.canvas exists as soon as NetizenASCIISplash.init() runs, but it's
+  // only sized (resizeCanvas()) once the splash image finishes loading --
+  // stuck at the browser's 300x150 default until then. Also wait on
+  // splash.img (set in the same synchronous step right before
+  // resizeCanvas(), see netizen-ascii-splash.js), or a slow/uncached image
+  // load loses this race and W/H below get baked in at 300x150 -- a tiny
+  // canvas pinned top-left instead of full screen, and it stays that way
+  // until the window is manually resized.
+  if (typeof splash === 'undefined' || !splash || !splash.canvas || !splash.img) {
     setTimeout(bootSplashReveal, 120)
     return
   }

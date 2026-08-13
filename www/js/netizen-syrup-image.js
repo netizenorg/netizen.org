@@ -116,6 +116,11 @@ class NetizenSyrupImage {
 
   loadAndResizeImage (url, container, callback) {
     const img = new window.Image()
+    // needed for cross-origin sources (e.g. YouTube thumbnails) -- every
+    // other caller passes a same-origin path, where this is a harmless
+    // no-op, but without it here the canvas reads below (getImageData) throw
+    // "tainted canvas" as soon as this is a cross-origin image
+    img.crossOrigin = 'anonymous'
     img.addEventListener('load', () => {
       const cw = container.clientWidth
       const ch = container.clientHeight

@@ -169,19 +169,31 @@ function populateHomeGrid () {
   }
 
   // Feature video (new release spotlight), block 2 -- the first big element.
-  // Block 2 is near-square, not 16:9; the iframe centres at 16:9 and the
-  // cell's own colour letterboxes it, which reads as colour-blocking rather
-  // than dead space (see .feature-video in desktop.css).
+  // Same syrup treatment as every other grid image (addSyrupImgToGrid),
+  // instead of a plain thumbnail, for visual consistency with the rest of
+  // the grid. Paired with block 1 for its second colour -- the reverse of
+  // the pairing populateHomeGrid() already uses when block 1 hosts a
+  // teaser (ele1: block 1, ele2: block 2).
+  //
+  // hqdefault.jpg (not maxresdefault.jpg) because it's guaranteed to exist
+  // for every video -- maxresdefault silently 200s with a tiny placeholder
+  // instead of 404ing when it's missing, so there'd be no reliable way to
+  // detect and fall back.
   if (window.data.featureVideo && window.data.featureVideo.youtubeId) {
     const v = window.data.featureVideo
-    const wrap = nn.create('div').set('class', 'feature-video').addTo(grid.getBlock(2))
-    wrap.innerHTML = `<iframe
-      src="https://www.youtube.com/embed/${v.youtubeId}"
-      title="${v.title || 'featured video'}"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allowfullscreen></iframe>`
+    const block = grid.getBlock(2)
+    block.classList.add('feature-video')
+    addSyrupImgToGrid({
+      path: `https://img.youtube.com/vi/${v.youtubeId}/hqdefault.jpg`,
+      ele1: block,
+      ele2: grid.getBlock(1),
+      callback: () => window.open(`https://www.youtube.com/watch?v=${v.youtubeId}`, '_blank', 'noopener')
+    })
+    // a CSS background-image, not an <img> -- addSyrupImgToGrid's hover
+    // handlers do querySelectorAll('img') and assume every non-"clean" img
+    // has a matching entry in `syrup` (huffhack/pixelate/dither/ascii); an
+    // actual <img> here would hit that and throw on mouseout
+    nn.create('span').set('class', 'play-icon').addTo(block)
   }
 
   // BEND THIS SITE lives in block 6 now (its own block -- reading order puts

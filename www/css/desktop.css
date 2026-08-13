@@ -506,21 +506,24 @@ header .burger {
   transition: all 0.7s var(--out-cubic);
 }
 
-/* Feature video sits first, in home-grid block 2, which is near-square --
-   the iframe holds 16:9 and centres vertically, so the block's own colour
-   frames it top and bottom. Colour-blocking, not letterbox bars. */
-.feature-video {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.feature-video iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: 0;
-  display: block;
+/* Feature video sits first, in home-grid block 2 -- syrup'd the same as
+   every other grid image (see addSyrupImgToGrid's featureVideo call in
+   desktop.js). block already gets position/overflow from ".grid > div"
+   above; .play-icon just needs to sit on top of those syrup layers. It's a
+   background-image, not an <img>, so it's invisible to addSyrupImgToGrid's
+   hover handlers (which do querySelectorAll('img') over the whole block). */
+.feature-video .play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85) url('../images/play.svg') no-repeat center / 38%;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
 }
 
 .grid > div > img {
